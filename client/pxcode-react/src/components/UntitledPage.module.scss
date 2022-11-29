@@ -1,0 +1,1374 @@
+@use "utils" as *;
+
+$color_type_0: rgb(0, 0, 0);
+$color_type_1: rgb(134, 119, 228);
+$color_type_2: rgb(178, 166, 252);
+$color_type_3: rgb(183, 192, 216);
+$color_type_4: rgb(232, 237, 249);
+$color_type_5: rgb(244, 247, 250);
+$color_type_6: rgb(247, 200, 93);
+$color_type_7: rgb(255, 255, 255);
+$color_type_8: rgb(52, 54, 76);
+$color_type_9: rgb(63, 59, 82);
+$color_type_10: rgb(68, 205, 207);
+
+$border_radius_type_0: 0px 0px 22px 22px;
+$border_radius_type_1: 22px 22px 0px 0px;
+$border_radius_type_2: 22px 22px 22px 22px;
+$border_radius_type_3: 25px 25px 25px 25px;
+$border_radius_type_4: 8px 8px 8px 8px;
+
+$font_type_0: 700 40px/1.2 "Roboto", Helvetica, Arial, serif;
+$font_type_1: 400 40px/1.2 "Roboto", Helvetica, Arial, serif;
+$font_type_2: 500 36px/1.2 "Roboto", Helvetica, Arial, serif;
+$font_type_3: 700 28px/1.2 "Roboto", Helvetica, Arial, serif;
+$font_type_4: 700 22px/1.2 "Roboto", Helvetica, Arial, serif;
+$font_type_5: 700 20px/1.2 "Roboto", Helvetica, Arial, serif;
+$font_type_6: 400 16px/1.2 "Roboto", Helvetica, Arial, serif;
+$font_type_7: 500 14px/1.2 "Roboto", Helvetica, Arial, serif;
+
+.root {
+  @include flex-column;
+  position: relative;
+}
+.box {
+  @include flex-column;
+  background-color: $color_type_0;
+  height: 982px;
+  position: relative;
+}
+.box1 {
+  @include flex-column;
+  background-color: $color_type_5;
+  border-radius: $border_radius_type_4;
+  width: 551px;
+  height: 536px;
+  position: absolute;
+  top: 223px;
+  left: 481px;
+  min-width: 551px;
+}
+.wrapper {
+  @include flex-column;
+  width: 24px;
+  height: 478px;
+  position: absolute;
+  overflow: hidden;
+  top: 12px;
+  left: 12px;
+  min-width: 24px;
+}
+.col {
+  @include flex-column;
+  position: relative;
+  flex-grow: 1;
+  margin: 8px;
+}
+.paragraph {
+  @include v-center-content;
+  justify-content: center;
+  font: $font_type_7;
+  color: $color_type_8;
+  text-align: center;
+  letter-spacing: 0px;
+  position: relative;
+  min-height: 49px;
+}
+.paragraph1 {
+  @include v-center-content;
+  justify-content: center;
+  font: $font_type_7;
+  color: $color_type_8;
+  text-align: center;
+  letter-spacing: 0px;
+  position: relative;
+  min-height: 49px;
+  margin: 10px 0px 0px;
+}
+.box2 {
+  @include flex-column;
+  background-color: $color_type_5;
+  width: 492px;
+  height: 472px;
+  position: absolute;
+  top: 12px;
+  left: 48px;
+  min-width: 492px;
+}
+.box3 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  min-width: 62px;
+}
+.image {
+  width: 30px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  min-width: 30px;
+}
+.image1 {
+  width: 25px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 13px;
+  left: 18px;
+  min-width: 25px;
+}
+.image2 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 118px;
+  left: 0px;
+  min-width: 62px;
+}
+.image21 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 236px;
+  left: 0px;
+  min-width: 62px;
+}
+.box4 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 354px;
+  left: 0px;
+  min-width: 62px;
+}
+.image3 {
+  width: 30px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 11px;
+  left: 15px;
+  min-width: 30px;
+}
+.image4 {
+  width: 25px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  min-width: 25px;
+}
+.box5 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 59px;
+  left: 0px;
+  min-width: 62px;
+}
+.image22 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 177px;
+  left: 0px;
+  min-width: 62px;
+}
+.image23 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 295px;
+  left: 0px;
+  min-width: 62px;
+}
+.box6 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 413px;
+  left: 0px;
+  min-width: 62px;
+}
+.box51 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 59px;
+  left: 123px;
+  min-width: 62px;
+}
+.image24 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 177px;
+  left: 123px;
+  min-width: 62px;
+}
+.image25 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 295px;
+  left: 123px;
+  min-width: 62px;
+}
+.box7 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 413px;
+  left: 123px;
+  min-width: 62px;
+}
+.image5 {
+  width: 30px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 9px;
+  left: 16px;
+  min-width: 30px;
+}
+.image6 {
+  width: 24px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 12px;
+  left: 19px;
+  min-width: 24px;
+}
+.box52 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 59px;
+  left: 246px;
+  min-width: 62px;
+}
+.image26 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 177px;
+  left: 246px;
+  min-width: 62px;
+}
+.image27 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 295px;
+  left: 246px;
+  min-width: 62px;
+}
+.box8 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 413px;
+  left: 246px;
+  min-width: 62px;
+}
+.icon {
+  width: 41px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 7px;
+  left: 11px;
+  min-width: 41px;
+}
+.icon1 {
+  width: 35px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  min-width: 35px;
+}
+.box53 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 59px;
+  left: 369px;
+  min-width: 62px;
+}
+.image28 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 177px;
+  left: 369px;
+  min-width: 62px;
+}
+.image29 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 295px;
+  left: 369px;
+  min-width: 62px;
+}
+.box9 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 413px;
+  left: 369px;
+  min-width: 62px;
+}
+.box10 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 0px;
+  left: 246px;
+  min-width: 62px;
+}
+.image210 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 118px;
+  left: 246px;
+  min-width: 62px;
+}
+.image211 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 236px;
+  left: 246px;
+  min-width: 62px;
+}
+.box11 {
+  @include flex-column;
+  background-color: $color_type_2;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 354px;
+  left: 246px;
+  min-width: 62px;
+}
+.box12 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 0px;
+  left: 123px;
+  min-width: 62px;
+}
+.image212 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 118px;
+  left: 123px;
+  min-width: 62px;
+}
+.image213 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 236px;
+  left: 123px;
+  min-width: 62px;
+}
+.box121 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 354px;
+  left: 123px;
+  min-width: 62px;
+}
+.box13 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 0px;
+  left: 369px;
+  min-width: 62px;
+}
+.image7 {
+  width: 38px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  min-width: 38px;
+}
+.image8 {
+  width: 32px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 10px;
+  left: 13px;
+  min-width: 32px;
+}
+.icon2 {
+  width: 4px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  min-width: 4px;
+}
+.image214 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 118px;
+  left: 369px;
+  min-width: 62px;
+}
+.image215 {
+  width: 62px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 236px;
+  left: 369px;
+  min-width: 62px;
+}
+.box41 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 62px;
+  height: 59px;
+  position: absolute;
+  top: 354px;
+  left: 369px;
+  min-width: 62px;
+}
+.box14 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 0px;
+  left: 62px;
+  min-width: 61px;
+}
+.icon3 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 118px;
+  left: 62px;
+  min-width: 61px;
+}
+.icon31 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 236px;
+  left: 62px;
+  min-width: 61px;
+}
+.box141 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 354px;
+  left: 62px;
+  min-width: 61px;
+}
+.box15 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 59px;
+  left: 62px;
+  min-width: 61px;
+}
+.image41 {
+  width: 25px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 14px;
+  left: 17px;
+  min-width: 25px;
+}
+.icon32 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 177px;
+  left: 62px;
+  min-width: 61px;
+}
+.icon33 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 295px;
+  left: 62px;
+  min-width: 61px;
+}
+.box16 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 413px;
+  left: 62px;
+  min-width: 61px;
+}
+.image9 {
+  width: 33px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  min-width: 33px;
+}
+.icon21 {
+  width: 4px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 22px;
+  left: 23px;
+  min-width: 4px;
+}
+.box151 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 59px;
+  left: 185px;
+  min-width: 61px;
+}
+.icon34 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 177px;
+  left: 185px;
+  min-width: 61px;
+}
+.icon35 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 295px;
+  left: 185px;
+  min-width: 61px;
+}
+.box17 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 413px;
+  left: 185px;
+  min-width: 61px;
+}
+.image10 {
+  width: 45px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  min-width: 45px;
+}
+.image11 {
+  width: 40px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  min-width: 40px;
+}
+.box18 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 59px;
+  left: 308px;
+  min-width: 61px;
+}
+.icon36 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 177px;
+  left: 308px;
+  min-width: 61px;
+}
+.icon37 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 295px;
+  left: 308px;
+  min-width: 61px;
+}
+.box19 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 413px;
+  left: 308px;
+  min-width: 61px;
+}
+.image12 {
+  width: 29px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 9px;
+  left: 16px;
+  min-width: 29px;
+}
+.image61 {
+  width: 24px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  min-width: 24px;
+}
+.box152 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 59px;
+  left: 431px;
+  min-width: 61px;
+}
+.icon38 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 177px;
+  left: 431px;
+  min-width: 61px;
+}
+.icon39 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 295px;
+  left: 431px;
+  min-width: 61px;
+}
+.box20 {
+  @include flex-column;
+  background-color: $color_type_4;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 413px;
+  left: 431px;
+  min-width: 61px;
+}
+.image13 {
+  width: 25px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 13px;
+  left: 17px;
+  min-width: 25px;
+}
+.box21 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 0px;
+  left: 308px;
+  min-width: 61px;
+}
+.icon310 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 118px;
+  left: 308px;
+  min-width: 61px;
+}
+.icon311 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 236px;
+  left: 308px;
+  min-width: 61px;
+}
+.box142 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 354px;
+  left: 308px;
+  min-width: 61px;
+}
+.box22 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 0px;
+  left: 185px;
+  min-width: 61px;
+}
+.icon312 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 118px;
+  left: 185px;
+  min-width: 61px;
+}
+.icon313 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 236px;
+  left: 185px;
+  min-width: 61px;
+}
+.box143 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 354px;
+  left: 185px;
+  min-width: 61px;
+}
+.box23 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 0px;
+  left: 431px;
+  min-width: 61px;
+}
+.icon314 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 118px;
+  left: 431px;
+  min-width: 61px;
+}
+.icon315 {
+  width: 61px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 236px;
+  left: 431px;
+  min-width: 61px;
+}
+.box24 {
+  @include flex-column;
+  background-color: $color_type_3;
+  width: 61px;
+  height: 59px;
+  position: absolute;
+  top: 354px;
+  left: 431px;
+  min-width: 61px;
+}
+.wrapper1 {
+  display: flex;
+  width: 499px;
+  height: 24px;
+  position: absolute;
+  overflow: hidden;
+  top: 500px;
+  left: 40px;
+  min-width: 499px;
+}
+.paragraph2 {
+  @include v-center-content;
+  justify-content: center;
+  font: $font_type_7;
+  color: $color_type_8;
+  text-align: center;
+  letter-spacing: 0px;
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 52px;
+  margin: 3.5px 0px 3.5px 8px;
+}
+.wrapper1__spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 10px;
+}
+.paragraph3 {
+  @include v-center-content;
+  justify-content: center;
+  font: $font_type_7;
+  color: $color_type_8;
+  text-align: center;
+  letter-spacing: 0px;
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 51px;
+  margin: 3.5px 0px;
+}
+.paragraph4 {
+  @include v-center-content;
+  justify-content: center;
+  font: $font_type_7;
+  color: $color_type_8;
+  text-align: center;
+  letter-spacing: 0px;
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 52px;
+  margin: 3.5px 0px;
+}
+.paragraph5 {
+  @include v-center-content;
+  justify-content: center;
+  font: $font_type_7;
+  color: $color_type_8;
+  text-align: center;
+  letter-spacing: 0px;
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 52px;
+  margin: 3.5px 8px 3.5px 0px;
+}
+.decorator {
+  width: 1584px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: -206px;
+  left: -17px;
+}
+.wrapper2 {
+  @include flex-column;
+  background-color: $color_type_9;
+  border-radius: $border_radius_type_2;
+  width: 1238px;
+  height: 143px;
+  position: absolute;
+  top: 0px;
+  left: 137px;
+  min-width: 1238px;
+}
+.icon4 {
+  width: 75px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 34px;
+  left: 50px;
+  min-width: 75px;
+}
+.subtitle {
+  @include font-face($font_type_5, $color_type_7, 0px);
+  width: fit-content;
+  height: min-content;
+  position: absolute;
+  top: 52px;
+  left: 145px;
+  min-width: 0px;
+}
+.big_title {
+  @include font-face($font_type_2, $color_type_7, -0.7px);
+  width: fit-content;
+  height: min-content;
+  position: absolute;
+  top: 50px;
+  left: 492px;
+  min-width: 0px;
+}
+.highlights {
+  @include font-face($font_type_6, $color_type_7, 0px);
+  width: fit-content;
+  height: min-content;
+  position: absolute;
+  top: 84px;
+  left: 145px;
+  min-width: 0px;
+}
+.icon11 {
+  width: 35px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 54px;
+  left: 1138px;
+  min-width: 35px;
+}
+.image131 {
+  width: 13px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 65px;
+  left: 1009px;
+  min-width: 13px;
+}
+.image14 {
+  width: 23px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 82px;
+  left: 1004px;
+  min-width: 23px;
+}
+.image15 {
+  width: 8px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 67px;
+  left: 1025px;
+  min-width: 8px;
+}
+.icon5 {
+  width: 11px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 54px;
+  left: 1019px;
+  min-width: 11px;
+}
+.image151 {
+  width: 8px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 67px;
+  left: 998px;
+  min-width: 8px;
+}
+.icon51 {
+  width: 11px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 54px;
+  left: 1001px;
+  min-width: 11px;
+}
+.image16 {
+  width: 10px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 81px;
+  left: 937px;
+  min-width: 10px;
+}
+.image17 {
+  width: 3px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 55px;
+  left: 941px;
+  min-width: 3px;
+}
+.icon6 {
+  width: 31px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 57px;
+  left: 927px;
+  min-width: 31px;
+}
+.image18 {
+  width: 26px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 67px;
+  left: 929px;
+  min-width: 26px;
+}
+.image19 {
+  width: 21px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 58px;
+  left: 933px;
+  min-width: 21px;
+}
+.wrapper3 {
+  @include flex-column;
+  background-color: $color_type_10;
+  border-radius: $border_radius_type_2;
+  width: 679px;
+  height: 677px;
+  position: absolute;
+  top: 203px;
+  left: 417px;
+  min-width: 679px;
+}
+.rect2 {
+  background-color: $color_type_6;
+  border-radius: $border_radius_type_0;
+  width: 679px;
+  height: 160px;
+  position: absolute;
+  top: 517px;
+  left: 0px;
+  min-width: 679px;
+}
+.rect3 {
+  background-color: $color_type_6;
+  border-radius: $border_radius_type_1;
+  width: 679px;
+  height: 343px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  min-width: 679px;
+}
+.rect4 {
+  background-color: $color_type_9;
+  border-radius: $border_radius_type_2;
+  width: 679px;
+  height: 121px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  min-width: 679px;
+}
+.title {
+  @include font-face($font_type_3, $color_type_7, 0px);
+  width: fit-content;
+  height: min-content;
+  position: absolute;
+  top: 44px;
+  min-height: 34px;
+  left: 227px;
+  min-width: 0px;
+}
+.title1 {
+  @include font-face($font_type_3, $color_type_7, 0px);
+  width: fit-content;
+  height: min-content;
+  position: absolute;
+  top: 388px;
+  min-height: 34px;
+  left: 234px;
+  min-width: 0px;
+}
+.hero_title {
+  @include font-face($font_type_0, $color_type_7, 0px);
+  width: fit-content;
+  height: min-content;
+  position: absolute;
+  top: 436px;
+  left: 288px;
+  min-width: 0px;
+}
+.hero_title1 {
+  @include font-face($font_type_1, $color_type_0, 0px);
+  width: fit-content;
+  height: min-content;
+  position: absolute;
+  top: 210px;
+  left: 309px;
+  min-width: 0px;
+}
+.icon7 {
+  width: 114px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 374px;
+  left: 537px;
+  min-width: 114px;
+}
+.icon71 {
+  width: 114px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 374px;
+  left: 863px;
+  min-width: 114px;
+}
+.image20 {
+  width: 148px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 356px;
+  left: 520px;
+  min-width: 148px;
+}
+.rect5 {
+  background-color: $color_type_1;
+  border-radius: $border_radius_type_3;
+  width: 294px;
+  height: 79px;
+  position: absolute;
+  top: 761px;
+  left: 610px;
+  min-width: 294px;
+}
+.subtitle1 {
+  @include font-face($font_type_4, $color_type_7, 0px);
+  width: fit-content;
+  height: min-content;
+  position: absolute;
+  top: 787px;
+  left: 675px;
+  min-width: 0px;
+}
+.icon8 {
+  width: 40px;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: absolute;
+  top: 224px;
+  left: 1020px;
+  min-width: 40px;
+}
