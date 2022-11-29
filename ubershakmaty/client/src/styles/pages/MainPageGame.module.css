@@ -1,0 +1,220 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+*/
+.menu { 
+	background-color:rgba(22, 11, 51, 1.0);
+	width: 100%;
+    height: 130vh;
+    position: relative;
+    background-size: cover;
+}
+
+.newGame { 
+	background-color:rgba(248, 200, 91, 1.0);
+	width:80%;
+	height:200px;
+	position:relative;
+	left:10%;
+	top:3%;
+    border-radius: 30px 30px 30px 30px;
+    display: block;
+}
+
+.newGame nav {
+    display: inline;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6% 12% 4% 8%;
+}
+
+.newGame nav ul li {
+    display: inline;
+    color:white;
+}
+
+
+.playFriend { 
+	background-color:rgba(133, 119, 228, 1.0);
+	width:38%;
+	height:400px;
+	position:absolute;
+	left:10%;
+	margin-top: 6%;
+    border-radius: 30px 30px 30px 30px;
+    display:block;
+    float:left;
+}
+
+.rating { 
+	background-color:rgba(67, 205, 208, 1.0);
+	width:38%;
+	height:325px;
+	position:absolute;
+	right:10%;
+	margin-top: 6%;
+    border-radius: 30px 30px 30px 30px;
+    display: block;
+    float: right;
+}
+
+button.play { 
+	box-shadow:4px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(133, 119, 228, 1.0);
+	width:30%;
+	height:50%;
+	position:absolute;
+	right:6%;
+	top:25%;
+	border-radius: 30px 30px 30px 30px;
+    border:none;
+    cursor:pointer;
+    color: white;
+    font-size: 2vw;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+button.play:hover {
+    transform: scale(1.2);
+    transition: 0.4s;
+}
+
+.panel .imgWrap {
+    position: absolute;
+    left: 12%;
+    top: 12%;
+    width: 5%;
+    height: 80%;
+}
+
+.avatar {
+    width: 100%;
+    height: auto;
+}
+
+.newGame .time {
+    color:rgba(63, 59, 84, 1.0);
+    margin-left:35%; 
+    margin-top:-7%; 
+    font-family: Montserrat; 
+    font-size: 2.6vw;/*38px;*/ 
+    font-weight:800;
+}
+
+.newGame .newGameText {
+    color:white; 
+    margin-left:4.5%; 
+    padding-top:0%; 
+    font-family: Montserrat; 
+    font-size:2.6vw; 
+    font-weight:800;
+}
+
+.playFriend img {
+    position: relative;
+    display:block;
+    width: 100%;
+    margin-top: 7%;
+}
+
+.playFriendButton { 
+    position: relative;
+	box-shadow:4px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(248, 200, 91, 1.0);
+	width:80%;
+	height:22%;
+	left: 10%;
+    top: 10%;
+	border-radius: 30px 30px 30px 30px; 
+    text-align: center;  
+    border: 0px;
+    cursor: pointer;
+}
+
+.playFriendButton p {
+    color:white;
+    font-family: Montserrat;
+    font-size: 2vw;
+    font-weight: 500;  
+    margin:0;
+}
+
+.playFriendButton:hover {
+    transform: scale(1.15);
+    transition: 0.4s;
+}
+
+.rating .msg {
+    padding-left: 11%;
+    padding-right: 10%;
+    padding-top: 4%;
+    color:rgba(63, 59, 84, 1.0);
+    font-family: Montserrat;
+    font-size: 2.0vw; /*32px;*/
+    font-weight: 800;  
+}
+
+.rating .msg pre {
+    color:rgba(63, 59, 84, 1.0);
+    font-family: Montserrat;
+    font-size: 2.0vw;
+    font-weight: 800;  
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+.rating .seeTable {
+    position: relative;
+	box-shadow:4px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(248, 200, 91, 1.0);
+	width:80%;
+	height:26%;
+	left: 10%;
+    top: 14%;
+	border-radius: 30px 30px 30px 30px; 
+    text-align: center;  
+    border: 0px;
+    cursor: pointer;
+    margin-top:2%;
+
+}
+
+.rating .seeTable:hover {
+    transform: scale(1.15);
+    transition: 0.4s;
+}
+
+.rating .seeTable p {
+    color:white;
+    font-family: Montserrat;
+    font-size: 2.0vw;
+    font-weight: 500;  
+    margin:0;
+}
+
+.dropdown {
+    position: relative;
+    display: block;
+}
+   
+.newGame .choosen {
+    color:rgba(63, 59, 84, 1.0);
+    font-family: Montserrat;
+    font-size: 1.8vw;
+    font-weight: 500;  
+    margin-left: 37.5%;
+    margin-top: -2%;
+}
+
+.show {
+    display: block;
+}
