@@ -1,3 +1,67 @@
-.example {
-  color: red;
+.panel { 
+	background-color:rgba(63, 59, 84, 1.0);
+	width:100%;
+	height:100px;
+	position:relative;
+	left:0px;
+	top:0px;
+}
+
+.panel nav {
+    display: flex;
+    align-items: center;
+    justify-content:end;
+    padding-right: 10%;
+    margin-top: -3%;
+}
+
+.panel nav ul li {
+    display: inline;
+    color:white;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+}
+
+.panel nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: large;
+    font-family: Montserrat;
+    font-size: 1.2vw;
+    font-weight: 500;
+}
+
+.panel nav ul li a:hover {
+    text-decoration: underline;
+    transition: 0.3s;
+}
+
+.nickname {
+    color: white;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 600;
+    padding-left: 18%;
+    padding-top: 30px;
+}
+
+.status {
+    color:rgba(67, 205, 208, 1.0);
+    font-family: Montserrat;
+    font-weight: 100;
+    padding-left: 18%;
+    margin-top: 3px;
+}
+.panel .imgWrap {
+  position: absolute;
+  left: 12%;
+  top: 12%;
+  width: 5%;
+  height: 80%;
+}
+
+.avatar {
+  width: 100%;
+  height: auto;
 }

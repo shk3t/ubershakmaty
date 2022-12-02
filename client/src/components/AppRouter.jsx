@@ -1,6 +1,6 @@
 import React from "react"
 import {Routes, Route, Navigate} from "react-router-dom"
-import {MAIN_PATH, routes} from "../consts"
+import {MAIN_PATH, STATISTIC_PATH, routes} from "../consts"
 
 export default function AppRouter() {
   return (
@@ -9,6 +9,7 @@ export default function AppRouter() {
         <Route key={path} path={path} element={<Component />} />
       ))}
       <Route path="*" element={<Navigate to={MAIN_PATH} />} />
+      <Route path="/statistic" element={<Navigate to={STATISTIC_PATH} />} />
     </Routes>
   )
 }
