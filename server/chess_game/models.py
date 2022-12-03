@@ -14,3 +14,5 @@ class ChessGame(models.Model):
     result = models.IntegerField(null=True)
     white_timer = models.TimeField(auto_now=False, auto_now_add=False)
     black_timer = models.TimeField(auto_now=False, auto_now_add=False)
+    moves_made = models.IntegerField(default=0)
+    last_move_time = models.DateTimeField(null=True)
