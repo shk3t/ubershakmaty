@@ -20,6 +20,7 @@ node_modules/
 build/
 .env
 
-# file: ~/.gitignore_global
+
 .DS_Store
 .idea
+venv
