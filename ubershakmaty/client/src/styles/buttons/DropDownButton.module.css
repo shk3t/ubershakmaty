@@ -1,0 +1,14 @@
+.dropDownButton {
+    width: 30px;
+    height: 20px;
+    display: block;
+    position: relative;
+    left: 50%;
+    background-size: cover;
+    margin-top:-4%;
+    cursor: pointer;
+}
+.dropDownButton:hover {
+    transform: scale(1.2);
+    transition: 0.4s;
+}
