@@ -6,8 +6,8 @@ import chess
 import datetime
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Player, ChessGame
-from .serializers import *
+from chess_game.models import Player, ChessGame
+from chess_game.serializers import *
 
 
 @api_view(['POST'])
