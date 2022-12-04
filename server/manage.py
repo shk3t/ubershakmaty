@@ -20,5 +20,4 @@ def main():
 
 
 if __name__ == "__main__":
-    runserver.default_port = "3000"
     main()

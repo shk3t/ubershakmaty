@@ -4,6 +4,7 @@ import {composeWithDevTools} from "redux-devtools-extension"
 import {persistStore, persistReducer} from "redux-persist"
 import storage from "redux-persist/lib/storage"
 
+import requestReducer from "./reducers/requestReducer"
 import authReducer from "./reducers/authReducer"
 
 const middlewares = [thunk]
@@ -14,6 +15,7 @@ const authPersistConfig = {
 }
 
 const rootReducer = combineReducers({
+  requestReducer,
   authReducer: persistReducer(authPersistConfig, authReducer),
 })
 

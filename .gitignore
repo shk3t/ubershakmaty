@@ -1,11 +1,13 @@
 # Personal
-pyrightconfig.json
 .vscode/
-todo.md
+.DS_Store/
+.idea/
+pyrightconfig.json
 
 # Python
 __pycache__/
 .venv/
+venv/
 
 # Django
 migrations/
@@ -19,8 +21,3 @@ db.sqlite3
 node_modules/
 build/
 .env
-
-
-.DS_Store
-.idea
-venv
