@@ -5,7 +5,6 @@ import {persistStore, persistReducer} from "redux-persist"
 import storage from "redux-persist/lib/storage"
 
 import requestReducer from "./reducers/requestReducer"
-import userReducer from "./reducers/userReducer"
 import authReducer from "./reducers/authReducer"
 
 const middlewares = [thunk]
