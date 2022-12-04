@@ -1,15 +1,12 @@
 import React from "react"
 import classes from "../../styles/DropDownPanel.module.css"
-export default class GameModeButton extends React.Component  {
-    handleClick = () => {
-        console.log(this.props.text);
+export default function GameModeButton({text}) {
+    function handleClick() {
+        console.log(text);
     }
-    render() {
-        return (
-            <button onClick={ this.handleClick } 
-                    className={classes.modeButton}>
-                {this.props.text}
-            </button>
-        );
-    }
+    return (
+        <button onClick={ handleClick } className={classes.modeButton}>
+            {text}
+        </button>
+    );
 }

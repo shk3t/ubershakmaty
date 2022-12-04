@@ -3,7 +3,7 @@ import classes from "../../styles/buttons/DropDownButton.module.css"
 import arrow from "../../assets/mainPageImgs/Arrow-down.svg"
 import DropDownPanel from "../../components/DropDownPanel"
 
-export default function ExampleButton() {
+export default function DropDownButton() {
     const [isActive, setIsActive] = useState(false); 
     return (
         <div>
