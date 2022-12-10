@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+main {
+    background: #160B33;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings_container {
+    max-width: 1000px;
+    max-height: 630px;
+    border-radius: 10px;
+}
+
+.settings_title {
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.renew,
+.separate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.profile,
+.passsword,
+.profile_photo,
+.profile_set {
+    text-align: center;
+    display: grid;
+    grid-template-columns: max-content;
+}
+
+.profile_set {
+    margin-left: 30px;
+}
+
+.update {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile {
+    border-radius: 10px;
+    margin-right: 20px;
+    background: #f8b414;
+    width: 600px;
+    height: 370px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.password {
+    background: #43CDD0;
+    border-radius: 10px;
+    width: 266px;
+    height: 370px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+input.pass,
+input.prof {
+    height: 27px;
+    width: 174px;
+    color: black;
+    font-size: 11px;
+    line-height: 13px;
+    background: rgb(248, 237, 237);
+    border-radius: 10px;
+    padding-left: 25px;
+    margin-left: 21px;
+    margin-right: 21px;
+    border: 2px solid #1aedf0;
+}
+
+input.prof {
+    border: 2px solid #F8C85B;
+}
+
+.redoing_password {
+    height: 27px;
+    width: 150px;
+    color: white;
+    background: plum;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 33px;
+    border: 2px solid rgb(235, 98, 235);
+    text-transform: uppercase;
+}
+
+.redoing_password:hover {
+    background-color: rgb(235, 98, 235);
+
+}
+
+.settings_password,
+.settings_profile {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.settings_password {
+    margin-bottom: 10px;
+}
+
+h5.redo,
+h5.nick,
+h5.age {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.out_button {
+    width: 300px;
+    height: 40px;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    display: block;
+    background: #F8C85B;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    line-height: 13px;
+    cursor: pointer;
+    margin-left: 320px;
+    border: 2px solid #f8b414;
+    margin-bottom: 15px;
+
+}
+
+.out_button:hover {
+    background-color: #f8b414;
+}
+
+
+.person {
+    width: 280px;
+    height: 280px;
+}
