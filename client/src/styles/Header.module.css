@@ -1,16 +1,16 @@
 .panel { 
-	background-color:rgba(63, 59, 84, 1.0);
-	width:100%;
-	height:100px;
-	position:relative;
-	left:0px;
-	top:0px;
+    background-color: rgba(63, 59, 84, 1.0);
+    width: 100%;
+    height: 100px;
+    position: relative;
+    left: 0px;
+    top: 0px;
 }
 
 .panel nav {
     display: flex;
     align-items: center;
-    justify-content:end;
+    justify-content: end;
     padding-right: 10%;
     margin-top: -3%;
 }
@@ -47,12 +47,13 @@
 }
 
 .status {
-    color:rgba(67, 205, 208, 1.0);
+    color: rgba(67, 205, 208, 1.0);
     font-family: Montserrat;
     font-weight: 100;
     padding-left: 18%;
     margin-top: 3px;
 }
+
 .panel .imgWrap {
   position: absolute;
   left: 12%;
