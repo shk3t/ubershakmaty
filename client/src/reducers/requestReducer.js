@@ -21,7 +21,7 @@ export default function requestReducer(state = initialState, action) {
   }
 }
 
-export const requestAction = (requestCallback) => async (dispatch) => {
+export const requestAC = (requestCallback) => async (dispatch) => {
   try {
     dispatch({
       type: UPDATE_REQUEST_STATUS,
@@ -40,6 +40,6 @@ export const requestAction = (requestCallback) => async (dispatch) => {
   }
 }
 
-export const clearErrorsAction = () => (dispatch) => {
+export const clearErrorsAC = () => (dispatch) => {
   dispatch({type: CLEAR_ERRORS})
 }

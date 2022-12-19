@@ -22,22 +22,22 @@ export default function authReducer(state = initialState, action) {
   }
 }
 
-export const registerAction = (credentials) => async (dispatch) => {
+export const registerAC = (credentials) => async (dispatch) => {
   const {user, access_token: token} = await AuthService.register(credentials)
   dispatch({type: REGISTER, payload: {user, token}})
 }
 
-export const loginAction = (credentials) => async (dispatch) => {
+export const loginAC = (credentials) => async (dispatch) => {
   const {user, access_token: token} = await AuthService.login(credentials)
   dispatch({type: LOGIN, payload: {user, token}})
 }
 
-export const logoutAction = () => async (dispatch) => {
+export const logoutAC = () => async (dispatch) => {
   await AuthService.logout()
   dispatch({type: LOGOUT})
 }
 
-export const refreshTokensAction = () => async (dispatch) => {
+export const refreshTokensAC = () => async (dispatch) => {
   const {access_token} = await AuthService.refreshTokens()
   dispatch({type: REFRESH_TOKENS, payload: {token: access_token}})
 }
