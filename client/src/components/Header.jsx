@@ -1,7 +1,7 @@
 import React from "react"
 import classes from "../styles/Header.module.css"
 import mister from "../assets/mainPageImgs/mister.png"
-import { MAIN_PATH, STATISTIC_PATH } from "../consts"
+import { CHESS_BOARD_PATH, MAIN_PATH, STATISTIC_PATH, TABLE_PATH } from "../consts/routes"
 import { Link } from "react-router-dom"
 
 export default function Header() {
@@ -18,10 +18,12 @@ export default function Header() {
                             <li><Link to={MAIN_PATH}>Главная станица</Link></li>
                             <li><Link to={STATISTIC_PATH}>Личный кабинет</Link></li>
                             <li><Link to="#">Настройки</Link></li>
+                            <li><Link to={CHESS_BOARD_PATH}>ChessBoardPage</Link></li>
+                            <li><Link to={TABLE_PATH}>TablePage</Link></li>
                         </ul>
                     </nav>
-            </div>  
+            </div>
         </div>
-            
+
     )
 }

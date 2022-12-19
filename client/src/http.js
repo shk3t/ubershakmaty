@@ -1,6 +1,6 @@
 import axios from "axios"
 import {logoutAction, refreshTokensAction} from "./reducers/authReducer"
-import {BASE_URL} from "./consts"
+import {BASE_URL} from "./consts/base"
 
 let store
 

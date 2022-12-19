@@ -1,6 +1,6 @@
 import React from "react"
 import {Routes, Route, Navigate} from "react-router-dom"
-import {MAIN_PATH, routes} from "../consts"
+import routes, {MAIN_PATH} from "../consts/routes"
 
 export default function AppRouter() {
   return (

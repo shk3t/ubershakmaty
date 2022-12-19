@@ -2,7 +2,7 @@ import React from "react"
 import classes from "../../styles/pages/MainPageGame.module.css"
 import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
-import { STATISTIC_PATH } from "../../consts"
+import { STATISTIC_PATH } from "../../consts/routes"
 import {Link} from "react-router-dom"
 
 export default function MainPageGame() {
@@ -20,7 +20,7 @@ export default function MainPageGame() {
                 </div>
                 <div className={classes.choosen}>3 мин</div>
                 <button className={classes.play}>Играть!</button>
-            
+
             </div>
             <div>
                 <div className={classes.playFriend}>
@@ -29,7 +29,7 @@ export default function MainPageGame() {
                     </div>
                     <button className={classes.playFriendButton}><p>Играть с другом</p></button>
 
-                </div> 
+                </div>
                 <div className={classes.rating}>
                     <h2 className={classes.msg}>Играй больше и <pre/>повышай свой рейтинг!</h2>
                     <button className={classes.seeTable}><Link to={STATISTIC_PATH}><p>Таблица лидеров</p></Link></button>
