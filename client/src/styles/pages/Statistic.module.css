@@ -1,0 +1,137 @@
+.menu { 
+    margin: 0;
+    background-color: rgba(22, 11, 51, 1.0);
+    width: 100%;
+    height: 130vh;
+    position: relative;
+    background-size: cover;
+}
+
+.previousGamesInfo { 
+    background-color: rgba(248, 200, 91, 1.0);
+    width: 48%;
+    height: 630px;
+    position: absolute;
+    left: 10%;
+    top: 3%;
+    border-radius: 30px 30px 30px 30px;
+    display: block;
+}
+
+.statisticPanel {
+    background-color: rgba(67, 205, 208, 1.0);
+    width: 30%;
+    height: 630px;
+    position: absolute;
+    right: 10%;
+    top: 3%;
+    border-radius: 30px 30px 30px 30px;
+    display: block;
+    float: right;
+}
+
+.statisticMsg {
+    padding-left: 5.0vw;
+    padding-right: 10%;
+    padding-top: 4%;
+    color: rgba(63, 59, 84, 1.0);
+    font-family: Montserrat;
+    font-size: 2.0vw; 
+    font-weight: 800;  
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+table {
+    width: 80%; 
+    color: white; 
+    border: 0px;
+    border-spacing: 0px;
+    margin-left: 10%;
+    margin-top: 2.0vw;
+    border-radius: 30px;
+}
+
+td {
+    text-align: center;
+    background-color: rgba(63, 59, 84, 1.0);
+    padding: 15px;
+    border-bottom: 2px solid rgba(133, 119, 228, 1.0);
+}
+
+th {
+    background-color: rgba(133, 119, 228, 1.0);
+    padding: 15px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+td {
+    border-left: 0px;
+    border-right: 0px;
+}
+
+tr:last-child td{
+    border-bottom: 0px;
+}
+
+th:first-child {
+    border-radius: 30px 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 30px 0 0;
+}
+
+tr:last-child td:first-child{
+    border-radius: 0 0 0 30px;
+}
+
+tr:last-child td:last-child{
+    border-radius: 0 0 30px 0;
+}
+
+.winner {
+    color: rgba(67, 205, 208, 1.0);
+}
+
+.loser {
+    color: rgba(248, 200, 91, 1.0);
+}
+
+.gamesStatistic {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.gamesStatistic td:first-child, .gamesStatistic th:first-child {
+    text-align: left;
+}
+
+.gamesStatistic td:last-child, .gamesStatistic th:last-child {
+    text-align: right;
+}
+
+.statisticGameMsg {
+    padding-left: 10%;
+    padding-right: 10%;
+    color: white;
+    font-family: Montserrat;
+    font-size: 1.4vw; 
+    font-weight: 800;  
+}
+
+.statisticGameMsg p {
+    padding-top: 15%;
+    padding-bottom: 0;
+}
+
+.panel {
+    background-color: rgba(133, 119, 228, 1.0);
+    width: 70%;
+    height: 160px;
+    position: relative;
+    left: 15%;
+    border-radius: 30px 30px 30px 30px;
+    display: block;
+}

@@ -1,0 +1,23 @@
+# Personal
+.vscode/
+.DS_Store/
+.idea/
+pyrightconfig.json
+
+# Python
+__pycache__/
+.venv/
+venv/
+
+# Django
+migrations/
+#media/
+metadata.json
+
+# Database
+db.sqlite3
+
+# React
+node_modules/
+build/
+.env
