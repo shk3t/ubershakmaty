@@ -32,11 +32,10 @@ export const requestAction = (requestCallback) => async (dispatch) => {
       type: UPDATE_REQUEST_STATUS,
       payload: {isLoading: false},
     })
-    dispatch({type: CLOSE_MODAL})
   } catch (error) {
     dispatch({
       type: UPDATE_REQUEST_STATUS,
-      payload: {messages, isLoading: false},
+      payload: {error, isLoading: false},
     })
   }
 }
