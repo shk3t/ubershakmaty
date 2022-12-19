@@ -17,7 +17,7 @@ main {
     align-items: center;
 }
 
-.register_form_container {
+.registerFormContainer {
     max-width: 266px;
     max-height: 630px;
     background: #2B2144;
@@ -28,7 +28,7 @@ main {
     padding-bottom: 20px;
 }
 
-.form_title,
+.formTitle,
 .question {
     font-weight: 800;
     line-height: 19px;
@@ -37,11 +37,11 @@ main {
     margin-bottom: 15px;
 }
 
-h1.form_title {
+h1.formTitle {
     font-size: 16px;
 }
 
-h2.form_title {
+h2.formTitle {
     font-size: 10px;
 }
 
@@ -63,7 +63,7 @@ input {
     color: rgb(71, 70, 70);
 }
 
-.form_field {
+.formField {
     margin-bottom: 9px;
 }
 
@@ -102,7 +102,7 @@ h2.question {
     margin-left: 7px;
 }
 
-.icon_words {
+.iconWords {
     margin-left: 5px;
 }
 
@@ -163,12 +163,12 @@ a.register {
     background-color: #1aedf0;
 }
 
-a.create_one {
+a.createOne {
     text-decoration: none;
     color: white;
 }
 
-.enter_button {
+.enterButton {
     width: 50px;
     height: 22px;
     font-weight: 700;
@@ -185,6 +185,6 @@ a.create_one {
 
 }
 
-.enter_button:hover {
+.enterButton:hover {
     background-color: #f8b414;
 }

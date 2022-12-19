@@ -17,7 +17,7 @@ main {
     align-items: center;
 }
 
-.register_form_container {
+.registerFormContainer {
     max-width: 266px;
     max-height: 630px;
     background: #2B2144;
@@ -46,7 +46,7 @@ input {
     color: rgb(71, 70, 70);
 }
 
-.form_title,
+.formTitle,
 .question {
     font-weight: 800;
     line-height: 19px;
@@ -55,11 +55,11 @@ input {
     margin-bottom: 15px;
 }
 
-h1.form_title {
+h1.formTitle {
     font-size: 16px;
 }
 
-.form_field {
+.formField {
     margin-bottom: 9px;
 }
 
@@ -69,12 +69,12 @@ h2.question {
     margin-top: 15px;
 }
 
-.bad_memory {
+.badMemory {
     margin-left: 70px;
 }
 
-a.bad_memory,
-a.create_one {
+a.badMemory,
+a.createOne {
     text-decoration: none;
     color: white;
 }
@@ -136,7 +136,7 @@ a.register {
     background-color: #1aedf0;
 }
 
-.enter_button {
+.enterButton {
     width: 150px;
     height: 22px;
     font-weight: 700;
@@ -153,6 +153,6 @@ a.register {
 
 }
 
-.enter_button:hover {
+.enterButton:hover {
     background-color: #f8b414;
 }

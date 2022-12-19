@@ -1,24 +1,24 @@
 import React from 'react';
 import classes from './../../styles/pages/Login.module.css'
 
-const Logging = () => {
+function Login() {
     return (
         <main>
-            <div className={classes.register_form_container}>
-                <h1 className={classes.form_title}>
+            <div className={classes.registerFormContainer}>
+                <h1 className={classes.formTitle}>
                     Вход
                 </h1>
 
-                <div className={classes.form_fields}>
-                    <div className={classes.form_field}>
+                <div className={classes.formFields}>
+                    <div className={classes.formField}>
                         <input type="text" placeholder="Логин"/>
                     </div>
-                    <div className={classes.form_field}>
+                    <div className={classes.formField}>
                         <input type="password" placeholder="Пароль"/>
                     </div>
                 </div>
                 <h2 className={classes.question}>
-                    <a href="#" className={classes.bad_memory}>Забыли пароль?</a>
+                    <a href="#" className={classes.badMemory}>Забыли пароль?</a>
                 </h2>
 
                 <button className={classes.button}> Войти </button>
@@ -33,12 +33,12 @@ const Logging = () => {
                     <i class='bx bxl-facebook'></i> <a href="#" className={classes.register}>Войти с помощью Facebook  </a>
                 </div>
                 <h2 className={classes.question}>
-                    <a href="#" className={classes.create_one}>Еще нет аккаунта?</a>
+                    <a href="#" className={classes.createOne}>Еще нет аккаунта?</a>
                 </h2>
-                <button className={classes.enter_button}>Зарегистрироваться</button>
+                <button className={classes.enterButton}>Зарегистрироваться</button>
             </div>
         </main>
     );
 }
 
-export default Logging;
+export default Login;

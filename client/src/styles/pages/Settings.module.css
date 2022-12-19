@@ -17,13 +17,13 @@ main {
     align-items: center;
 }
 
-.settings_container {
+.settingsContainer {
     max-width: 1000px;
     max-height: 630px;
     border-radius: 10px;
 }
 
-.settings_title {
+.settingsTitle {
     color: white;
     text-align: center;
     margin-bottom: 15px;
@@ -46,14 +46,14 @@ main {
 
 .profile,
 .passsword,
-.profile_photo,
-.profile_set {
+.profilePhoto,
+.profileSet {
     text-align: center;
     display: grid;
     grid-template-columns: max-content;
 }
 
-.profile_set {
+.profileSet {
     margin-left: 30px;
 }
 
@@ -101,7 +101,7 @@ input.prof {
     border: 2px solid #F8C85B;
 }
 
-.redoing_password {
+.redoingPassword {
     height: 27px;
     width: 150px;
     color: white;
@@ -113,18 +113,18 @@ input.prof {
     text-transform: uppercase;
 }
 
-.redoing_password:hover {
+.redoingPassword:hover {
     background-color: rgb(235, 98, 235);
 
 }
 
-.settings_password,
-.settings_profile {
+.settingsPassword,
+.settingsProfile {
     text-align: center;
     margin-top: 10px;
 }
 
-.settings_password {
+.settingsPassword {
     margin-bottom: 10px;
 }
 
@@ -136,7 +136,7 @@ h5.age {
     margin-top: 10px;
 }
 
-.out_button {
+.outButton {
     width: 300px;
     height: 40px;
     font-weight: 700;
@@ -155,7 +155,7 @@ h5.age {
 
 }
 
-.out_button:hover {
+.outButton:hover {
     background-color: #f8b414;
 }
 
