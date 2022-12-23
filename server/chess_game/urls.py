@@ -1,12 +1,7 @@
 from django.urls import path
-from chess_game.views import game, auth
+from chess_game import views
 
 urlpatterns = [
-    path("register", auth.register),
-    path("login", auth.login),
-    path("logout", auth.logout),
-    path("tokens/refresh", auth.refresh_tokens),
-
-    path('init_game', game.init_game, name='init_game'),
-    path('make_move', game.make_move, name='make_move'),
+    path('init_game', views.init_game, name='init_game'),
+    path('make_move', views.make_move, name='make_move'),
 ]

@@ -1,49 +1,50 @@
-const UPDATE_REQUEST_STATUS = "UPDATE_REQUEST_STATUS"
-const SET_ERROR = "SET_ERROR"
+const SET_REQUEST_STATUS = "SET_REQUEST_STATUS"
+const CLEAR_REQUEST_ERROR = "CLEAR_REQUEST_ERROR"
 
 const initialState = {
   isLoading: false,
-  error: null,
+  errorMessage: null,
 }
 
 export default function requestReducer(state = initialState, action) {
-  const {error, isLoading} = action.payload || {}
+  const {errorMessage, isLoading} = action.payload || {}
   switch (action.type) {
-    case UPDATE_REQUEST_STATUS:
+    case SET_REQUEST_STATUS:
       const newState = {...state}
       if (isLoading) newState["isLoading"] = isLoading
-      if (error) newState["error"] = error
+      if (errorMessage) newState["errorMessage"] = errorMessage
       return newState
-    case SET_ERROR:
-      return {...state, error}
+    case CLEAR_REQUEST_ERROR:
+      return {...state, errorMessage: null}
     default:
       return state
   }
 }
 
-export const requestAC = (requestAcCallback) => async (dispatch) => {
+export const makeRequest = (requestAcCallback) => async (dispatch) => {
   try {
     dispatch({
-      type: UPDATE_REQUEST_STATUS,
+      type: SET_REQUEST_STATUS,
       payload: {isLoading: true},
     })
-    dispatch(requestAcCallback())
+    await dispatch(requestAcCallback())
     dispatch({
-      type: UPDATE_REQUEST_STATUS,
+      type: SET_REQUEST_STATUS,
       payload: {isLoading: false},
     })
   } catch (error) {
+    const errorData = JSON.stringify(error.response.data)
     dispatch({
-      type: UPDATE_REQUEST_STATUS,
-      payload: {error, isLoading: false},
+      type: SET_REQUEST_STATUS,
+      payload: {errorMessage: errorData, isLoading: false},
     })
   }
 }
 
-export const setErrorAC = (error) => {
-  return {type: SET_ERROR, payload: {error}}
+export const setError = (errorMessage) => {
+  return {type: SET_REQUEST_STATUS, payload: {errorMessage}}
 }
 
-export const clearErrorsAC = () => {
-  return {type: SET_ERROR, payload: {error: null}}
+export const clearError = () => {
+  return {type: CLEAR_REQUEST_ERROR}
 }

@@ -1,20 +1,27 @@
-import React, {useState} from "react"
-import {useDispatch} from "react-redux"
+import React, {useEffect, useState} from "react"
+import {useDispatch, useSelector} from "react-redux"
 import {Link} from "react-router-dom"
 import {REGISTER_PATH} from "../../consts/routes"
-import {loginAC} from "../../reducers/authReducer"
-import {requestAC} from "../../reducers/requestReducer"
+import {login} from "../../reducers/authReducer"
+import {clearError, makeRequest} from "../../reducers/requestReducer"
 import classes from "../../styles/pages/LoginPage.module.css"
+import {store} from "../../store"
 
 export default function LoginPage() {
   const dispatch = useDispatch()
+  const {isLoading, errorMessage} = useSelector((state) => state.requestReducer)
   const [credentials, setCredentials] = useState({
-    nickname: "",
+    username: "",
     password: "",
   })
 
-  function login() {
-    dispatch(requestAC(() => loginAC(credentials)))
+  useEffect(() => {
+    if (errorMessage) alert(errorMessage)
+    dispatch(clearError())
+  }, [errorMessage])
+
+  function doLogin() {
+    dispatch(makeRequest(() => login(credentials)))
   }
 
   return (
@@ -27,9 +34,9 @@ export default function LoginPage() {
             <input
               type="text"
               placeholder="Логин"
-              value={credentials.nickname}
+              value={credentials.username}
               onChange={(event) =>
-                setCredentials({...credentials, nickname: event.target.value})
+                setCredentials({...credentials, username: event.target.value})
               }
             />
           </div>
@@ -50,7 +57,7 @@ export default function LoginPage() {
           </a>
         </h2>
 
-        <button className={classes.button} onClick={login}>
+        <button className={classes.button} onClick={doLogin}>
           Войти
         </button>
         <div className={classes.divider}>или</div>

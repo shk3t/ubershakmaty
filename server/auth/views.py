@@ -3,33 +3,30 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
-from django.contrib.auth.models import User # TODO think about User <-> Player relation
+from django.contrib.auth.models import User
 
-from chess_game.exceptions import HttpException
-from chess_game.serializers import UserSerializer
-from chess_game.services import AuthService
+from auth.exceptions import HttpException
+from auth.serializers import UserSerializer
+from auth.services import AuthService
 
 
 @api_view(["POST"])
 def register(request):
     data = request.data
-    data.pop("is_admin", None)
-    data.pop("is_manager", None)
     serializer = UserSerializer(data=data)
     serializer.is_valid(raise_exception=True)
     user = serializer.save()
-    return AuthService.tokenized_response(user) # TODO move logic to serializer
+    return AuthService.tokenized_response(user)
 
 
 @api_view(["POST"])
 def login(request):
     try:
-        user = User.objects.get(email=request.data["email"])
+        user = User.objects.get(username=request.data["username"])
     except User.DoesNotExist:
         raise AuthenticationFailed()
     if not user.check_password(request.data["password"]):
         raise AuthenticationFailed()
-    user.update_last_login()
     return AuthService.tokenized_response(user)
 
 
@@ -50,6 +47,4 @@ def refresh_tokens(request):
     except TokenError as error:
         raise HttpException(error, 401)
     user = User.get_by_pk(refresh_token["user_id"])
-    user.update_last_login()
     return AuthService.tokenized_response(user)
-

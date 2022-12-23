@@ -4,31 +4,34 @@ import pawnImage from "../../assets/chessFigures/pawn_black.png"
 import knightImage from "../../assets/chessFigures/knight_black.png"
 import queenImage from "../../assets/chessFigures/queen_black.png"
 import kingImage from "../../assets/chessFigures/king_black.png"
-import {requestAC, setErrorAC} from "../../reducers/requestReducer"
-import {registerAC} from "../../reducers/authReducer"
+import {clearError, makeRequest, setError} from "../../reducers/requestReducer"
+import {register} from "../../reducers/authReducer"
 import {useDispatch, useSelector} from "react-redux"
 import {LOGIN_PATH} from "../../consts/routes"
 import {Link} from "react-router-dom"
 
 export default function RegisterPage() {
   const dispatch = useDispatch()
-  const {isLoading, error} = useSelector((state) => state.requestReducer)
+  const {isLoading, errorMessage} = useSelector((state) => state.requestReducer)
   const [credentials, setCredentials] = useState({
-    nickname: "",
+    username: "",
     email: "",
     password: "",
     confirmedPassword: "",
   })
 
+  // TODO merge RegisterPage with LoginPage
   useEffect(() => {
-    if (error) console.log(error)
-  }, [error])
+    // TODO make special message window for this purpose
+    if (errorMessage) alert(errorMessage)
+    dispatch(clearError())
+  }, [errorMessage])
 
-  function register() {
+  function doRegister() {
     if (credentials.password === credentials.confirmedPassword) {
-      dispatch(requestAC(() => registerAC(credentials)))
+      dispatch(makeRequest(() => register(credentials)))
     } else {
-      dispatch(setErrorAC("Passwords do not match"))
+      dispatch(setError("Passwords do not match"))
     }
   }
 
@@ -42,9 +45,9 @@ export default function RegisterPage() {
             <input
               type="text"
               placeholder="Логин"
-              value={credentials.nickname}
+              value={credentials.username}
               onChange={(event) =>
-                setCredentials({...credentials, nickname: event.target.value})
+                setCredentials({...credentials, username: event.target.value})
               }
             />
           </div>
@@ -106,7 +109,7 @@ export default function RegisterPage() {
           <div className={classes.words}>Средний</div>
           <div className={classes.words}>PRO</div>
         </div>
-        <button className={classes.button} onClick={register}>
+        <button className={classes.button} onClick={doRegister}>
           Зарегистрироваться
         </button>
         <div className={classes.divider}>или</div>
