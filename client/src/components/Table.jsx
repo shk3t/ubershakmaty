@@ -14,7 +14,7 @@ function Table() {
                 <tr>
                     <th>Rang</th>
                     <th>Rating</th>
-                    <th>Gender</th>
+                    <th>Name</th>
                     <th>Month-Year</th>
                     <th>Country</th>
 
