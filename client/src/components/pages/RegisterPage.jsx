@@ -22,6 +22,7 @@ export default function RegisterPage() {
 
   // TODO merge RegisterPage with LoginPage
   useEffect(() => {
+    // TODO make special message window for this purpose
     if (errorMessage) alert(errorMessage)
     dispatch(clearError())
   }, [errorMessage])
