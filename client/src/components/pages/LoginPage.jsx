@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './../../styles/pages/Login.module.css'
+import classes from '../../styles/pages/LoginPage.module.css'
 
-function Login() {
+export default function LoginPage() {
     return (
         <main>
             <div className={classes.registerFormContainer}>
@@ -40,5 +40,3 @@ function Login() {
         </main>
     );
 }
-
-export default Login;

@@ -5,7 +5,7 @@ import DropDownButton from "../../components/buttons/DropDownButton"
 import { STATISTIC_PATH } from "../../consts/routes"
 import {Link} from "react-router-dom"
 
-export default function MainPageGame() {
+export default function MainPage() {
     return (
         <div className={classes.menu}>
             <div className={classes.newGame}>

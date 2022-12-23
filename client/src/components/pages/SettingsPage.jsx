@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './../../styles/Settings.module.css';
+import classes from '../../styles/pages/SettingsPage.module.css';
 
-function Settings() {
+export default function SettingsPage() {
     return (
         <main>
             <div className={classes.settingsContainer}>
@@ -44,5 +44,3 @@ function Settings() {
 
     );
 }
-
-export default Settings;

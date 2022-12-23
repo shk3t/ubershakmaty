@@ -1,8 +1,8 @@
 import React from 'react';
-import classes from './../../styles/pages/Register.module.css';
+import classes from '../../styles/pages/RegisterPage.module.css';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-function Register() {
+export default function RegisterPage() {
     return (
     <body><main>
        <div className={classes.registerFormContainer}>
@@ -42,7 +42,7 @@ function Register() {
             <div className={classes.level}>
                 <i class="fa-regular fa-chess-king"></i>
             </div>
-        </div> 
+        </div>
         <div className={`${classes.icon} ${classes.iconWords}`}>
             <div className={classes.words}>
                 Новичок
@@ -77,5 +77,3 @@ function Register() {
     </body>
     );
 }
-
-export default Register;
