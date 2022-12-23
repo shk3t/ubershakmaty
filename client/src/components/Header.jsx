@@ -11,10 +11,13 @@ import {
   TABLE_PATH,
 } from "../consts/routes"
 import {Link} from "react-router-dom"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import {logoutAC} from "../reducers/authReducer"
 
 export default function Header() {
+  const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
+
   return (
     <div>
       <div className={classes.panel}>
@@ -26,23 +29,33 @@ export default function Header() {
         <nav>
           <ul>
             <li>
-              <Link to={MAIN_PATH}>Главная станица</Link>
-            </li>
-            <li>
-              <Link to={STATISTIC_PATH}>Личный кабинет</Link>
+              <Link to={MAIN_PATH}>Главная</Link>
             </li>
             <li>
               <Link to={CHESS_BOARD_PATH}>Игра</Link>
             </li>
             <li>
-              <Link to={TABLE_PATH}>Почетная доска</Link>
+              <Link to={TABLE_PATH}>Рейтинг</Link>
             </li>
-            <li>
-              <Link to={LOGIN_PATH}>{authUser ? "Выйти" : "Войти"}</Link>
-            </li>
-            <li>
-              <Link to={SETTINGS_PATH}>Настройки</Link>
-            </li>
+            {authUser ? (
+              <div>
+                <li>
+                  <Link to={STATISTIC_PATH}>Статистика</Link>
+                </li>
+                <li>
+                  <Link to={SETTINGS_PATH}>Настройки</Link>
+                </li>
+                <li>
+                  <div onClick={() => dispatch(logoutAC())}>"Выйти"</div>
+                </li>
+              </div>
+            ) : (
+              <div>
+                <li>
+                  <Link to={LOGIN_PATH}>Войти</Link>
+                </li>
+              </div>
+            )}
           </ul>
         </nav>
       </div>
