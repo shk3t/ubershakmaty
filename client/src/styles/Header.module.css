@@ -1,4 +1,4 @@
-.panel { 
+.panel {
     background-color: rgba(63, 59, 84, 1.0);
     width: 100%;
     height: 100px;
@@ -20,7 +20,7 @@
     color:white;
     padding-left: 15px;
     padding-right: 15px;
-    
+
 }
 
 .panel nav ul li a {
@@ -37,7 +37,7 @@
     transition: 0.3s;
 }
 
-.nickname {
+.username {
     color: white;
     font-family: Montserrat;
     font-size: 20px;

@@ -12,7 +12,7 @@ import {
 } from "../consts/routes"
 import {Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
-import {logoutAC} from "../reducers/authReducer"
+import {logout} from "../reducers/authReducer"
 
 export default function Header() {
   const dispatch = useDispatch()
@@ -24,7 +24,7 @@ export default function Header() {
         <div className={classes.imgWrap}>
           <img className={classes.avatar} src={mister} />
         </div>
-        <div className={classes.nickname}>Nick</div>
+        <div className={classes.username}>{authUser ? authUser.username : "Guest"}</div>
         <div className={classes.status}>В сети</div>
         <nav>
           <ul>
@@ -46,7 +46,7 @@ export default function Header() {
                   <Link to={SETTINGS_PATH}>Настройки</Link>
                 </li>
                 <li>
-                  <div onClick={() => dispatch(logoutAC())}>"Выйти"</div>
+                  <Link onClick={() => dispatch(logout())}>Выйти</Link>
                 </li>
               </>
             ) : (

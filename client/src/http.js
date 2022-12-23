@@ -1,5 +1,5 @@
 import axios from "axios"
-import {logoutAC, refreshTokensAC} from "./reducers/authReducer"
+import {logout, refreshTokens} from "./reducers/authReducer"
 import {BASE_URL} from "./consts/base"
 
 let store
@@ -39,10 +39,10 @@ authConfig.interceptors.response.use(
     ) {
       originalRequest._is_retry = true
       try {
-        await store.dispatch(refreshTokensAC())
+        await store.dispatch(refreshTokens())
         return authConfig.request(originalRequest)
       } catch (exception) {
-        store.dispatch(logoutAC())
+        store.dispatch(logout())
       }
     } else {
       throw error

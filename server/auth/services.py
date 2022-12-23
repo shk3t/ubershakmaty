@@ -1,9 +1,8 @@
+from django.contrib.auth.models import User
 from datetime import datetime
 from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import AccessToken, RefreshToken
-
-from chess_game.models import User
-from chess_game.serializers import UserWithTokenSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+from auth.serializers import UserWithTokenSerializer
 
 
 class AuthService:
