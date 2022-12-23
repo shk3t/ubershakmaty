@@ -27,7 +27,7 @@ export const requestAC = (requestCallback) => async (dispatch) => {
       type: UPDATE_REQUEST_STATUS,
       payload: {isLoading: true},
     })
-    await requestCallback()
+    dispatch(requestCallback())
     dispatch({
       type: UPDATE_REQUEST_STATUS,
       payload: {isLoading: false},
