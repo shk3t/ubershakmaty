@@ -90,6 +90,11 @@ h2.question {
     padding-top: 7px;
 }
 
+.level > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .words {
     display: inline-block;
     font-style: normal;

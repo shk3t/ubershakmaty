@@ -1,7 +1,7 @@
 import React from "react"
-import classes from "../../styles/pages/Statistic.module.css"
+import classes from "../../styles/pages/StatisticsPage.module.css"
 
-export default function StatisticPage() {
+export default function StatisticsPage() {
     return (
         <div className={classes.menu}>
             <div className={classes.previousGamesInfo}>

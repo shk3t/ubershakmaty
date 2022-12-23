@@ -4,7 +4,7 @@ import Table from "../Table";
 
 
 
-function TablePage() {
+export default function TablePage() {
   return (
       <div className={classes.Table}>
       {/* <Navbar/> */}
@@ -12,4 +12,3 @@ function TablePage() {
       </div>
   );
 }
-export default TablePage;
