@@ -38,7 +38,7 @@ export default function Header() {
               <Link to={TABLE_PATH}>Рейтинг</Link>
             </li>
             {authUser ? (
-              <div>
+              <>
                 <li>
                   <Link to={STATISTIC_PATH}>Статистика</Link>
                 </li>
@@ -48,13 +48,13 @@ export default function Header() {
                 <li>
                   <div onClick={() => dispatch(logoutAC())}>"Выйти"</div>
                 </li>
-              </div>
+              </>
             ) : (
-              <div>
+              <>
                 <li>
                   <Link to={LOGIN_PATH}>Войти</Link>
                 </li>
-              </div>
+              </>
             )}
           </ul>
         </nav>
