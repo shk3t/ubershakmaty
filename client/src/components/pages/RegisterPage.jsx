@@ -7,17 +7,18 @@ import kingImage from "../../assets/chessFigures/king_black.png"
 import {requestAC, setErrorAC} from "../../reducers/requestReducer"
 import {registerAC} from "../../reducers/authReducer"
 import {useDispatch, useSelector} from "react-redux"
+import {LOGIN_PATH} from "../../consts/routes"
+import {Link} from "react-router-dom"
 
 export default function RegisterPage() {
   const dispatch = useDispatch()
   const {isLoading, error} = useSelector((state) => state.requestReducer)
-  const emptyCredentials = {
-    name: "",
+  const [credentials, setCredentials] = useState({
+    nickname: "",
     email: "",
     password: "",
     confirmedPassword: "",
-  }
-  const [credentials, setCredentials] = useState({...emptyCredentials})
+  })
 
   useEffect(() => {
     if (error) console.log(error)
@@ -40,10 +41,10 @@ export default function RegisterPage() {
           <div className={classes.formField}>
             <input
               type="text"
-              placeholder="Имя"
-              value={credentials.name}
+              placeholder="Логин"
+              value={credentials.nickname}
               onChange={(event) =>
-                setCredentials({...credentials, name: event.target.value})
+                setCredentials({...credentials, nickname: event.target.value})
               }
             />
           </div>
@@ -110,21 +111,21 @@ export default function RegisterPage() {
         </button>
         <div className={classes.divider}>или</div>
         <div className={classes.another}>
-          <i className="bx bxl-google"></i>{" "}
+          <i className="bx bxl-google"></i>
           <a href="#" className={classes.register}>
-            Зарегистрироваться с помощью Google{" "}
+            Зарегистрироваться с помощью Google
           </a>
         </div>
         <div className={classes.another}>
-          <i className="bx bxl-apple"></i>{" "}
+          <i className="bx bxl-apple"></i>
           <a href="#" className={classes.register}>
-            Зарегистрироваться с помощью Apple{" "}
+            Зарегистрироваться с помощью Apple
           </a>
         </div>
         <div className={classes.another}>
-          <i className="bx bxl-facebook"></i>{" "}
+          <i className="bx bxl-facebook"></i>
           <a href="#" className={classes.register}>
-            Зарегистрироваться с помощью Facebook{" "}
+            Зарегистрироваться с помощью Facebook
           </a>
         </div>
         <h2 className={classes.question}>
@@ -132,7 +133,9 @@ export default function RegisterPage() {
             Уже есть аккаунт?
           </a>
         </h2>
-        <button className={classes.enterButton}>Войти</button>
+        <Link to={LOGIN_PATH}>
+          <button className={classes.enterButton}>Войти</button>
+        </Link>
       </div>
     </main>
   )

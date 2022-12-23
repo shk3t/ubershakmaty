@@ -1,5 +1,5 @@
 import React from "react"
-import classes from "../../styles/pages/MainPageGame.module.css"
+import classes from "../../styles/pages/MainPage.module.css"
 import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
 import { STATISTIC_PATH } from "../../consts/routes"

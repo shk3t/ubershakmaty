@@ -1,7 +1,22 @@
-import React from "react"
+import React, {useState} from "react"
+import {useDispatch} from "react-redux"
+import {Link} from "react-router-dom"
+import {REGISTER_PATH} from "../../consts/routes"
+import {loginAC} from "../../reducers/authReducer"
+import {requestAC} from "../../reducers/requestReducer"
 import classes from "../../styles/pages/LoginPage.module.css"
 
 export default function LoginPage() {
+  const dispatch = useDispatch()
+  const [credentials, setCredentials] = useState({
+    nickname: "",
+    password: "",
+  })
+
+  function login() {
+    dispatch(requestAC(() => loginAC(credentials)))
+  }
+
   return (
     <main>
       <div className={classes.registerFormContainer}>
@@ -9,10 +24,24 @@ export default function LoginPage() {
 
         <div className={classes.formFields}>
           <div className={classes.formField}>
-            <input type="text" placeholder="Логин" />
+            <input
+              type="text"
+              placeholder="Логин"
+              value={credentials.nickname}
+              onChange={(event) =>
+                setCredentials({...credentials, nickname: event.target.value})
+              }
+            />
           </div>
           <div className={classes.formField}>
-            <input type="password" placeholder="Пароль" />
+            <input
+              type="password"
+              placeholder="Пароль"
+              value={credentials.password}
+              onChange={(event) =>
+                setCredentials({...credentials, password: event.target.value})
+              }
+            />
           </div>
         </div>
         <h2 className={classes.question}>
@@ -21,24 +50,26 @@ export default function LoginPage() {
           </a>
         </h2>
 
-        <button className={classes.button}> Войти </button>
+        <button className={classes.button} onClick={login}>
+          Войти
+        </button>
         <div className={classes.divider}>или</div>
         <div className={classes.another}>
-          <i class="bx bxl-google"></i>{" "}
+          <i className="bx bxl-google"></i>
           <a href="#" className={classes.register}>
-            Войти с помощью Google{" "}
+            Войти с помощью Google
           </a>
         </div>
         <div className={classes.another}>
-          <i class="bx bxl-apple"></i>{" "}
+          <i className="bx bxl-apple"></i>
           <a href="#" className={classes.register}>
-            Войти с помощью Apple{" "}
+            Войти с помощью Apple
           </a>
         </div>
         <div className={classes.another}>
-          <i class="bx bxl-facebook"></i>{" "}
+          <i className="bx bxl-facebook"></i>
           <a href="#" className={classes.register}>
-            Войти с помощью Facebook{" "}
+            Войти с помощью Facebook
           </a>
         </div>
         <h2 className={classes.question}>
@@ -46,7 +77,9 @@ export default function LoginPage() {
             Еще нет аккаунта?
           </a>
         </h2>
-        <button className={classes.enterButton}>Зарегистрироваться</button>
+        <Link to={REGISTER_PATH}>
+          <button className={classes.enterButton}>Зарегистрироваться</button>
+        </Link>
       </div>
     </main>
   )
