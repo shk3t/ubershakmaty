@@ -1,4 +1,4 @@
-.menu { 
+.menuStat { 
     margin: 0;
     background-color: rgba(22, 11, 51, 1.0);
     width: 100%;
@@ -52,42 +52,42 @@ table.previousGamesTable, table.gamesStatistic {
     border-radius: 30px;
 }
 
-td {
+.menuStat td {
     text-align: center;
     background-color: rgba(63, 59, 84, 1.0);
     padding: 15px;
     border-bottom: 2px solid rgba(133, 119, 228, 1.0);
 }
 
-th {
+.menuStat th {
     background-color: rgba(133, 119, 228, 1.0);
     padding: 15px;
     border-left: 0px;
     border-right: 0px;
 }
 
-td {
+.menuStat td {
     border-left: 0px;
     border-right: 0px;
 }
 
-tr:last-child td{
+.menuStat tr:last-child td{
     border-bottom: 0px;
 }
 
-th:first-child {
+.menuStat th:first-child {
     border-radius: 30px 0 0 0;
 }
 
-th:last-child {
+.menuStat th:last-child {
     border-radius: 0 30px 0 0;
 }
 
-tr:last-child td:first-child{
+.menuStat tr:last-child td:first-child{
     border-radius: 0 0 0 30px;
 }
 
-tr:last-child td:last-child{
+.menuStat tr:last-child td:last-child{
     border-radius: 0 0 30px 0;
 }
 
