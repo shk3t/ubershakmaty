@@ -33,7 +33,7 @@ export default function MainPage() {
                 </div>
                 <div className={classes.rating}>
                     <h2 className={classes.msg}>Играй больше и <pre/>повышай свой рейтинг!</h2>
-                    <button className={classes.seeTable}><Link to={TABLE_PATH}><p>Таблица лидеров</p></Link></button>
+                    <Link to={TABLE_PATH}><button className={classes.seeTable}><p>Таблица лидеров</p></button></Link>
                 </div>
             </div>
         </div>
