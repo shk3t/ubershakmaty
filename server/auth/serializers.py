@@ -21,7 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
         user = User(**validated_data)
         user.set_password(password)
         user.save()
-        Player({"id": user.id, "rating": 0})
+        Player(**{"id": user, "rating": 0}).save()
         return user
 
     def update(self, user, validated_data):
