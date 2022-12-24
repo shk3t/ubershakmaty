@@ -3,9 +3,8 @@ import classes from "../styles/Header.module.css"
 import mister from "../assets/mainPageImgs/mister.png"
 import {
   CHESS_BOARD_PATH,
-  LOGIN_PATH,
+  AUTH_PATH,
   MAIN_PATH,
-  REGISTER_PATH,
   SETTINGS_PATH,
   STATISTIC_PATH,
   TABLE_PATH,
@@ -52,7 +51,7 @@ export default function Header() {
             ) : (
               <>
                 <li>
-                  <Link to={LOGIN_PATH}>Войти</Link>
+                  <Link to={AUTH_PATH}>Войти</Link>
                 </li>
               </>
             )}

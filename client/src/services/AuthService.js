@@ -16,4 +16,7 @@ export default class AuthService {
     const response = await withCredentialsConfig.post("/auth/tokens/refresh")
     return response.data
   }
+  static async socialLogin(provider) {
+    await publicConfig.post(`/accounts/${provider}/login`)
+  }
 }
