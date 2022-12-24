@@ -10,7 +10,7 @@ const data = [
 function Table() {
     return (
         <div className={classes.NameClass}>
-            <table>
+            <table className={classes.rateTable}>
                 <tr>
                     <th>Rang</th>
                     <th>Rating</th>
