@@ -42,7 +42,7 @@
     padding-bottom: 0;
 }
 
-table {
+table.previousGamesTable, table.gamesStatistic {
     width: 80%; 
     color: white; 
     border: 0px;
