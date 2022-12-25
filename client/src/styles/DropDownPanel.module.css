@@ -1,7 +1,7 @@
 .dropdown_content {
     position: absolute;
     width: 40%;
-    height: 650px;
+    height: auto;
     background-color: rgba(63, 59, 84, 1.0);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 1;
@@ -21,16 +21,20 @@
 .dropdown_content .panel h2 {
     color: white;
     font-family: Montserrat;
-    font-size: 1.5vw; 
-    font-weight: 500;  
+    font-size: 1.5vw;
+    font-weight: 500;
     padding-left: 10%;
+}
+
+.dropdown_content .mode {
+    padding-bottom: 20pt;
 }
 
 .dropdown_content .mode h2 {
     color: white;
     font-family: Montserrat;
-    font-size: 2.0vw; 
-    font-weight: 500;  
+    font-size: 2.0vw;
+    font-weight: 500;
     padding-left: 10%;
     margin-bottom: 0%;
 }
@@ -47,8 +51,8 @@
     cursor: pointer;
     color: rgba(63, 59, 84, 1.0);
     font-family: Montserrat;
-    font-size: 1.2vw; 
-    font-weight: 600;   
+    font-size: 1.2vw;
+    font-weight: 600;
 }
 
 .dropdown_content .mode button:first-child {
@@ -71,8 +75,8 @@
     cursor: pointer;
     color: rgba(63, 59, 84, 1.0);
     font-family: Montserrat;
-    font-size: 1.2vw; 
-    font-weight: 600;   
+    font-size: 1.2vw;
+    font-weight: 600;
 }
 
 .modeButton:first-child {
