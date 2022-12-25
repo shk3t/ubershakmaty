@@ -4,9 +4,10 @@ from django.contrib.auth.models import User
 
 class Player(models.Model):
     id = models.OneToOneField(
-        to=User, db_column="id", primary_key=True, on_delete=models.CASCADE
+        to=User, db_column="id", primary_key=True, on_delete=models.CASCADE, related_name='player'
     )
-    rating = models.IntegerField()
+    rating = models.IntegerField(default=2000)
+    country = models.CharField(default='FIDE', max_length=50)
 
 
 class ChessGame(models.Model):

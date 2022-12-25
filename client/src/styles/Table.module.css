@@ -1,15 +1,13 @@
 .NameClass{
-    justify-content: center;
-    align-items: center;
     position: relative;
     top: 5%;
-    margin-left: 20%;
 }
 
 table.rateTable {
     width: 890px;
     height: 500px;
     color: #160b33;
+    margin: auto;
 }
 
 .rateTable th {
