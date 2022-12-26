@@ -1,8 +1,9 @@
-from django.contrib.auth.models import User
+from app_auth.models import User
 from datetime import datetime
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from auth.serializers import UserWithTokenSerializer
+from app_auth.serializers import UserWithTokenSerializer
+from transliterate import translit
 
 
 class AuthService:
@@ -17,3 +18,10 @@ class AuthService:
             httponly=True,
         )
         return response
+
+
+# class TranslitService:
+#     @staticmethod
+#     def append_id(data: dict) -> None:
+#         trans_name = translit(data["name"], "ru", reversed=True)
+#         data["id"] = trans_name.lower().replace(" ", "-").replace("'", "")

@@ -1,27 +1,22 @@
-from django.contrib.auth.models import User
+from app_auth.models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import AccessToken
 from chess_game.models import Player
 
 
 class UserSerializer(serializers.ModelSerializer):
-    # rating = serializers.SerializerMethodField()
-    #
-    # def get_rating(self, obj):
-    #     return Player.objects.get(pk=obj.id).rating
-    #
     class Meta:
         model = User
-        # fields = ["id", "username", "email", "password", "rating"]
-        fields = ["id", "username", "email", "password"]
+        fields = ["id", "nickname", "email", "password", "account_provider", "account_subject"]
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
         password = validated_data.pop("password")
         user = User(**validated_data)
-        user.set_password(password)
+        if password:
+            user.set_password(password)
         user.save()
-        Player({"id": user.id, "rating": 0})
+        Player(**{"id": user, "rating": 0}).save()
         return user
 
     def update(self, user, validated_data):
