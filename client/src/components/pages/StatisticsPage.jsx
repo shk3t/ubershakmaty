@@ -3,7 +3,7 @@ import classes from "../../styles/pages/StatisticsPage.module.css"
 
 export default function StatisticsPage() {
     return (
-        <div className={classes.menu}>
+        <div className={classes.menuStat}>
             <div className={classes.previousGamesInfo}>
                 <h2 className={classes.statisticMsg}>Последние партии</h2>
                 <table className={classes.previousGamesTable}>

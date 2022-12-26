@@ -1,13 +1,18 @@
 from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework import status
 import chess
 import datetime
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from chess_game.models import Player, ChessGame
 from chess_game.serializers import *
+from django.contrib.auth.models import User
 
 
 @api_view(['POST'])
@@ -92,3 +97,10 @@ def make_move(request):
         return Response(f"{resp}")
     else:
         return Response('Illegal move')
+
+
+@api_view(['GET'])
+def get_rating(request):
+    players = Player.objects.all().order_by('-rating')
+    serializer = RatingSerializer(players, context={'request': request}, many=True)
+    return Response({'data': serializer.data})

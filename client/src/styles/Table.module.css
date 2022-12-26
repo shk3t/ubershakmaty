@@ -1,20 +1,16 @@
 .NameClass{
-    justify-content: center;
-    align-items: center;
-    position:fixed;
-    top:150px;
-    left:50%;
-    transform: translate(-50%);
-    display: block;
-
+    position: relative;
+    top: 5%;
 }
-table {
+
+table.rateTable {
     width: 890px;
     height: 500px;
     color: #160b33;
+    margin: auto;
 }
 
-th {
+.rateTable th {
     height:80px;
     border-bottom: 1px solid #7ad3c1;
     background-color: #d8d1ff;
@@ -22,7 +18,7 @@ th {
 
 }
 
-td {
+.rateTable td {
     height:80px;
     font-family: Montserrat;
     background-color: #d8d1ff;
