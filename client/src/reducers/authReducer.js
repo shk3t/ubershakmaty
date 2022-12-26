@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode"
 import AuthService from "../services/AuthService"
 
 const REGISTER = "REGISTER"
@@ -29,6 +30,12 @@ export const register = (credentials) => async (dispatch) => {
 
 export const login = (credentials) => async (dispatch) => {
   const {user, access_token: token} = await AuthService.login(credentials)
+  dispatch({type: LOGIN, payload: {user, token}})
+}
+
+export const socialLogin = (providerResponse) => async (dispatch) => {
+  const credentials = jwtDecode(providerResponse.credential)
+  const {user, access_token: token} = await AuthService.socialLogin(credentials)
   dispatch({type: LOGIN, payload: {user, token}})
 }
 

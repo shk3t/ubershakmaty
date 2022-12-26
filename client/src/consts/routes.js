@@ -15,12 +15,17 @@ export const AUTH_PATH = "/auth"
 export const SETTINGS_PATH = "/settings"
 
 // Routes
-const routes = [
+const baseRoutes = [
   {path: MAIN_PATH, Component: MainPage},
-  {path: STATISTIC_PATH, Component: StatisticsPage},
   {path: CHESS_BOARD_PATH, Component: ChessBoardPage},
   {path: TABLE_PATH, Component: TablePage},
+]
+export const publicRoutes = [
+  ...baseRoutes,
   {path: AUTH_PATH, Component: AuthPage},
+]
+export const authRoutes = [
+  ...baseRoutes,
+  {path: STATISTIC_PATH, Component: StatisticsPage},
   {path: SETTINGS_PATH, Component: SettingsPage},
 ]
-export default routes

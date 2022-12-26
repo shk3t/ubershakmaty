@@ -23,7 +23,7 @@ export default function Header() {
         <div className={classes.imgWrap}>
           <img className={classes.avatar} src={mister} />
         </div>
-        <div className={classes.username}>{authUser ? authUser.username : "Guest"}</div>
+        <div className={classes.username}>{authUser ? authUser.nickname : "Guest"}</div>
         <div className={classes.status}>В сети</div>
         <nav>
           <ul>

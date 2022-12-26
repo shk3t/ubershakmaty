@@ -3,11 +3,12 @@ import {login} from "../../reducers/authReducer"
 import authClasses from "../../styles/pages/AuthPage.module.css"
 import {useDispatch} from "react-redux"
 import {makeRequest} from "../../reducers/requestReducer"
+import AuthInput from "../inputs/AuthInput"
 
 export default function LoginForm({toggleAuth}) {
   const dispatch = useDispatch()
   const [credentials, setCredentials] = useState({
-    username: "",
+    email: "",
     password: "",
   })
 
@@ -19,31 +20,16 @@ export default function LoginForm({toggleAuth}) {
     <div className={authClasses.registerFormContainer}>
       <h1 className={authClasses.formTitle}>Вход</h1>
       <div className={authClasses.formFields}>
-        <div className={authClasses.formField}>
-          <input
-            type="text"
-            placeholder="Логин"
-            value={credentials.username}
-            onChange={(event) =>
-              setCredentials({...credentials, username: event.target.value})
-            }
-          />
-        </div>
-        <div className={authClasses.formField}>
-          <input
-            type="password"
-            placeholder="Пароль"
-            value={credentials.password}
-            onChange={(event) =>
-              setCredentials({...credentials, password: event.target.value})
-            }
-          />
-        </div>
+        {[{field: "email"}, {field: "password", type: "password"}].map(
+          ({field, type}) => (
+            <div key={field} className={authClasses.formField}>
+              <AuthInput {...{field, type, credentials, setCredentials}} />
+            </div>
+          )
+        )}
       </div>
       <h2 className={authClasses.question}>
-        <p style={{marginLeft: "70px"}}>
-          Забыли пароль?
-        </p>
+        <p style={{marginLeft: "70px"}}>Забыли пароль?</p>
       </h2>
       <button
         className={authClasses.button}
@@ -53,10 +39,7 @@ export default function LoginForm({toggleAuth}) {
         Войти
       </button>
       <div className={authClasses.divider}>или</div>
-      <button className={authClasses.another}>
-        <i className="bx bxl-google"></i>
-        <p className={authClasses.register}>Войти с помощью Google</p>
-      </button>
+      <div className="googleSignIn"></div>
       <h2 className={authClasses.question}>
         <p className={authClasses.createOne}>Еще нет аккаунта?</p>
       </h2>
