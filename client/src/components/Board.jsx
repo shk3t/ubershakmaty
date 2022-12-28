@@ -15,6 +15,7 @@ export default function BoardComponent() {
     } else {
       dispatch(selectPiece(index))
     }
+    setMoving(!moving)
   }
 
   return (
