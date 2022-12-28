@@ -10,15 +10,11 @@ import AuthService from "../../services/AuthService"
 import {useDispatch} from "react-redux"
 import {makeRequest, setError} from "../../reducers/requestReducer"
 import AuthInput from "../inputs/AuthInput"
+import {REGISTER, useCredentials} from "../../hooks/useCredentials"
 
 export default function RegisterForm({toggleAuth}) {
   const dispatch = useDispatch()
-  const [credentials, setCredentials] = useState({
-    nickname: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-  })
+  const [credentials, setCredentials] = useCredentials(REGISTER)
 
   function doRegister() {
     if (credentials.password === credentials.passwordConfirmation) {
