@@ -1,22 +1,22 @@
 import {INITIAL_PIECES} from "../consts/game"
 
-export const NEW_GAME = {
+const ADD_PIECE = "ADD_PIECE"
+const MOVE_PIECE = "MOVE_PIECE"
+
+const initialState = {
   pieces: INITIAL_PIECES,
   castledBlack: false,
   castledWhite: false,
 }
 
-export const gameReducer = (state, action) => {
+export default function gameReducer(state = initialState, action) {
   switch (action.type) {
-    case "INIT":
-      console.log("HIT INIT")
-      return {...NEW_GAME}
-    case "ADD":
+    case ADD_PIECE:
       return {
         ...state,
         pieces: {...state.pieces, [action.payload.to]: action.payload.piece},
       }
-    case "MOVE":
+    case MOVE_PIECE:
       return {
         ...state,
         pieces: {
@@ -26,6 +26,17 @@ export const gameReducer = (state, action) => {
         },
       }
     default:
-      return null
+      return state
+  }
+}
+
+export const movePiece = (clickedSquare, selectedPiece, e) => {
+  return {
+    type: "MOVE_PIECE",
+    payload: {
+      from: clickedSquare.current,
+      to: e.target.id,
+      piece: selectedPiece.current,
+    },
   }
 }
