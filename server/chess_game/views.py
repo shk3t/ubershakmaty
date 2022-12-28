@@ -18,6 +18,7 @@ from django.contrib.auth.models import User
 @api_view(['POST'])
 def init_game(request):
     serializer = ChessGameSerializer(data=request.data)
+    serializer.set_timers()
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
