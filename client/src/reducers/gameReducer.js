@@ -3,6 +3,7 @@ import Board from "../models/Board"
 const SELECT_PIECE = "SELECT_PIECE"
 const UNSELECT_PIECE = "UNSELECT_PIECE"
 const MOVE_PIECE = "MOVE_PIECE"
+const UNSELECT = "UNSELECT"
 
 const initialState = {
   board: new Board(),
