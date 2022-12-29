@@ -18,6 +18,7 @@ from django.contrib.auth.models import User
 @api_view(['POST'])
 def init_game(request):
     serializer = ChessGameSerializer(data=request.data)
+    serializer.set_timers()
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -103,4 +104,4 @@ def make_move(request):
 def get_rating(request):
     players = Player.objects.all().order_by('-rating')
     serializer = RatingSerializer(players, context={'request': request}, many=True)
-    return Response({'data': serializer.data})
+    return Response(serializer.data)
