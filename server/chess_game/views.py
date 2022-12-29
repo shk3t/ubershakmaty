@@ -104,4 +104,4 @@ def make_move(request):
 def get_rating(request):
     players = Player.objects.all().order_by('-rating')
     serializer = RatingSerializer(players, context={'request': request}, many=True)
-    return Response({'data': serializer.data})
+    return Response(serializer.data)

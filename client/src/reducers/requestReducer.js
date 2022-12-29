@@ -21,13 +21,13 @@ export default function requestReducer(state = initialState, action) {
   }
 }
 
-export const makeRequest = (requestAcCallback) => async (dispatch) => {
+export const makeRequest = (requestCallback) => async (dispatch) => {
   try {
     dispatch({
       type: SET_REQUEST_STATUS,
       payload: {isLoading: true},
     })
-    await dispatch(requestAcCallback())
+    await dispatch(requestCallback())
     dispatch({
       type: SET_REQUEST_STATUS,
       payload: {isLoading: false},

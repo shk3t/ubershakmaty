@@ -19,7 +19,8 @@ metadata = json.load(open(BASE_DIR / "metadata.json"))
 #     "PASSWORD": "[your db password]",
 #     "HOST": "127.0.0.1",
 #     "PORT": "5432"
-#   }
+#   },
+#   "google-account-client-id": "[any id (social auth won't work anyway :P)]"
 # }
 
 # Security
@@ -72,13 +73,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-#DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.sqlite3",
-#        "NAME": BASE_DIR / "db.sqlite3",
-#    }
-#}
-DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+# DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
+
 # Custom user model
 AUTH_USER_MODEL = "app_auth.User"
 
