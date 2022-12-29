@@ -1,4 +1,8 @@
 import {INITIAL_PIECES} from '../consts/game';
+import axios from 'axios';
+
+const INIT = "INIT";
+const API_URL = 'http://localhost:8000';
 
 export const NEW_GAME = {
   pieces: INITIAL_PIECES,
@@ -7,6 +11,7 @@ export const NEW_GAME = {
 };
 
 export const gameReducer = (state, action) => {
+
   switch(action.type) {
   case "INIT":
     console.log("HIT INIT");
@@ -26,3 +31,18 @@ export const gameReducer = (state, action) => {
     return null;
   }
 };
+
+export const initGame = (args) => async (dispatch) => {
+  const resp = await axios({
+    method: 'post',
+    url: `${API_URL}/game/init_game`,
+    headers: {'content-type': 'application/json'},
+    data: {
+      white_player: 2,
+      black_player: 3,
+      timer: "00:01:00",
+    }
+  });
+  console.log(resp.data);
+  console.log(dispatch);
+}

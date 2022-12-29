@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    "app_auth.apps.AuthConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,8 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     "rest_framework",
     "corsheaders",
-    "chess_game",
-    "app_auth.apps.AuthConfig",
+    "chess_game"
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

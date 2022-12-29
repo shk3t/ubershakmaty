@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Player, ChessGame
-from django.contrib.auth.models import User
+from app_auth.models import User
 
 
 class PlayerSerializer(serializers.ModelSerializer):
@@ -22,6 +22,10 @@ class ChessGameSerializer(serializers.ModelSerializer):
             'black_timer',
         )
 
+    def set_timers(self):
+        self.initial_data['white_timer'] = self.initial_data['timer']
+        self.initial_data['black_timer'] = self.initial_data['timer']
+
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -32,10 +36,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 class RatingSerializer(serializers.ModelSerializer):
     def get_username(self, obj):
-        return obj.id.username
+        return obj.id.nickname
 
     def get_date_joined(self, obj):
-        print(obj.id.date_joined)
         return obj.id.date_joined
 
     username = serializers.SerializerMethodField('get_username')

@@ -3,14 +3,14 @@ import classes from "../../styles/buttons/DropDownButton.module.css"
 import arrow from "../../assets/mainPageImgs/Arrow-down.svg"
 import DropDownPanel from "../../components/DropDownPanel"
 
-export default function DropDownButton() {
-    const [isActive, setIsActive] = useState(false); 
+export default function DropDownButton({setTime}) {
+    const [isActive, setIsActive] = useState(false);
     return (
         <div>
-            <div className={classes.dropDownButton} 
-            style={{ backgroundImage: `url(${arrow})` }} 
+            <div className={classes.dropDownButton}
+            style={{ backgroundImage: `url(${arrow})` }}
             onClick={(e) => setIsActive(!isActive)} />
-            {isActive && <DropDownPanel/>}
+            {isActive && <DropDownPanel setTime={setTime}/>}
         </div>
     )
 }

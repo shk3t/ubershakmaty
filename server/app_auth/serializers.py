@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
         if password:
             user.set_password(password)
         user.save()
-        Player(**{"id": user, "rating": 0}).save()
+        Player(**{"id": user, "rating": 2000}).save()
         return user
 
     def update(self, user, validated_data):
