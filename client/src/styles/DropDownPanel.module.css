@@ -1,89 +1,91 @@
 .dropdown_content {
-    position: absolute;
-    width: 40%;
-    height: auto;
-    background-color: rgba(63, 59, 84, 1.0);
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    z-index: 1;
-    left: 8%;
-    margin-top: 1.5%;
-    border-radius: 0px 0px 30px 30px;
-    padding-top: 0%;
+  position: absolute;
+  width: 40%;
+  height: auto;
+  background-color: rgba(63, 59, 84, 1);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  left: 8%;
+  margin-top: 3%;
+  border-radius: 0px 0px 30px 30px;
+  padding-top: 0%;
 }
 
 .dropdown_content .panel {
-    background-color: rgba(133, 119, 228, 1.0);
-    width: 100%;
-    height: 10vh;
-    margin-top: -4%;
+  background-color: rgba(133, 119, 228, 1);
+  width: 100%;
+  height: 70px;
+  margin-top: -4%;
+  padding-top: 4%;
 }
 
 .dropdown_content .panel h2 {
-    color: white;
-    font-family: Montserrat;
-    font-size: 1.5vw;
-    font-weight: 500;
-    padding-left: 10%;
+  color: white;
+  font-family: Montserrat;
+  font-size: 1.5vw;
+  font-weight: 500;
+  padding-left: 10%;
 }
 
 .dropdown_content .mode {
-    padding-bottom: 20pt;
+  padding-bottom: 20pt;
 }
 
 .dropdown_content .mode h2 {
-    color: white;
-    font-family: Montserrat;
-    font-size: 2.0vw;
-    font-weight: 500;
-    padding-left: 10%;
-    margin-bottom: 0%;
+  color: white;
+  font-family: Montserrat;
+  font-size: 2vw;
+  font-weight: 500;
+  padding-left: 10%;
+  margin-bottom: 0%;
+  padding-top: 4%;
 }
 
 .dropdown_content .mode button {
-    background-color: rgba(248, 200, 91, 1.0);
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 25%;
-    height: 4.0vw;
-    border: none;
-    border-radius: 20px 20px 20px 20px;
-    margin-right: 4%;
-    margin-top: 3%;
-    cursor: pointer;
-    color: rgba(63, 59, 84, 1.0);
-    font-family: Montserrat;
-    font-size: 1.2vw;
-    font-weight: 600;
+  background-color: rgba(248, 200, 91, 1);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 25%;
+  height: 4vw;
+  border: none;
+  border-radius: 20px 20px 20px 20px;
+  margin-right: 4%;
+  margin-top: 3%;
+  cursor: pointer;
+  color: rgba(63, 59, 84, 1);
+  font-family: Montserrat;
+  font-size: 1.2vw;
+  font-weight: 600;
 }
 
 .dropdown_content .mode button:first-child {
-    margin-left: 8%;
+  margin-left: 8%;
 }
 
 .dropdown_content .mode button:hover {
-    transform: scale(1.2);
-    transition: 0.4s;
+  transform: scale(1.2);
+  transition: 0.4s;
 }
 
 .modeButton {
-    background-color: rgba(248, 200, 91, 1.0);
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 25%;
-    height: 4.0vw;
-    border: none;
-    border-radius: 20px 20px 20px 20px;
-    margin-right: 4%;
-    cursor: pointer;
-    color: rgba(63, 59, 84, 1.0);
-    font-family: Montserrat;
-    font-size: 1.2vw;
-    font-weight: 600;
+  background-color: rgba(248, 200, 91, 1);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 25%;
+  height: 4vw;
+  border: none;
+  border-radius: 20px 20px 20px 20px;
+  margin-right: 4%;
+  cursor: pointer;
+  color: rgba(63, 59, 84, 1);
+  font-family: Montserrat;
+  font-size: 1.2vw;
+  font-weight: 600;
 }
 
 .modeButton:first-child {
-    margin-left: 8%;
+  margin-left: 8%;
 }
 
 .modeButton:hover {
-    transform: scale(1.2);
-    transition: 0.4s;
+  transform: scale(1.2);
+  transition: 0.4s;
 }
