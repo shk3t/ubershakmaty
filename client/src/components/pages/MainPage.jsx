@@ -3,10 +3,14 @@ import classes from "../../styles/pages/MainPage.module.css"
 import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
 import {TABLE_PATH, CHESS_BOARD_PATH} from "../../consts/routes"
+import {useState} from "react"
+import {initGame} from "../../reducers/gameReducer"
 import {Link} from "react-router-dom"
 import Swal from "sweetalert2"
 
 export default function MainPage() {
+  const [timeMode, setTimeMode] = useState("3|2")
+
   return (
     <div className={classes.menu}>
       <div className={classes.newGame}>
@@ -21,13 +25,14 @@ export default function MainPage() {
           </ul>
         </nav>
         <div className={classes.dropdown}>
-          <DropDownButton />
+          <DropDownButton setTime={setTimeMode} />
         </div>
-        <div className={classes.choosen}>3 мин</div>
+        <div className={classes.choosen}>{timeMode}</div>
         <Link to={CHESS_BOARD_PATH}>
           <button
             className={classes.play}
             onClick={() => {
+              initGame(timeMode)
               Swal.fire({
                 icon: "success",
                 title: "Success",
