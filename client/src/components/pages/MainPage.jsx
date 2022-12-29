@@ -4,6 +4,7 @@ import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
 import {TABLE_PATH, CHESS_BOARD_PATH} from "../../consts/routes"
 import {Link} from "react-router-dom"
+import Swal from "sweetalert2"
 
 export default function MainPage() {
   return (
@@ -24,7 +25,19 @@ export default function MainPage() {
         </div>
         <div className={classes.choosen}>3 мин</div>
         <Link to={CHESS_BOARD_PATH}>
-          <button className={classes.play}>Играть!</button>
+          <button
+            className={classes.play}
+            onClick={() => {
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                type: "success",
+                text: "Your work has been saved.",
+              })
+            }}
+          >
+            Играть!
+          </button>
         </Link>
       </div>
       <div>
@@ -32,7 +45,17 @@ export default function MainPage() {
           <div className={classes.imgWrap}>
             <img src={friends} />
           </div>
-          <button className={classes.playFriendButton}>
+          <button
+            className={classes.playFriendButton}
+            onClick={() => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>',
+              })
+            }}
+          >
             <p>Играть с другом</p>
           </button>
         </div>
