@@ -1,26 +1,25 @@
-.NameClass{
-    position: relative;
-    top: 5%;
+.NameClass {
+  position: relative;
+  top: 5%;
 }
 
 table.rateTable {
-    width: 890px;
-    height: 500px;
-    color: #160b33;
-    margin: auto;
+  width: 890px;
+  height: 500px;
+  color: #160b33;
+  margin: auto;
 }
 
 .rateTable th {
-    height:80px;
-    border-bottom: 1px solid #7ad3c1;
-    background-color: #d8d1ff;
-    font-family: Montserrat;
-
+  height: 80px;
+  border-bottom: 1px solid #7ad3c1;
+  background-color: #d8d1ff;
+  font-family: Montserrat;
 }
 
 .rateTable td {
-    height:80px;
-    font-family: Montserrat;
-    background-color: #d8d1ff;
-    text-align: center;
+  height: 80px;
+  font-family: Montserrat;
+  background-color: #d8d1ff;
+  text-align: center;
 }

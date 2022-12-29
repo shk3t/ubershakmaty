@@ -1,205 +1,205 @@
 .menu {
-    background-color: rgba(22, 11, 51, 1.0);
-    width: 100%;
-    height: 130vh;
-    position: relative;
-    background-size: cover;
+  background-color: rgba(22, 11, 51, 1);
+  width: 100%;
+  height: 130vh;
+  position: relative;
+  background-size: cover;
 }
 
 .newGame {
-    background-color: rgba(248, 200, 91, 1.0);
-    width: 80%;
-    height: 200px;
-    position: relative;
-    left: 10%;
-    top: 3%;
-    border-radius: 30px 30px 30px 30px;
-    display: block;
+  background-color: rgba(248, 200, 91, 1);
+  width: 80%;
+  height: 200px;
+  position: relative;
+  left: 10%;
+  top: 3%;
+  border-radius: 30px 30px 30px 30px;
+  display: block;
 }
 
 .newGame nav {
-    display: inline;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6% 12% 4% 8%;
+  /*display: inline-flex;*/
+  align-items: center;
+  justify-content: space-between;
+  padding: 4% 8% 4% 8%;
 }
 
 .newGame nav ul li {
-    display: inline;
-    color: white;
+  display: inline;
+  color: white;
 }
 
 .playFriend {
-    background-color: rgba(133, 119, 228, 1.0);
-    width: 38%;
-    height: 400px;
-    position: absolute;
-    left: 10%;
-    margin-top: 6%;
-    border-radius: 30px 30px 30px 30px;
-    display: block;
-    float: left;
+  background-color: rgba(133, 119, 228, 1);
+  width: 38%;
+  height: 42%;
+  position: absolute;
+  left: 10%;
+  margin-top: 6%;
+  border-radius: 30px 30px 30px 30px;
+  display: block;
+  float: left;
 }
 
 .rating {
-    background-color: rgba(67, 205, 208, 1.0);
-    width: 38%;
-    height: 42%;
-    position: absolute;
-    right: 10%;
-    margin-top: 6%;
-    border-radius: 30px 30px 30px 30px;
-    display: block;
-    float: right;
+  background-color: rgba(67, 205, 208, 1);
+  width: 38%;
+  height: 42%;
+  position: absolute;
+  right: 10%;
+  margin-top: 6%;
+  border-radius: 30px 30px 30px 30px;
+  display: block;
+  float: right;
 }
 
 button.play {
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: rgba(133, 119, 228, 1.0);
-    width: 30%;
-    height: 50%;
-    position: absolute;
-    right: 6%;
-    top: 25%;
-    border-radius: 30px 30px 30px 30px;
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 2vw;
-    font-family: Montserrat;
-    font-weight: 500;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(133, 119, 228, 1);
+  width: 30%;
+  height: 50%;
+  position: absolute;
+  right: 6%;
+  top: 25%;
+  border-radius: 30px 30px 30px 30px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 2vw;
+  font-family: Montserrat;
+  font-weight: 500;
 }
 
 button.play:hover {
-    transform: scale(1.2);
-    transition: 0.4s;
+  transform: scale(1.2);
+  transition: 0.4s;
 }
 
 .panel .imgWrap {
-    position: absolute;
-    left: 12%;
-    top: 12%;
-    width: 5%;
-    height: 80%;
+  position: absolute;
+  left: 12%;
+  top: 12%;
+  width: 5%;
+  height: 80%;
 }
 
 .avatar {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .newGame .time {
-    color: rgba(63, 59, 84, 1.0);
-    margin-left: 35%;
-    margin-top: -7%;
-    font-family: Montserrat;
-    font-size: 2.6vw;
-    font-weight: 800;
+  color: rgba(63, 59, 84, 1);
+  margin-left: 35%;
+  margin-top: -5%;
+  font-family: Montserrat;
+  font-size: 2.6vw;
+  font-weight: 800;
 }
 
 .newGame .newGameText {
-    color: white;
-    margin-left: 4.5%;
-    padding-top: 0%;
-    font-family: Montserrat;
-    font-size: 2.6vw;
-    font-weight: 800;
+  color: white;
+  margin-left: 4.5%;
+  padding-top: 0%;
+  font-family: Montserrat;
+  font-size: 2.6vw;
+  font-weight: 800;
 }
 
 .playFriend img {
-    position: relative;
-    display: block;
-    width: 100%;
-    margin-top: 7%;
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-top: 7%;
 }
 
 .playFriendButton {
-    position: relative;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: rgba(248, 200, 91, 1.0);
-    width: 80%;
-    height: 22%;
-    left: 10%;
-    margin-top: 5%;
-    border-radius: 30px 30px 30px 30px;
-    text-align: center;
-    border: 0px;
-    cursor: pointer;
+  position: relative;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(248, 200, 91, 1);
+  width: 80%;
+  height: 22%;
+  left: 10%;
+  margin-top: 5%;
+  border-radius: 30px 30px 30px 30px;
+  text-align: center;
+  border: 0px;
+  cursor: pointer;
 }
 
 .playFriendButton p {
-    color: white;
-    font-family: Montserrat;
-    font-size: 2vw;
-    font-weight: 500;
-    margin: 0;
+  color: white;
+  font-family: Montserrat;
+  font-size: 2vw;
+  font-weight: 500;
+  margin: 0;
 }
 
 .playFriendButton:hover {
-    transform: scale(1.15);
-    transition: 0.4s;
+  transform: scale(1.15);
+  transition: 0.4s;
 }
 
 .rating .msg {
-    padding-left: 11%;
-    padding-right: 10%;
-    padding-top: 4%;
-    color: rgba(63, 59, 84, 1.0);
-    font-family: Montserrat;
-    font-size: 2.0vw;
-    font-weight: 800;
+  padding-left: 11%;
+  padding-right: 10%;
+  padding-top: 4%;
+  color: rgba(63, 59, 84, 1);
+  font-family: Montserrat;
+  font-size: 2vw;
+  font-weight: 800;
 }
 
 .rating .msg pre {
-    color: rgba(63, 59, 84, 1.0);
-    font-family: Montserrat;
-    font-size: 2.0vw;
-    font-weight: 800;
-    margin-top: 0%;
-    margin-bottom: 0%;
+  color: rgba(63, 59, 84, 1);
+  font-family: Montserrat;
+  font-size: 2vw;
+  font-weight: 800;
+  margin-top: 0%;
+  margin-bottom: 0%;
 }
 
 .rating .seeTable {
-    position: relative;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: rgba(248, 200, 91, 1.0);
-    width: 80%;
-    height: 26%;
-    left: 10%;
-    margin-top: 10%;
-    border-radius: 30px 30px 30px 30px;
-    text-align: center;
-    border: 0px;
-    cursor: pointer;
+  position: relative;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(248, 200, 91, 1);
+  width: 80%;
+  height: 22%;
+  left: 10%;
+  margin-top: 30%;
+  border-radius: 30px 30px 30px 30px;
+  text-align: center;
+  border: 0px;
+  cursor: pointer;
 }
 
 .rating .seeTable:hover {
-    transform: scale(1.15);
-    transition: 0.4s;
+  transform: scale(1.15);
+  transition: 0.4s;
 }
 
 .rating .seeTable p {
-    color: white;
-    font-family: Montserrat;
-    font-size: 2.0vw;
-    font-weight: 500;
-    margin: 0;
+  color: white;
+  font-family: Montserrat;
+  font-size: 2vw;
+  font-weight: 500;
+  margin: 0;
 }
 
 .dropdown {
-    position: relative;
-    display: block;
+  position: relative;
+  display: block;
 }
 
 .newGame .choosen {
-    color: rgba(63, 59, 84, 1.0);
-    font-family: Montserrat;
-    font-size: 1.8vw;
-    font-weight: 500;
-    margin-left: 37.5%;
-    margin-top: -2%;
+  color: rgba(63, 59, 84, 1);
+  font-family: Montserrat;
+  font-size: 1.8vw;
+  font-weight: 500;
+  margin-left: 37.5%;
+  margin-top: -2%;
 }
 
 .show {
-    display: block;
+  display: block;
 }
