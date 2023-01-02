@@ -4,10 +4,7 @@
   Sample body:
   ```
     {
-      "white_player": 1,
-      "black_player": 2,
-      "white_timer": "00:01:00",
-      "black_timer": "00:01:00"
+      "timer": "00:01:00|1"
     }
   ```
   Sample response:
@@ -19,10 +16,11 @@
       "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
       "result": null,
       "white_timer": "00:01:00",
-      "black_timer": "00:01:00"
+      "black_timer": "00:01:00",
+      "increment": 1
     }
   ```
-  
+
   ## 2. Make move - [server]/game/make_move
   Sample body:
   ```

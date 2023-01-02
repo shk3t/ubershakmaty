@@ -6,8 +6,11 @@ import { TABLE_PATH, CHESS_BOARD_PATH } from "../../consts/routes"
 import {useState} from 'react';
 import {initGame} from "../../reducers/gameReducer";
 import {Link} from "react-router-dom"
+import {useSelector} from "react-redux";
 
 export default function MainPage() {
+    const authUser = useSelector((state) => state.authReducer.authUser)
+    const accessToken = useSelector((state) => state.authReducer.accessToken)
     const [timeMode, setTimeMode] = useState("3|2");
     return (
         <div className={classes.menu}>
@@ -23,7 +26,7 @@ export default function MainPage() {
                 </div>
                 <div className={classes.choosen}>{timeMode}</div>
                 <Link to={CHESS_BOARD_PATH}>
-                    <button className={classes.play} onClick={initGame(timeMode)}>Играть!</button>
+                    <button className={classes.play} onClick={initGame(timeMode, authUser, accessToken)}>Играть!</button>
                 </Link>
             </div>
             <div>
