@@ -10,18 +10,32 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from chess_game.models import Player, ChessGame
+from chess_game.models import Player, ChessGame, ReadyToPlay
 from chess_game.serializers import *
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 @api_view(['POST'])
 def init_game(request):
+    ready_player = ReadyToPlay.objects.filter(~Q(player=request.data['user']['id']),
+                                              chosen_time_mode=request.data['timer']).order_by('wait_start')[:1]
     serializer = ChessGameSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if ready_player.count():
+        serializer.initial_data['player_2'] = ready_player[0].pk
+        serializer.prepare()
+        if serializer.is_valid():
+            serializer.save()
+            ready_player[0].delete()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        ready_player_serializer = ReadyPlayerSerializer(data=request.data)
+        ready_player_serializer.prepare()
+        if ready_player_serializer.is_valid():
+            ready_player_serializer.save()
+            return Response('Looking for another player', status=status.HTTP_201_CREATED)
+        return Response(ready_player_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 def update_clock(game):
@@ -34,10 +48,14 @@ def update_clock(game):
         if move_n % 2:
             time_left = datetime.datetime.strptime(game.black_timer.strftime('%H:%M:%S'), '%H:%M:%S')
             time_left -= a - b
+            if time_left > 0:
+                time_left += game.increment
             game.black_timer = time_left.strftime('%H:%M:%S')
         else:
             time_left = datetime.datetime.strptime(game.white_timer.strftime('%H:%M:%S'), '%H:%M:%S')
             time_left -= a - b
+            if time_left > 0:
+                time_left += game.increment
             game.white_timer = time_left.strftime('%H:%M:%S')
         if time_left.day <= 1:
             game.last_move_time = datetime.datetime.now()

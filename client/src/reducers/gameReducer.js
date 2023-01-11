@@ -11,6 +11,7 @@ const initialState = {
   pieces: INITIAL_PIECES,
 }
 
+<<<<<<< HEAD
 export default function gameReducer(state = initialState, action) {
   switch (action.type) {
     case SELECT_PIECE:
@@ -43,3 +44,24 @@ export const movePiece = (to) => {
 export const unselect = () => {
   return {type: UNSELECT}
 }
+
+// export const initGame = (timeMode, authUser, accessToken) => async (dispatch) => {
+//   console.log(timeMode);
+//   console.log(authUser);
+//   console.log(accessToken);
+//   console.log(TIMER_VALUES[timeMode]);
+//   const resp = await axios({
+//     method: 'post',
+//     url: `${API_URL}/game/init_game`,
+//     headers: {
+//       'content-type': 'application/json',
+//       'Authorization': `token ${accessToken}`},
+//     data: {
+//       user: authUser,
+//       white_player: 2,
+//       black_player: 3,
+//       timer: TIMER_VALUES[timeMode]
+//     }
+//   });
+//   console.log(resp.data);
+//   console.log(dispatch);

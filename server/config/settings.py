@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    "app_auth.apps.AuthConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,8 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     "rest_framework",
     "corsheaders",
-    "chess_game",
-    "app_auth.apps.AuthConfig",
+    "chess_game"
 ]
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -73,13 +73,13 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-# DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
+#DATABASES = {
+#    "default": {
+#        "ENGINE": "django.db.backends.sqlite3",
+#        "NAME": BASE_DIR / "db.sqlite3",
+#    }
+#}
+DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
 
 # Custom user model
 AUTH_USER_MODEL = "app_auth.User"
