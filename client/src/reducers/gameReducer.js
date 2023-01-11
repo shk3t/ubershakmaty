@@ -1,4 +1,4 @@
-import {BLACK, EMPTY_PIECE, INITIAL_PIECES, WHITE} from "../consts/game"
+import {EMPTY_PIECE, INITIAL_PIECES, WHITE} from "../consts/game"
 import {nextTurn, setCharAt, turnIsCorrect} from "../utils"
 
 const SELECT_PIECE = "SELECT_PIECE"
@@ -24,6 +24,7 @@ export default function gameReducer(state = initialState, action) {
       state.pieces = setCharAt(state.pieces, state.selected.piece, to)
       state.pieces = setCharAt(state.pieces, EMPTY_PIECE, state.selected.index)
       state.turn = nextTurn(state.turn)
+    // eslint-disable-next-line
     case UNSELECT:
       state.selected = {}
       return {...state}

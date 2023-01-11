@@ -4,15 +4,12 @@ import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
 import {TABLE_PATH, CHESS_BOARD_PATH} from "../../consts/routes"
 import {useState} from "react"
-import {initGame} from "../../reducers/gameReducer"
 import {Link} from "react-router-dom"
-import {useSelector} from "react-redux";
 import Swal from "sweetalert2"
 
 export default function MainPage() {
-  const authUser = useSelector((state) => state.authReducer.authUser)
-  const accessToken = useSelector((state) => state.authReducer.accessToken)
   const [timeMode, setTimeMode] = useState("3 | 2");
+
   return (
     <div className={classes.menu}>
       <div className={classes.newGame}>
@@ -34,7 +31,7 @@ export default function MainPage() {
           <button
             className={classes.play}
             onClick={() => {
-              initGame(timeMode, authUser, accessToken)
+              /* initGame() */
               Swal.fire({
                 icon: "success",
                 title: "Success",
@@ -50,7 +47,7 @@ export default function MainPage() {
       <div>
         <div className={classes.playFriend}>
           <div className={classes.imgWrap}>
-            <img src={friends} />
+            <img src={friends} alt="Friends" />
           </div>
           <button
             className={classes.playFriendButton}

@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import {login} from "../../reducers/authReducer"
 import authClasses from "../../styles/pages/AuthPage.module.css"
 import {useDispatch} from "react-redux"

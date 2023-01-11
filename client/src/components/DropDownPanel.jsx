@@ -1,7 +1,6 @@
 import React from "react"
 import classes from "../styles/DropDownPanel.module.css"
 import ModeButton from "../components/buttons/GameModeButton"
-import { useCallback } from 'react'
 
 export default function DropDownPanel({setTime}) {
   return (
