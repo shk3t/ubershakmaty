@@ -11,7 +11,6 @@ const initialState = {
   pieces: INITIAL_PIECES,
 }
 
-<<<<<<< HEAD
 export default function gameReducer(state = initialState, action) {
   switch (action.type) {
     case SELECT_PIECE:
