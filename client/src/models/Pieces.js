@@ -42,7 +42,7 @@ export default class Piece {
     }
 
     this.selected = true
-    if (board.selectedPiece) board.selectedPiece.selected = false
+    board.unselectPiece()
     board.selectedPiece = this
     this.hintPossibleMoves()
 
@@ -70,7 +70,8 @@ export default class Piece {
     targetSquare.piece = this
     this.square.piece = null
     this.square = targetSquare
-    this.toggleTurn()
+    board.unselectPiece()
+    board.toggleTurn()
     return true
   }
 }
@@ -79,6 +80,48 @@ export class Pawn extends Piece {
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whitePawnImage : blackPawnImage
+    this.moved = false
+  }
+
+  hintPossibleMoves() {
+    const board = this.square.board
+    const index = this.square.index
+    const x = index % 8
+    const y = Math.floor(index / 8)
+
+    const direction = this.color === Color.WHITE ? -1 : 1
+    let hintIndex
+    let targetSquare
+
+    hintIndex = 8 * (y + direction) + x
+    targetSquare = board.squares[hintIndex]
+    if (!targetSquare.piece) {
+      targetSquare.possibleMove = true
+      if (!this.moved && !targetSquare.piece) {
+        hintIndex = 8 * (y + direction * 2) + x
+        targetSquare = board.squares[hintIndex]
+        targetSquare.possibleMove = true
+      }
+    }
+
+    hintIndex = 8 * (y + direction) + x - 1
+    targetSquare = board.squares[hintIndex]
+    if (targetSquare.piece && this.color !== targetSquare.piece.color) {
+      targetSquare.possibleMove = true
+    }
+    hintIndex = 8 * (y + direction) + x + 1
+    targetSquare = board.squares[hintIndex]
+    if (targetSquare.piece && this.color !== targetSquare.piece.color) {
+      targetSquare.possibleMove = true
+    }
+  }
+
+  move(index) {
+    if (super.move(index)) {
+      this.moved = true
+      return true
+    }
+    return false
   }
 }
 
