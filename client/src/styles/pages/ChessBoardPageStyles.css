@@ -62,7 +62,9 @@ body {
   font-family: "Orbitron", sans-serif;
 }
 
-#board {
+#board,
+#pieces,
+#hints {
   display: grid;
   grid-template-columns: repeat(8, 6.25vw);
   grid-template-rows: repeat(8, 6.25vw);
@@ -73,11 +75,12 @@ body {
 #pieces {
   position: absolute;
   grid-area: 1 / 1 / 4 / 3;
-  display: grid;
-  grid-template-columns: repeat(8, 6.25vw);
-  grid-template-rows: repeat(8, 6.25vw);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  z-index: 3;
+}
+
+#hints {
+  position: absolute;
+  grid-area: 1 / 1 / 4 / 3;
   z-index: 2;
 }
 
@@ -93,9 +96,13 @@ body {
   height: 100%;
 }
 
-.piece {
+.piece, .hint {
   background-size: contain;
 }
 .selected-piece {
   opacity: 50%;
+}
+
+.hint {
+  background-image: url(../../assets/move_hint.svg);
 }

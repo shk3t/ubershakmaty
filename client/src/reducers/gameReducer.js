@@ -12,6 +12,7 @@ export default function gameReducer(state = initialState, action) {
   const {index} = action.payload || {}
   switch (action.type) {
     case SELECT_PIECE:
+      console.log("selected!")
       if (state.board.selectPiece(index)) return {...state}
       return state
     case UNSELECT_PIECE:

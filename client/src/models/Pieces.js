@@ -15,6 +15,8 @@ import blackKingImage from "../assets/chessFigures/king_black.png"
 export default class Piece {
   constructor(color = null) {
     this.color = color
+    this.square = null
+    this.selected = false
   }
 
   static fromSymbol(symbol) {
@@ -30,6 +32,18 @@ export default class Piece {
     }[symbol.toLowerCase()]
 
     return new PieceClass(color)
+  }
+
+  hintPossibleMoves() {
+    // TODO
+    console.log("not implemented")
+    return
+  }
+
+  move() {
+    // TODO
+    console.log("not implemented")
+    return
   }
 }
 

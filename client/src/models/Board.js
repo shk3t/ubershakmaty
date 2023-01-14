@@ -4,7 +4,7 @@ import Piece from "./Pieces"
 
 export default class Board {
   static INITIAL = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-  selectedSquare = null
+  selectedPiece = null
 
   constructor(pieces = null) {
     if (pieces == null) {
@@ -16,7 +16,7 @@ export default class Board {
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
         const color = (i + j) % 2 ? Color.WHITE : Color.BLACK
-        squares[8 * i + j] = new Square(8 * i + j, color, pieces[8 * i + j])
+        squares[8 * i + j] = new Square(8 * i + j, color, this, pieces[8 * i + j])
       }
     }
 
@@ -25,40 +25,44 @@ export default class Board {
   }
 
   selectPiece(index) {
-    const targetSquare = this.squares[index]
+    const targetPiece = this.squares[index].piece
 
-    if (!targetSquare.piece || targetSquare.piece.color !== this.turn) {
+    if (!targetPiece || targetPiece.color !== this.turn) {
       return false
     }
 
-    if (this.selectedSquare) this.selectedSquare.isSelected = false
-    targetSquare.isSelected = true
-    this.selectedSquare = targetSquare
+    if (this.selectedPiece) this.selectedPiece.selected = false
+    targetPiece.selected = true
+    this.selectedPiece = targetPiece
+    targetPiece.hintPossibleMoves()
 
     return true
   }
 
   unselectPiece() {
-    if (!this.selectedSquare) return false
-    this.selectedSquare.isSelected = false
-    this.selectedSquare = null
+    if (!this.selectedPiece) return false
+    this.selectedPiece.selected = false
+    this.selectedPiece = null
+    this.removeHints()
     return true
   }
 
+  // think about moving this into Piece class
   movePiece(index) {
     const targetSquare = this.squares[index]
     // TODO replace with another validation
     if (
-      index === this.selectedSquare.index ||
+      index === this.selectedPiece.square.index ||
       (targetSquare.piece &&
-        targetSquare.piece.color === this.selectedSquare.piece.color)
+        targetSquare.piece.color === this.selectedPiece.color)
     ) {
       this.unselectPiece()
       return false
     }
 
-    targetSquare.piece = this.selectedSquare.piece
-    this.selectedSquare.piece = null
+    // TODO extract logic into Piece class
+    targetSquare.piece = this.selectedPiece
+    this.selectedPiece.square.piece = null
     this.toggleTurn()
     this.unselectPiece()
     return true
@@ -66,6 +70,12 @@ export default class Board {
 
   toggleTurn() {
     this.turn = this.turn === Color.WHITE ? Color.BLACK : Color.WHITE
+  }
+
+  removeHints() {
+    for (const square of this.squares) {
+      square.possibleMove = false
+    }
   }
 
   toFen() {

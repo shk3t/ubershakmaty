@@ -1,9 +1,12 @@
 export default class Square {
-  constructor(index, color, piece = null) {
+  constructor(index, color, board, piece = null) {
     this.index = index
     this.color = color
     this.piece = piece
-    this.isSelected = false
-    this.available = false
+    this.board = board
+    this.possibleMove = false
+
+    if (piece)
+      this.piece.square = this
   }
 }
