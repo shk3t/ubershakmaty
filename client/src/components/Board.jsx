@@ -11,7 +11,6 @@ export default function BoardComponent() {
   const {board} = useSelector((state) => state.gameReducer)
 
   function handleMove(event) {
-    console.log("yea")
     event.stopPropagation()
     const index = parseInt(event.target.id)
     if (board.selectedPiece) {
