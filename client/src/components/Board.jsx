@@ -1,3 +1,4 @@
+import {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import Color from "../models/Color"
 import {movePiece, selectPiece} from "../reducers/gameReducer"
@@ -56,4 +57,29 @@ export default function BoardComponent() {
       )}
     </div>
   )
+
+  // return (
+  //   <div id="board-area">
+  //     <div id="board">
+  //       {RangeArray(64).map((i) => (
+  //         <div
+  //           key={i}
+  //           className={squareIsBlack(i) ? "dark-square" : "light-square"}
+  //         ></div>
+  //       ))}
+  //     </div>
+  //     <div id="pieces">
+  //       {RangeArray(64).map((i) => (
+  //         <div
+  //           id={i}
+  //           key={i}
+  //           className={`piece-${pieces[i]} ${
+  //             selected.index === i ? "selected-piece" : ""
+  //           }`}
+  //           onClick={(event) => handleMove(event)}
+  //         ></div>
+  //       ))}
+  //     </div>
+  //   </div>
+  // )
 }
