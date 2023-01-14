@@ -80,6 +80,12 @@ export default class Board {
     }
   }
 
+  removeHints() {
+    for (const square of this.squares) {
+      square.possibleMove = false
+    }
+  }
+
   toFen() {
     const pieceData = []
     let emptyCounter = 0
