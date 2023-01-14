@@ -93,53 +93,8 @@ body {
   height: 100%;
 }
 
-.piece-P {
+.piece {
   background-size: contain;
-  background-image: url(../../assets/chessFigures/pawn_white.png);
-}
-.piece-p {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/pawn_black.png);
-}
-.piece-R {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/rook_white.png);
-}
-.piece-r {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/rook_black.png);
-}
-.piece-N {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/knight_white.png);
-}
-.piece-n {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/knight_black.png);
-}
-.piece-B {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/bishop_white.png);
-}
-.piece-b {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/bishop_black.png);
-}
-.piece-K {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/king_white.png);
-}
-.piece-k {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/king_black.png);
-}
-.piece-Q {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/queen_white.png);
-}
-.piece-q {
-  background-size: contain;
-  background-image: url(../../assets/chessFigures/queen_black.png);
 }
 .selected-piece {
   opacity: 50%;

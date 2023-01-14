@@ -1,16 +1,16 @@
 import "../index.css"
 import {useEffect, useState} from "react"
 import {useSelector} from "react-redux"
-import {WHITE} from "../consts/game"
+import Color from "../models/Color"
 
 export default function Clock() {
-  const turn = useSelector((state) => state.gameReducer.turn)
+  const turn = useSelector((state) => state.gameReducer.board.turn)
   const [whiteTime, setWhiteTime] = useState(500)
   const [blackTime, setBlackTime] = useState(500)
 
   useEffect(() => {
     const pTime = setInterval(() => {
-      if (turn === WHITE) {
+      if (turn === Color.WHITE) {
         console.log("white turn")
         setWhiteTime((prev) => prev - 1)
       } else {
