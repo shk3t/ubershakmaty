@@ -90,6 +90,12 @@ export default class Board {
     this.halfmoveClock = -1
   }
 
+  removeHints() {
+    for (const square of this.squares) {
+      square.possibleMove = false
+    }
+  }
+
   toFen() {
     const pieceData = []
     let emptyCounter = 0
