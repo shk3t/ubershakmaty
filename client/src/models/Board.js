@@ -24,47 +24,11 @@ export default class Board {
     this.turn = Color.WHITE
   }
 
-  selectPiece(index) {
-    const targetPiece = this.squares[index].piece
-
-    if (!targetPiece || targetPiece.color !== this.turn) {
-      return false
-    }
-
-    if (this.selectedPiece) this.selectedPiece.selected = false
-    targetPiece.selected = true
-    this.selectedPiece = targetPiece
-    targetPiece.hintPossibleMoves()
-
-    return true
-  }
-
   unselectPiece() {
     if (!this.selectedPiece) return false
     this.selectedPiece.selected = false
     this.selectedPiece = null
     this.removeHints()
-    return true
-  }
-
-  // think about moving this into Piece class
-  movePiece(index) {
-    const targetSquare = this.squares[index]
-    // TODO replace with another validation
-    if (
-      index === this.selectedPiece.square.index ||
-      (targetSquare.piece &&
-        targetSquare.piece.color === this.selectedPiece.color)
-    ) {
-      this.unselectPiece()
-      return false
-    }
-
-    // TODO extract logic into Piece class
-    targetSquare.piece = this.selectedPiece
-    this.selectedPiece.square.piece = null
-    this.toggleTurn()
-    this.unselectPiece()
     return true
   }
 

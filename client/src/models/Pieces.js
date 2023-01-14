@@ -34,25 +34,46 @@ export default class Piece {
     return new PieceClass(color)
   }
 
-  hintPossibleMoves() {
-    // TODO
-    console.log("not implemented")
-    return
+  select() {
+    const board = this.square.board
+
+    if (this.color !== board.turn) {
+      return false
+    }
+
+    this.selected = true
+    if (board.selectedPiece) board.selectedPiece.selected = false
+    board.selectedPiece = this
+    this.hintPossibleMoves()
+
+    return true
   }
 
-  move() {
-    // TODO
+  hintPossibleMoves() {
     console.log("not implemented")
-    return
+  }
+
+  move(index) {
+    const board = this.square.board
+    const targetSquare = board.squares[index]
+
+    // TODO replace with another validation
+    // this.square.index === index ||
+    // (targetSquare.piece &&
+    //   targetSquare.piece.color === this.selectedPiece.color)
+    // this !== board.selectedPiece
+
+    if (!targetSquare.possibleMove) {
+      return false
+    }
+
+    targetSquare.piece = this
+    this.square.piece = null
+    this.square = targetSquare
+    this.toggleTurn()
+    return true
   }
 }
-
-// export class EmptyPiece extends Piece {
-//   constructor(color = null) {
-//     super()
-//     this.image = ""
-//   }
-// }
 
 export class Pawn extends Piece {
   constructor(color) {

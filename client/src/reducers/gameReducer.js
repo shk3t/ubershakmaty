@@ -10,17 +10,21 @@ const initialState = {
 
 export default function gameReducer(state = initialState, action) {
   const {index} = action.payload || {}
+  const targetSquare = index && state.board.squares[index]
   switch (action.type) {
     case SELECT_PIECE:
-      console.log("selected!")
-      if (state.board.selectPiece(index)) return {...state}
+      if (targetSquare.select()) return {...state}
       return state
     case UNSELECT_PIECE:
       state.board.unselectPiece()
       return {...state}
     case MOVE_PIECE:
-      if (state.board.movePiece(index)) return {...state}
-      if (state.board.selectPiece(index)) return {...state}
+      state.board.selectedPiece.move(index) ||
+        (targetSquare.piece &&
+          !targetSquare.piece.selected &&
+          targetSquare.select()) ||
+        state.board.unselectPiece()
+      return {...state}
     default:
       return state
   }

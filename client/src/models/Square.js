@@ -6,7 +6,11 @@ export default class Square {
     this.board = board
     this.possibleMove = false
 
-    if (piece)
-      this.piece.square = this
+    if (piece) this.piece.square = this
+  }
+
+  select() {
+    if (!this.piece) return false
+    return this.piece.select()
   }
 }
