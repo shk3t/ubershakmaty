@@ -51,9 +51,10 @@ export default class Piece {
 
     if (this.color !== board.turn) return false
 
-    this.selected = true
     board.unselectPiece()
     board.selectedPiece = this
+
+    this.selected = true
     this.hintPossibleMoves()
 
     return true
@@ -124,42 +125,79 @@ export class Pawn extends Piece {
 }
 
 export class Rook extends Piece {
+  static moveSequences = [
+    Piece.MoveRange.map((i) => ({dx: -i})),
+    Piece.MoveRange.map((i) => ({dx: i})),
+    Piece.MoveRange.map((i) => ({dy: -i})),
+    Piece.MoveRange.map((i) => ({dy: i})),
+  ]
+
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whiteRookImage : blackRookImage
-    this.moveSequences = [
-      Piece.MoveRange.map((i) => ({dx: -i})),
-      Piece.MoveRange.map((i) => ({dx: i})),
-      Piece.MoveRange.map((i) => ({dy: -i})),
-      Piece.MoveRange.map((i) => ({dy: i})),
-    ]
+    this.moveSequences = Rook.moveSequences
   }
 }
 
 export class Knight extends Piece {
+  static moveSequences = [
+    [{dx: -2, dy: -1}],
+    [{dx: -2, dy: 1}],
+    [{dx: -1, dy: -2}],
+    [{dx: -1, dy: 2}],
+    [{dx: 1, dy: -2}],
+    [{dx: 1, dy: 2}],
+    [{dx: 2, dy: -1}],
+    [{dx: 2, dy: 1}],
+  ]
+
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whiteKnightImage : blackKnightImage
+    this.moveSequences = Knight.moveSequences
   }
 }
 
 export class Bishop extends Piece {
+  static moveSequences = [
+    Piece.MoveRange.map((i) => ({dx: -i, dy: -i})),
+    Piece.MoveRange.map((i) => ({dx: i, dy: -i})),
+    Piece.MoveRange.map((i) => ({dx: -i, dy: i})),
+    Piece.MoveRange.map((i) => ({dx: i, dy: i})),
+  ]
+
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whiteBishopImage : blackBishopImage
+    this.moveSequences = Bishop.moveSequences
   }
 }
 
 export class Queen extends Piece {
+  static moveSequences = [...Rook.moveSequences, ...Bishop.moveSequences]
+
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whiteQueenImage : blackQueenImage
+    this.moveSequences = Queen.moveSequences
   }
 }
 
 export class King extends Piece {
+  static moveSequences = [
+    [{dx: -1, dy: -1}],
+    [{dx: -1, dy: 0}],
+    [{dx: -1, dy: 1}],
+    [{dx: 0, dy: 1}],
+    [{dx: 1, dy: 1}],
+    [{dx: 1, dy: 0}],
+    [{dx: 1, dy: -1}],
+    [{dx: 0, dy: -1}],
+  ]
+
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whiteKingImage : blackKingImage
+    this.moveSequences = King.moveSequences
   }
 }
