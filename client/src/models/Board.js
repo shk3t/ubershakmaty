@@ -16,12 +16,21 @@ export default class Board {
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
         const color = (i + j) % 2 ? Color.WHITE : Color.BLACK
-        squares[8 * i + j] = new Square(8 * i + j, color, this, pieces[8 * i + j])
+        squares[8 * i + j] = new Square(
+          8 * i + j,
+          color,
+          this,
+          pieces[8 * i + j]
+        )
       }
     }
 
     this.squares = squares
     this.turn = Color.WHITE
+  }
+
+  getSquare(x, y) {
+    return this.squares[8 * y + x]
   }
 
   unselectPiece() {

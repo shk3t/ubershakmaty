@@ -9,6 +9,11 @@ export default class Square {
     if (piece) this.piece.square = this
   }
 
+  getXY() {
+    const index = this.index
+    return {x: index % 8, y: Math.floor(index / 8)}
+  }
+
   select() {
     if (!this.piece) return false
     return this.piece.select()

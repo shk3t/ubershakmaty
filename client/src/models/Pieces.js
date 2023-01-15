@@ -13,6 +13,14 @@ import whiteKingImage from "../assets/chessFigures/king_white.png"
 import blackKingImage from "../assets/chessFigures/king_black.png"
 
 export default class Piece {
+  static MoveChecks = {
+    isEmpty: (targetSquare) => !targetSquare.piece,
+    isNotAlly: (targetSquare) =>
+      !targetSquare.piece || this.color !== targetSquare.piece.color,
+    isEnemy: (targetSquare) =>
+      targetSquare.piece && this.color !== targetSquare.piece.color,
+  }
+
   constructor(color = null) {
     this.color = color
     this.square = null
@@ -37,9 +45,7 @@ export default class Piece {
   select() {
     const board = this.square.board
 
-    if (this.color !== board.turn) {
-      return false
-    }
+    if (this.color !== board.turn) return false
 
     this.selected = true
     board.unselectPiece()
@@ -50,18 +56,25 @@ export default class Piece {
   }
 
   hintPossibleMoves() {
-    console.log("not implemented")
+    const {x, y} = this.square.getXY()
+    const board = this.square.board
+
+    for (const sequence of this.moveSequences) {
+      for (const {dx = 0, dy = 0, checks = []} of sequence) {
+        const targetSquare = board.getSquare(x + dx, y + dy)
+        if (
+          Piece.MoveChecks.isNotAlly(targetSquare) &&
+          checks.every((check) => check(targetSquare))
+        ) {
+          targetSquare.possibleMove = true
+        }
+      }
+    }
   }
 
   move(index) {
     const board = this.square.board
     const targetSquare = board.squares[index]
-
-    // TODO replace with another validation
-    // this.square.index === index ||
-    // (targetSquare.piece &&
-    //   targetSquare.piece.color === this.selectedPiece.color)
-    // this !== board.selectedPiece
 
     if (!targetSquare.possibleMove) {
       return false
@@ -80,45 +93,23 @@ export class Pawn extends Piece {
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whitePawnImage : blackPawnImage
-    this.moved = false
-  }
+    this.firstMove = true
 
-  hintPossibleMoves() {
-    const board = this.square.board
-    const index = this.square.index
-    const x = index % 8
-    const y = Math.floor(index / 8)
-
-    const direction = this.color === Color.WHITE ? -1 : 1
-    let hintIndex
-    let targetSquare
-
-    hintIndex = 8 * (y + direction) + x
-    targetSquare = board.squares[hintIndex]
-    if (!targetSquare.piece) {
-      targetSquare.possibleMove = true
-      if (!this.moved && !targetSquare.piece) {
-        hintIndex = 8 * (y + direction * 2) + x
-        targetSquare = board.squares[hintIndex]
-        targetSquare.possibleMove = true
-      }
-    }
-
-    hintIndex = 8 * (y + direction) + x - 1
-    targetSquare = board.squares[hintIndex]
-    if (targetSquare.piece && this.color !== targetSquare.piece.color) {
-      targetSquare.possibleMove = true
-    }
-    hintIndex = 8 * (y + direction) + x + 1
-    targetSquare = board.squares[hintIndex]
-    if (targetSquare.piece && this.color !== targetSquare.piece.color) {
-      targetSquare.possibleMove = true
-    }
+    const dyForward = this.color === Color.WHITE ? -1 : 1
+    const {isEmpty, isEnemy} = Piece.MoveChecks
+    this.moveSequences = [
+      [
+        {dy: dyForward, checks: [isEmpty]},
+        {dy: 2 * dyForward, checks: [() => this.firstMove, isEmpty]},
+      ],
+      [{dx: -1, dy: dyForward, checks: [isEnemy]}],
+      [{dx: 1, dy: dyForward, checks: [isEnemy]}],
+    ]
   }
 
   move(index) {
     if (super.move(index)) {
-      this.moved = true
+      this.firstMove = false
       return true
     }
     return false
