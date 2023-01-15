@@ -120,6 +120,15 @@ export class Pawn extends Piece {
   move(index) {
     if (super.move(index)) {
       this.firstMove = false
+
+      // TODO сделать меню выбора фигуры
+      const upgradeY = this.color === Color.WHITE ? 0 : 7
+      if (this.square.getXY().y == upgradeY) {
+        const queen = new Queen(this.color)
+        queen.square = this.square
+        this.square.piece = queen
+      }
+
       return true
     }
     return false
