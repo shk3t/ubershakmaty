@@ -88,11 +88,13 @@ export default class Piece {
       return false
     }
 
-    targetSquare.piece = this
     this.square.piece = null
     this.square = targetSquare
+    targetSquare.piece = this
+
     board.unselectPiece()
     board.toggleTurn()
+
     return true
   }
 }
