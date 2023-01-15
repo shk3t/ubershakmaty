@@ -30,6 +30,7 @@ export default class Board {
   }
 
   getSquare(x, y) {
+    if (x < 0 || x > 7 || y < 0 || y > 7) return null
     return this.squares[8 * y + x]
   }
 

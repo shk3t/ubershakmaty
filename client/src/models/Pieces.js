@@ -13,12 +13,16 @@ import whiteKingImage from "../assets/chessFigures/king_white.png"
 import blackKingImage from "../assets/chessFigures/king_black.png"
 
 export default class Piece {
-  static MoveChecks = {
+  static MoveRange = Array(7)
+    .fill()
+    .map((_, i) => i + 1)
+  MoveChecks = {
     isEmpty: (targetSquare) => !targetSquare.piece,
     isNotAlly: (targetSquare) =>
       !targetSquare.piece || this.color !== targetSquare.piece.color,
-    isEnemy: (targetSquare) =>
-      targetSquare.piece && this.color !== targetSquare.piece.color,
+    isEnemy: (targetSquare) => {
+      return targetSquare.piece && this.color !== targetSquare.piece.color
+    },
   }
 
   constructor(color = null) {
@@ -58,16 +62,19 @@ export default class Piece {
   hintPossibleMoves() {
     const {x, y} = this.square.getXY()
     const board = this.square.board
+    const {isNotAlly, isEnemy} = this.MoveChecks
 
     for (const sequence of this.moveSequences) {
       for (const {dx = 0, dy = 0, checks = []} of sequence) {
         const targetSquare = board.getSquare(x + dx, y + dy)
         if (
-          Piece.MoveChecks.isNotAlly(targetSquare) &&
+          targetSquare &&
+          isNotAlly(targetSquare) &&
           checks.every((check) => check(targetSquare))
         ) {
           targetSquare.possibleMove = true
-        }
+          if (isEnemy(targetSquare)) break
+        } else break
       }
     }
   }
@@ -96,7 +103,7 @@ export class Pawn extends Piece {
     this.firstMove = true
 
     const dyForward = this.color === Color.WHITE ? -1 : 1
-    const {isEmpty, isEnemy} = Piece.MoveChecks
+    const {isEmpty, isEnemy} = this.MoveChecks
     this.moveSequences = [
       [
         {dy: dyForward, checks: [isEmpty]},
@@ -120,6 +127,12 @@ export class Rook extends Piece {
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whiteRookImage : blackRookImage
+    this.moveSequences = [
+      Piece.MoveRange.map((i) => ({dx: -i})),
+      Piece.MoveRange.map((i) => ({dx: i})),
+      Piece.MoveRange.map((i) => ({dy: -i})),
+      Piece.MoveRange.map((i) => ({dy: i})),
+    ]
   }
 }
 
@@ -150,13 +163,3 @@ export class King extends Piece {
     this.image = color === Color.WHITE ? whiteKingImage : blackKingImage
   }
 }
-
-// Piece.Type = {
-//   EMPTY: "EMPTY",
-//   PAWN: "PAWN",
-//   ROOK: "ROOK",
-//   KNIGHT: "KNIGHT",
-//   BISHOP: "BISHOP",
-//   QUEEN: "QUEEN",
-//   KING: "KING",
-// }
