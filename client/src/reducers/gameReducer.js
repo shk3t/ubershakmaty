@@ -35,10 +35,6 @@ export const gameReducer = (state, action) => {
 };
 
 export const initGame = (timeMode, authUser, accessToken) => async (dispatch) => {
-  console.log(timeMode);
-  console.log(authUser);
-  console.log(accessToken);
-  console.log(TIMER_VALUES[timeMode]);
   const resp = await axios({
     method: 'post',
     url: `${API_URL}/game/init_game`,
@@ -52,6 +48,4 @@ export const initGame = (timeMode, authUser, accessToken) => async (dispatch) =>
       timer: TIMER_VALUES[timeMode]
     }
   });
-  console.log(resp.data);
-  console.log(dispatch);
 }
