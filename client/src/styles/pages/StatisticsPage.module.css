@@ -96,6 +96,10 @@ table.gamesStatistic {
   color: rgba(67, 205, 208, 1);
 }
 
+.draw {
+  color: rgba(200, 200, 200, 1);
+}
+
 .loser {
   color: rgba(248, 200, 91, 1);
 }
