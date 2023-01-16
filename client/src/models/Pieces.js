@@ -32,7 +32,7 @@ export default class Piece {
     this.selected = false
   }
 
-  static fromSymbol(symbol) {
+  static fromAN(symbol) {
     const color = symbol === symbol.toUpperCase() ? Color.WHITE : Color.BLACK
 
     const PieceClass = {
@@ -88,15 +88,15 @@ export default class Piece {
     if (!targetSquare.possibleMove) {
       return false
     }
-    if (!targetSquare.isEmpty() && targetSquare.piece.color !== this.color) {
-      board.restartHalfmoveClock()
-    }
 
     this.square.removePiece()
     targetSquare.putPiece(this)
 
     board.unselectPiece()
     board.endTurn()
+    if (!targetSquare.isEmpty() && targetSquare.piece.color !== this.color) {
+      board.halfmoveClock = -1
+    }
 
     return true
   }
@@ -116,7 +116,6 @@ export default class Piece {
   }
 }
 
-// TODO enPassant
 export class Pawn extends Piece {
   MoveRules = {
     ...this.MoveRules,
@@ -175,6 +174,7 @@ export class Pawn extends Piece {
 
       this.moved = true
       this.tryUpgrade()
+      board.halfmoveClock = 0
       return true
     }
     return false
@@ -186,6 +186,10 @@ export class Pawn extends Piece {
     if (this.square.getXY().y === upgradeY) {
       this.square.putPiece(new Queen(this.color))
     }
+  }
+
+  toAN() {
+    return this.isWhite() ? "P" : "p"
   }
 }
 
@@ -226,6 +230,10 @@ export class Rook extends Piece {
     }
     return false
   }
+
+  toAN() {
+    return this.isWhite() ? "R" : "r"
+  }
 }
 
 export class Knight extends Piece {
@@ -245,6 +253,10 @@ export class Knight extends Piece {
     this.image = color === Color.WHITE ? whiteKnightImage : blackKnightImage
     this.moveSequences = Knight.moveSequences
   }
+
+  toAN() {
+    return this.isWhite() ? "N" : "n"
+  }
 }
 
 export class Bishop extends Piece {
@@ -260,6 +272,10 @@ export class Bishop extends Piece {
     this.image = color === Color.WHITE ? whiteBishopImage : blackBishopImage
     this.moveSequences = Bishop.moveSequences
   }
+
+  toAN() {
+    return this.isWhite() ? "B" : "b"
+  }
 }
 
 export class Queen extends Piece {
@@ -270,12 +286,16 @@ export class Queen extends Piece {
     this.image = color === Color.WHITE ? whiteQueenImage : blackQueenImage
     this.moveSequences = Queen.moveSequences
   }
+
+  toAN() {
+    return this.isWhite() ? "Q" : "q"
+  }
 }
 
 export class King extends Piece {
   MoveRules = {
     ...this.MoveRules,
-    canLongCastle: (targetSquare) => {
+    canLongCastle: () => {
       const board = this.square.board
       const {x, y} = this.square.getXY()
 
@@ -294,7 +314,7 @@ export class King extends Piece {
 
       return false
     },
-    canShortCastle: (targetSquare) => {
+    canShortCastle: () => {
       const board = this.square.board
       const {x, y} = this.square.getXY()
 
@@ -338,7 +358,6 @@ export class King extends Piece {
     const prevIndex = this.square.index
 
     // TODO сделать логику шаха и мата)))
-    const prevX = this.square.getXY().x
     if (super.move(index)) {
       const board = this.square.board
 
@@ -372,5 +391,9 @@ export class King extends Piece {
 
     rook.square.removePiece()
     rookTargetSquare.putPiece(rook)
+  }
+
+  toAN() {
+    return this.isWhite() ? "K" : "k"
   }
 }

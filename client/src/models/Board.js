@@ -3,6 +3,15 @@ import Square from "./Square"
 import Piece from "./Pieces"
 
 export default class Board {
+  static xyToAN({x, y}) {
+    return String.fromCharCode(97 + x) + (8 - y).toString()
+  }
+
+  static anToXY(an) {
+    if (an === "-") return null
+    return {x: an.charCodeAt(0) - 97, y: Number(8 - an[1])}
+  }
+
   static DEFAULT_FEN =
     "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
@@ -15,7 +24,7 @@ export default class Board {
       if (Boolean(Number(pieceData[j]))) {
         i += Number(pieceData[j]) - 1
       } else {
-        pieces[i] = Piece.fromSymbol(pieceData[j])
+        pieces[i] = Piece.fromAN(pieceData[j])
       }
     }
 
@@ -37,7 +46,7 @@ export default class Board {
     this.whiteCanShortCastle = castling.includes("K")
     this.blackCanLongCastle = castling.includes("q")
     this.blackCanShortCastle = castling.includes("k")
-    this.enPassant = Square.anToXY(enPassant)
+    this.enPassant = Board.anToXY(enPassant)
     this.halfmoveClock = Number(halfmoveClock)
     this.moveNumber = Number(moveNumber)
     this.selectedPiece = null
@@ -71,12 +80,32 @@ export default class Board {
     }
   }
 
-  restartHalfmoveClock() {
-    this.halfmoveClock = -1
-  }
-
   toFen() {
-    // TODO
-    return "abc"
+    const pieceData = []
+    let emptyCounter = 0
+    for (const square of this.squares) {
+      if (square.index % 8 === 0) {
+        if (emptyCounter) {
+          pieceData.push(emptyCounter.toString())
+          emptyCounter = 0
+        }
+        pieceData.push("/")
+      }
+      if (square.isEmpty()) {
+        emptyCounter++
+      } else {
+        if (emptyCounter) {
+          pieceData.push(emptyCounter.toString())
+          emptyCounter = 0
+        }
+        pieceData.push(square.piece.toAN())
+      }
+    }
+
+    return `${pieceData.join("").substring(1)} ${
+      this.turn === Color.WHITE ? "w" : "b"
+    } ${this.enPassant ? Board.xyToAN(this.enPassant) : "-"} ${
+      this.halfmoveClock
+    } ${this.moveNumber}`
   }
 }
