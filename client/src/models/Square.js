@@ -1,4 +1,13 @@
 export default class Square {
+  static xyToAN(x, y) {
+    return String.fromCharCode(97 + x) + y.toString()
+  }
+
+  static anToXY(an) {
+    if (an === "-") return null
+    return {x: an.charCodeAt(0) - 97, y: Number(an[1])}
+  }
+
   constructor(index, color, board, piece = null) {
     this.index = index
     this.color = color

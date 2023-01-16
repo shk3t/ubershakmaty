@@ -96,6 +96,10 @@ export default class Board {
     }
   }
 
+  restartHalfmoveClock() {
+    this.halfmoveClock = -1
+  }
+
   toFen() {
     const pieceData = []
     let emptyCounter = 0

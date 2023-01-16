@@ -88,6 +88,9 @@ export default class Piece {
     if (!targetSquare.possibleMove) {
       return false
     }
+    if (!targetSquare.isEmpty() && targetSquare.piece.color !== this.color) {
+      board.restartHalfmoveClock()
+    }
 
     this.square.removePiece()
     targetSquare.putPiece(this)
@@ -116,6 +119,7 @@ export default class Piece {
   }
 }
 
+// TODO enPassant
 export class Pawn extends Piece {
   MoveRules = {
     ...this.MoveRules,
