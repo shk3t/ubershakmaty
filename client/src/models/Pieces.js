@@ -67,12 +67,12 @@ export default class Piece {
     const {isNotAlly, isEnemy} = this.MoveRules
 
     for (const sequence of this.moveSequences) {
-      for (const {dx = 0, dy = 0, rules = []} of sequence) {
+      for (const {dx = 0, dy = 0, rule = null} of sequence) {
         const targetSquare = board.getSquare(x + dx, y + dy)
         if (
           targetSquare &&
           isNotAlly(targetSquare) &&
-          rules.every((rule) => rule(targetSquare))
+          (!rule || rule(targetSquare))
         ) {
           targetSquare.possibleMove = true
           if (isEnemy(targetSquare)) break
@@ -88,12 +88,15 @@ export default class Piece {
     if (!targetSquare.possibleMove) {
       return false
     }
+    if (!targetSquare.isEmpty() && targetSquare.piece.color !== this.color) {
+      board.restartHalfmoveClock()
+    }
 
     this.square.removePiece()
     targetSquare.putPiece(this)
 
     board.unselectPiece()
-    board.toggleTurn()
+    board.endTurn()
 
     return true
   }
@@ -101,36 +104,83 @@ export default class Piece {
   isWhite() {
     return this.color === Color.WHITE
   }
+
+  getMoveLabel(prevIndex) {
+    const {x: fromX, y: fromY} = this.square.board.squares[prevIndex].getXY()
+    const {x, y} = this.square.getXY()
+    const {dx, dy} = {dx: x - fromX || null, dy: y - fromY || null}
+    const move = this.moveSequences.flat().find((move) => {
+      return move.dx == dx && move.dy == dy
+    })
+    return move && move.label
+  }
 }
 
+// TODO enPassant
 export class Pawn extends Piece {
+  MoveRules = {
+    ...this.MoveRules,
+    isEnPassant: (targetSquare) => targetSquare.isEnPassant(),
+  }
+
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whitePawnImage : blackPawnImage
     this.moved = false
 
     const dyForward = this.isWhite() ? -1 : 1
-    const {isEmpty, isEnemy} = this.MoveRules
+    const {isEmpty, isEnemy, isEnPassant} = this.MoveRules
     this.moveSequences = [
       [
-        {dy: dyForward, rules: [isEmpty]},
-        {dy: 2 * dyForward, rules: [() => !this.moved, isEmpty]},
+        {dy: dyForward, rule: isEmpty},
+        {
+          dy: 2 * dyForward,
+          rule: (square) => !this.moved && isEmpty(square),
+          label: "double",
+        },
       ],
-      [{dx: -1, dy: dyForward, rules: [isEnemy]}],
-      [{dx: 1, dy: dyForward, rules: [isEnemy]}],
+      [
+        {
+          dx: -1,
+          dy: dyForward,
+          rule: (square) => isEnemy(square) || isEnPassant(square),
+        },
+      ],
+      [
+        {
+          dx: 1,
+          dy: dyForward,
+          rule: (square) => isEnemy(square) || isEnPassant(square),
+        },
+      ],
     ]
   }
 
   move(index) {
+    const board = this.square.board
+    const prevIndex = this.square.index
+    const prevY = this.square.getXY().y
+    const isEnPassant = board.squares[index].isEnPassant()
+
     if (super.move(index)) {
+      const {x, y} = this.square.getXY()
+
+      if (this.getMoveLabel(prevIndex) === "double") {
+        board.enPassant = {x, y: (y + prevY) / 2}
+      }
+
+      if (isEnPassant) {
+        board.getSquare(x, prevY).removePiece()
+      }
+
       this.moved = true
-      this.upgrade()
+      this.tryUpgrade()
       return true
     }
     return false
   }
 
-  upgrade() {
+  tryUpgrade() {
     // TODO сделать меню выбора фигуры
     const upgradeY = this.isWhite() ? 0 : 7
     if (this.square.getXY().y === upgradeY) {
@@ -279,18 +329,21 @@ export class King extends Piece {
       [{dx: 1, dy: 0}],
       [{dx: 1, dy: -1}],
       [{dx: 0, dy: -1}],
-      [{dx: -2, rules: [canLongCastle]}],
-      [{dx: 2, rules: [canShortCastle]}],
+      [{dx: -2, rule: canLongCastle, label: "longCastle"}],
+      [{dx: 2, rule: canShortCastle, label: "shortCastle"}],
     ]
   }
 
   move(index) {
+    const prevIndex = this.square.index
+
     // TODO сделать логику шаха и мата)))
     const prevX = this.square.getXY().x
     if (super.move(index)) {
       const board = this.square.board
 
-      const deltaX = this.square.getXY().x - prevX
+      const moveLabel = this.getMoveLabel(prevIndex)
+      this.tryCastle(moveLabel)
 
       if (this.isWhite()) {
         board.whiteCanLongCastle = false
@@ -305,14 +358,14 @@ export class King extends Piece {
     return false
   }
 
-  castle(deltaX) {
+  tryCastle(moveLabel) {
     const board = this.square.board
     const {x, y} = this.square.getXY()
 
-    if (deltaX === -2) {
+    if (moveLabel === "longCastle") {
       var rook = board.getSquare(x - 2, y).piece
       var rookTargetSquare = board.getSquare(x + 1, y)
-    } else if (deltaX === 2) {
+    } else if (moveLabel === "shortCastle") {
       var rook = board.getSquare(x + 1, y).piece
       var rookTargetSquare = board.getSquare(x - 1, y)
     } else return

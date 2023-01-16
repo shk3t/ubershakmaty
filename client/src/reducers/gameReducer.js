@@ -10,7 +10,7 @@ const initialState = {
 
 export default function gameReducer(state = initialState, action) {
   const {index} = action.payload || {}
-  const targetSquare = index && state.board.squares[index]
+  const targetSquare = index != null && state.board.squares[index]
   switch (action.type) {
     case SELECT_PIECE:
       if (targetSquare.select()) return {...state}
