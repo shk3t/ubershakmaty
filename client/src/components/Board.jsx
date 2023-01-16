@@ -1,9 +1,6 @@
-import {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
-import Board from "../models/Board"
 import Color from "../models/Color"
 import {movePiece, selectPiece} from "../reducers/gameReducer"
-import {RangeArray, squareIsBlack} from "../utils"
 
 export default function BoardComponent() {
   const dispatch = useDispatch()
