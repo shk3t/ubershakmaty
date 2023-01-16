@@ -54,7 +54,7 @@ export default function BoardComponent() {
                 className={square.possibleMove ? "hint" : null}
               ></div>
             ))}
-          </div>{" "}
+          </div>
         </>
       )}
     </div>
