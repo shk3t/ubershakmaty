@@ -285,6 +285,7 @@ export class King extends Piece {
   }
 
   move(index) {
+    // TODO сделать логику шаха и мата)))
     const prevX = this.square.getXY().x
     if (super.move(index)) {
       const board = this.square.board
