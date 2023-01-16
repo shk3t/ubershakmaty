@@ -31,7 +31,7 @@ export default function LoginForm({toggleAuth}) {
       </h2>
       <button
         className={authClasses.button}
-        style={{width: "162px"}}
+        style={{width: "202px"}}
         onClick={doLogin}
       >
         Войти

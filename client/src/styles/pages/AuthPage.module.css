@@ -86,7 +86,7 @@ h2.question {
 .button {
   height: 44px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   display: block;
   background: #f8c85b;
   border-radius: 10px;
@@ -97,7 +97,7 @@ h2.question {
   padding-left: 20px;
   padding-right: 20px;
   cursor: pointer;
-  margin-left: 27px;
+  margin-left: 8px;
   margin-right: 27px;
 }
 
