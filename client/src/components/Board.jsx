@@ -39,7 +39,9 @@ export default function BoardComponent() {
               <div
                 id={i}
                 key={i}
-                className={`piece ${piece && piece.selected && "selected-piece"}`}
+                className={`piece ${
+                  piece && piece.selected && "selected-piece"
+                }`}
                 style={piece && {backgroundImage: `url(${piece.image})`}}
                 onClick={(event) => handleMove(event)}
               ></div>

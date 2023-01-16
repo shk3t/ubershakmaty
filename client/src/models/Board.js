@@ -3,8 +3,8 @@ import Square from "./Square"
 import Piece from "./Pieces"
 
 export default class Board {
-  static INITIAL = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-  selectedPiece = null
+  static INITIAL = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQkq - 0 1"
+  // static INITIAL = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
   constructor(pieces = null) {
     if (pieces == null) {
@@ -27,10 +27,17 @@ export default class Board {
 
     this.squares = squares
     this.turn = Color.WHITE
+    this.whiteCanLongCastle = true
+    this.whiteCanShortCastle = true
+    this.blackCanLongCastle = true
+    this.blackCanShortCastle = true
+    this.selectedPiece = null
   }
 
   getSquare(x, y) {
-    if (x < 0 || x > 7 || y < 0 || y > 7) return null
+    if (x < 0 || x > 7 || y < 0 || y > 7) {
+      return null
+    }
     return this.squares[8 * y + x]
   }
 

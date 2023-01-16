@@ -20,7 +20,7 @@ export default function gameReducer(state = initialState, action) {
       return {...state}
     case MOVE_PIECE:
       state.board.selectedPiece.move(index) ||
-        (targetSquare.piece &&
+        (!targetSquare.isEmpty() &&
           !targetSquare.piece.selected &&
           targetSquare.select()) ||
         state.board.unselectPiece()
