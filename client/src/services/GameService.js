@@ -20,7 +20,7 @@ export default class GameService {
   }
 
   static async makeMove(gameId, moveUci) {
-    const response = await authConfig.post("/game/makeMove", {
+    const response = await authConfig.post("/game/make_move", {
       game_id: gameId, move_uci: moveUci
     })
     return response.data

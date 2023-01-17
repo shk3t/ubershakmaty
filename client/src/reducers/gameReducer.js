@@ -7,20 +7,18 @@ const SELECT_PIECE = "SELECT_PIECE"
 const UNSELECT_PIECE = "UNSELECT_PIECE"
 const MOVE_PIECE = "MOVE_PIECE"
 const SET_BOARD = "SET_BOARD"
-const MOVE_ROLLBACK = "MOVE_ROLLBACK"
 
 const initialState = {
   gameId: null,
   board: new Board(),
-  rollbackBoard: null,
 }
 
 export default function gameReducer(state = initialState, action) {
-  const {gameId, index, fen} = action.payload || {}
+  const {gameId, index, board} = action.payload || {}
   const targetSquare = index != null && state.board.squares[index]
   switch (action.type) {
     case INIT_GAME:
-      return {gameId, board: new Board(fen), rollbackBoard: null}
+      return {gameId, board}
     case SELECT_PIECE:
       if (targetSquare.select()) return {...state}
       return state
@@ -28,17 +26,10 @@ export default function gameReducer(state = initialState, action) {
       state.board.unselectPiece()
       return {...state}
     case MOVE_PIECE:
-      state.rollbackBoard = cloneDeep(state.board)
-      state.board.selectedPiece.move(index) ||
-        (!targetSquare.isEmpty() &&
-          !targetSquare.piece.selected &&
-          targetSquare.select()) ||
-        state.board.unselectPiece()
+      state.board.selectedPiece.move(index)
       return {...state}
     case SET_BOARD:
-      return {...state, board: new Board(fen), rollbackBoard: null}
-    case MOVE_ROLLBACK:
-      return {...state, board: state.rollbackBoard, rollbackBoard: null}
+      return {...state, board}
     default:
       return state
   }
@@ -46,7 +37,7 @@ export default function gameReducer(state = initialState, action) {
 
 export const initGame = (timeMode, user) => (dispatch) => {
   const {pk, fen} = GameService.initGame(timeMode, user)
-  dispatch({type: INIT_GAME, payload: {gameId: pk, fen}})
+  dispatch({type: INIT_GAME, payload: {gameId: pk, board: new Board(fen)}})
 }
 
 export const selectPiece = (index) => {
@@ -58,18 +49,27 @@ export const unselectPiece = () => {
 }
 
 export const movePiece = (index) => async (dispatch, getState) => {
-  const {gameId, board} = getState()
-  const moveUci = board.selectedPiece.getMoveUci(board.squares[index])
+  const {gameId, board} = cloneDeep(getState().gameReducer)
+  const rollbackBoard = cloneDeep(board)
 
-  dispatch({type: MOVE_PIECE, payload: {index}})
+  const moveUci = board.selectedPiece.move(index)
+
+  if (!moveUci) {
+    const targetSquare = board.squares[index]
+    ;(!targetSquare.isEmpty() &&
+      !targetSquare.piece.selected &&
+      dispatch({type: SELECT_PIECE, payload: {index}})) ||
+      dispatch({type: UNSELECT_PIECE})
+    return
+  }
+
+  dispatch({type: SET_BOARD, payload: {board}})
 
   try {
     const responseData = await GameService.makeMove(gameId, moveUci)
-    if (responseData === "Illegal move") {
-      dispatch({type: MOVE_ROLLBACK})
-    }
-    dispatch({type: SET_BOARD, payload: {fen: responseData.fen}})
+    if (responseData === "Illegal move") throw new Error()
+    dispatch({type: SET_BOARD, payload: {board: new Board(responseData.fen)}})
   } catch {
-    dispatch({type: MOVE_ROLLBACK})
+    dispatch({type: SET_BOARD, payload: {board: rollbackBoard}})
   }
 }
