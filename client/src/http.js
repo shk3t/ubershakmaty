@@ -12,7 +12,7 @@ export const publicConfig = axios.create({
   baseURL: BASE_URL,
 })
 
-export const withCredentialsConfig = axios.create({
+export const authNoRefreshConfig = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
 })

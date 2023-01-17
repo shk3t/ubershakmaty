@@ -1,18 +1,26 @@
+import {cloneDeep} from "lodash"
 import Board from "../models/Board"
+import GameService from "../services/GameService"
 
+const INIT_GAME = "INIT_GAME"
 const SELECT_PIECE = "SELECT_PIECE"
 const UNSELECT_PIECE = "UNSELECT_PIECE"
 const MOVE_PIECE = "MOVE_PIECE"
+const SET_BOARD = "SET_BOARD"
+const MOVE_ROLLBACK = "MOVE_ROLLBACK"
 
 const initialState = {
+  gameId: null,
   board: new Board(),
+  rollbackBoard: null,
 }
 
 export default function gameReducer(state = initialState, action) {
-  const {index} = action.payload || {}
+  const {gameId, index, fen} = action.payload || {}
   const targetSquare = index != null && state.board.squares[index]
-  console.log(state.board.toFen())
   switch (action.type) {
+    case INIT_GAME:
+      return {gameId, board: new Board(fen), rollbackBoard: null}
     case SELECT_PIECE:
       if (targetSquare.select()) return {...state}
       return state
@@ -20,15 +28,25 @@ export default function gameReducer(state = initialState, action) {
       state.board.unselectPiece()
       return {...state}
     case MOVE_PIECE:
+      state.rollbackBoard = cloneDeep(state.board)
       state.board.selectedPiece.move(index) ||
         (!targetSquare.isEmpty() &&
           !targetSquare.piece.selected &&
           targetSquare.select()) ||
         state.board.unselectPiece()
       return {...state}
+    case SET_BOARD:
+      return {...state, board: new Board(fen), rollbackBoard: null}
+    case MOVE_ROLLBACK:
+      return {...state, board: state.rollbackBoard, rollbackBoard: null}
     default:
       return state
   }
+}
+
+export const initGame = (timeMode, user) => (dispatch) => {
+  const {pk, fen} = GameService.initGame(timeMode, user)
+  dispatch({type: INIT_GAME, payload: {gameId: pk, fen}})
 }
 
 export const selectPiece = (index) => {
@@ -39,27 +57,19 @@ export const unselectPiece = () => {
   return {type: UNSELECT_PIECE}
 }
 
-export const movePiece = (index) => {
-  return {type: MOVE_PIECE, payload: {index}}
-}
+export const movePiece = (index) => async (dispatch, getState) => {
+  const {gameId, board} = getState()
+  const moveUci = board.selectedPiece.getMoveUci(board.squares[index])
 
-// export const initGame = (timeMode, authUser, accessToken) => async (dispatch) => {
-//   console.log(timeMode);
-//   console.log(authUser);
-//   console.log(accessToken);
-//   console.log(TIMER_VALUES[timeMode]);
-//   const resp = await axios({
-//     method: 'post',
-//     url: `${API_URL}/game/init_game`,
-//     headers: {
-//       'content-type': 'application/json',
-//       'Authorization': `token ${accessToken}`},
-//     data: {
-//       user: authUser,
-//       white_player: 2,
-//       black_player: 3,
-//       timer: TIMER_VALUES[timeMode]
-//     }
-//   });
-//   console.log(resp.data);
-//   console.log(dispatch);
+  dispatch({type: MOVE_PIECE, payload: {index}})
+
+  try {
+    const responseData = await GameService.makeMove(gameId, moveUci)
+    if (responseData === "Illegal move") {
+      dispatch({type: MOVE_ROLLBACK})
+    }
+    dispatch({type: SET_BOARD, payload: {fen: responseData.fen}})
+  } catch {
+    dispatch({type: MOVE_ROLLBACK})
+  }
+}

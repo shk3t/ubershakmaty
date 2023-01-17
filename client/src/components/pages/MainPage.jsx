@@ -6,9 +6,13 @@ import {TABLE_PATH, CHESS_BOARD_PATH} from "../../consts/routes"
 import {useState} from "react"
 import {Link} from "react-router-dom"
 import Swal from "sweetalert2"
+import {useDispatch, useSelector} from "react-redux"
+import {initGame} from "../../reducers/gameReducer"
 
 export default function MainPage() {
-  const [timeMode, setTimeMode] = useState("3 | 2");
+  const dispatch = useDispatch()
+  const [timeMode, setTimeMode] = useState("3 | 2")
+  const authUser = useSelector((state) => state.authReducer.authUser)
 
   return (
     <div className={classes.menu}>
@@ -31,7 +35,7 @@ export default function MainPage() {
           <button
             className={classes.play}
             onClick={() => {
-              /* initGame() */
+              dispatch(initGame(timeMode, authUser))
               Swal.fire({
                 icon: "success",
                 title: "Success",

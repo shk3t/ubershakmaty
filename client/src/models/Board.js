@@ -1,17 +1,9 @@
 import Color from "./Color"
 import Square from "./Square"
 import Piece from "./Pieces"
+import {anToXY, xyToAN} from "../utils"
 
 export default class Board {
-  static xyToAN({x, y}) {
-    return String.fromCharCode(97 + x) + (8 - y).toString()
-  }
-
-  static anToXY(an) {
-    if (an === "-") return null
-    return {x: an.charCodeAt(0) - 97, y: Number(8 - an[1])}
-  }
-
   static DEFAULT_FEN =
     "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
@@ -46,7 +38,7 @@ export default class Board {
     this.whiteCanShortCastle = castling.includes("K")
     this.blackCanLongCastle = castling.includes("q")
     this.blackCanShortCastle = castling.includes("k")
-    this.enPassant = Board.anToXY(enPassant)
+    this.enPassant = anToXY(enPassant)
     this.halfmoveClock = Number(halfmoveClock)
     this.moveNumber = Number(moveNumber)
     this.selectedPiece = null
@@ -144,8 +136,8 @@ export default class Board {
 
     return `${pieceData.join("").substring(1)} ${
       this.turn === Color.WHITE ? "w" : "b"
-    } ${this.enPassant ? Board.xyToAN(this.enPassant) : "-"} ${
-      this.halfmoveClock
-    } ${this.moveNumber}`
+    } ${this.enPassant ? xyToAN(this.enPassant) : "-"} ${this.halfmoveClock} ${
+      this.moveNumber
+    }`
   }
 }

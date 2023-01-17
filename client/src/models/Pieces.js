@@ -86,8 +86,10 @@ export default class Piece {
     const targetSquare = board.squares[index]
 
     if (!targetSquare.possibleMove) {
-      return false
+      return null
     }
+
+    const moveUci = this.square.getMoveUci(targetSquare)
 
     this.square.removePiece()
     targetSquare.putPiece(this)
@@ -98,7 +100,7 @@ export default class Piece {
       board.halfmoveClock = -1
     }
 
-    return true
+    return moveUci
   }
 
   isWhite() {
@@ -161,7 +163,8 @@ export class Pawn extends Piece {
     const prevY = this.square.getXY().y
     const isEnPassant = board.squares[index].isEnPassant()
 
-    if (super.move(index)) {
+    let moveUci = super.move(index)
+    if (moveUci) {
       const {x, y} = this.square.getXY()
 
       if (this.getMoveLabel(prevIndex) === "double") {
@@ -173,11 +176,10 @@ export class Pawn extends Piece {
       }
 
       this.moved = true
-      this.tryUpgrade()
+      moveUci += this.tryUpgrade()
       board.halfmoveClock = 0
-      return true
     }
-    return false
+    return moveUci
   }
 
   tryUpgrade() {
@@ -185,7 +187,9 @@ export class Pawn extends Piece {
     const upgradeY = this.isWhite() ? 0 : 7
     if (this.square.getXY().y === upgradeY) {
       this.square.putPiece(new Queen(this.color))
+      return this.isWhite() ? "Q" : "q"
     }
+    return ""
   }
 
   toAN() {
@@ -209,7 +213,9 @@ export class Rook extends Piece {
 
   move(index) {
     const prevIndex = this.square.index
-    if (super.move(index)) {
+
+    let moveUci = super.move(index)
+    if (moveUci) {
       const board = this.square.board
 
       if (this.isWhite()) {
@@ -225,10 +231,8 @@ export class Rook extends Piece {
           board.blackCanShortCastle = false
         }
       }
-
-      return true
     }
-    return false
+    return moveUci
   }
 
   toAN() {
@@ -358,7 +362,8 @@ export class King extends Piece {
     const prevIndex = this.square.index
 
     // TODO сделать логику шаха и мата)))
-    if (super.move(index)) {
+    let moveUci = super.move(index)
+    if (moveUci) {
       const board = this.square.board
 
       const moveLabel = this.getMoveLabel(prevIndex)
@@ -371,10 +376,8 @@ export class King extends Piece {
         board.blackCanLongCastle = false
         board.blackCanShortCastle = false
       }
-
-      return true
     }
-    return false
+    return moveUci
   }
 
   tryCastle(moveLabel) {

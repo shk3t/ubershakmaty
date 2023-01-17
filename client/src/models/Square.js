@@ -1,3 +1,5 @@
+import {xyToAN} from "../utils"
+
 export default class Square {
   constructor(index, color, board, piece = null) {
     this.index = index
@@ -31,6 +33,10 @@ export default class Square {
   select() {
     if (this.isEmpty()) return false
     return this.piece.select()
+  }
+
+  getMoveUci(targetSquare) {
+    return xyToAN(this.getXY()) + xyToAN(targetSquare.getXY())
   }
 
   isEnPassant() {

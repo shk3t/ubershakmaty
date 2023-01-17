@@ -1,4 +1,4 @@
-import {publicConfig, withCredentialsConfig} from "../http"
+import {publicConfig, authNoRefreshConfig} from "../http"
 import {loadScript} from "../utils"
 
 export default class AuthService {
@@ -18,7 +18,7 @@ export default class AuthService {
     await publicConfig.post("/auth/logout")
   }
   static async refreshTokens() {
-    const response = await withCredentialsConfig.post("/auth/tokens/refresh")
+    const response = await authNoRefreshConfig.post("/auth/tokens/refresh")
     return response.data
   }
 }
