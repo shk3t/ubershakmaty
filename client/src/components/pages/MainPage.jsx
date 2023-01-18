@@ -1,18 +1,24 @@
-import React from "react"
+import React, {useEffect} from "react"
 import classes from "../../styles/pages/MainPage.module.css"
 import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
 import {TABLE_PATH, CHESS_BOARD_PATH} from "../../consts/routes"
 import {useState} from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Swal from "sweetalert2"
 import {useDispatch, useSelector} from "react-redux"
 import {initGame} from "../../reducers/gameReducer"
 
 export default function MainPage() {
   const dispatch = useDispatch()
-  const [timeMode, setTimeMode] = useState("3 | 2")
   const authUser = useSelector((state) => state.authReducer.authUser)
+  const gameId = useSelector((state) => state.gameReducer.gameId)
+  const navigate = useNavigate()
+  const [timeMode, setTimeMode] = useState("3 | 2")
+
+  useEffect(() => {
+    if (gameId) navigate(CHESS_BOARD_PATH)
+  }, [gameId])
 
   return (
     <div className={classes.menu}>
@@ -31,22 +37,20 @@ export default function MainPage() {
           <DropDownButton setTime={setTimeMode} />
         </div>
         <div className={classes.choosen}>{timeMode}</div>
-        <Link to={CHESS_BOARD_PATH}>
-          <button
-            className={classes.play}
-            onClick={() => {
-              dispatch(initGame(timeMode, authUser))
-              Swal.fire({
-                icon: "success",
-                title: "Success",
-                type: "success",
-                text: "Your work has been saved.",
-              })
-            }}
-          >
-            Играть!
-          </button>
-        </Link>
+        <button
+          className={classes.play}
+          onClick={() => {
+            dispatch(initGame(timeMode, authUser))
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              type: "success",
+              text: "Your work has been saved.",
+            })
+          }}
+        >
+          Играть!
+        </button>
       </div>
       <div>
         <div className={classes.playFriend}>

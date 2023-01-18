@@ -113,7 +113,7 @@ def make_move(request):
                 'white_timer': white_timer,
                 'black_timer': black_timer,
                 'moves_made': game.moves_made}
-        return Response(f"{resp}")
+        return Response(resp)
     else:
         return Response('Illegal move')
 

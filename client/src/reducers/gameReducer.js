@@ -35,8 +35,8 @@ export default function gameReducer(state = initialState, action) {
   }
 }
 
-export const initGame = (timeMode, user) => (dispatch) => {
-  const {pk, fen} = GameService.initGame(timeMode, user)
+export const initGame = (timeMode, user) => async (dispatch) => {
+  const {pk, fen} = await GameService.initGame(timeMode, user)
   dispatch({type: INIT_GAME, payload: {gameId: pk, board: new Board(fen)}})
 }
 
@@ -68,7 +68,7 @@ export const movePiece = (index) => async (dispatch, getState) => {
   try {
     const responseData = await GameService.makeMove(gameId, moveUci)
     if (responseData === "Illegal move") throw new Error()
-    dispatch({type: SET_BOARD, payload: {board: new Board(responseData.fen)}})
+    dispatch({type: SET_BOARD, payload: {board: new Board(responseData.board_fen)}})
   } catch {
     dispatch({type: SET_BOARD, payload: {board: rollbackBoard}})
   }
