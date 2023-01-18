@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import authClasses from "../../styles/pages/AuthPage.module.css"
 import registerClasses from "../../styles/forms/RegisterForm.module.css"
 import pawnImage from "../../assets/chessFigures/pawn_black.png"
@@ -6,19 +6,14 @@ import knightImage from "../../assets/chessFigures/knight_black.png"
 import queenImage from "../../assets/chessFigures/queen_black.png"
 import kingImage from "../../assets/chessFigures/king_black.png"
 import {register} from "../../reducers/authReducer"
-import AuthService from "../../services/AuthService"
 import {useDispatch} from "react-redux"
 import {makeRequest, setError} from "../../reducers/requestReducer"
 import AuthInput from "../inputs/AuthInput"
+import {REGISTER, useCredentials} from "../../hooks/useCredentials"
 
 export default function RegisterForm({toggleAuth}) {
   const dispatch = useDispatch()
-  const [credentials, setCredentials] = useState({
-    nickname: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-  })
+  const [credentials, setCredentials] = useCredentials(REGISTER)
 
   function doRegister() {
     if (credentials.password === credentials.passwordConfirmation) {

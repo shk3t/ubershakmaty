@@ -1,51 +1,75 @@
-import {INITIAL_PIECES} from '../consts/game';
-import {TIMER_VALUES} from "../consts/game";
-import axios from 'axios';
+import {cloneDeep} from "lodash"
+import Board from "../models/Board"
+import GameService from "../services/GameService"
 
+const INIT_GAME = "INIT_GAME"
+const SELECT_PIECE = "SELECT_PIECE"
+const UNSELECT_PIECE = "UNSELECT_PIECE"
+const MOVE_PIECE = "MOVE_PIECE"
+const SET_BOARD = "SET_BOARD"
 
-const INIT = "INIT";
-const API_URL = 'http://localhost:8000';
+const initialState = {
+  gameId: null,
+  board: new Board(),
+}
 
-export const NEW_GAME = {
-  pieces: INITIAL_PIECES,
-  castledBlack: false,
-  castledWhite: false,
-};
-
-export const gameReducer = (state, action) => {
-
-  switch(action.type) {
-  case "INIT":
-    console.log("HIT INIT");
-    return {...NEW_GAME};
-  case "ADD":
-    return {
-      ...state,
-      pieces: {...state.pieces,
-		[action.payload.to]: action.payload.piece}};
-  case "MOVE":
-    return {
-      ...state,
-      pieces: {...state.pieces,
-	       [action.payload.from]: undefined,
-	       [action.payload.to]: action.payload.piece}};
-  default:
-    return null;
+export default function gameReducer(state = initialState, action) {
+  const {gameId, index, board} = action.payload || {}
+  const targetSquare = index != null && state.board.squares[index]
+  switch (action.type) {
+    case INIT_GAME:
+      return {gameId, board}
+    case SELECT_PIECE:
+      if (targetSquare.select()) return {...state}
+      return state
+    case UNSELECT_PIECE:
+      state.board.unselectPiece()
+      return {...state}
+    case MOVE_PIECE:
+      state.board.selectedPiece.move(index)
+      return {...state}
+    case SET_BOARD:
+      return {...state, board}
+    default:
+      return state
   }
-};
+}
 
-export const initGame = (timeMode, authUser, accessToken) => async (dispatch) => {
-  const resp = await axios({
-    method: 'post',
-    url: `${API_URL}/game/init_game`,
-    headers: {
-      'content-type': 'application/json',
-      'Authorization': `token ${accessToken}`},
-    data: {
-      user: authUser,
-      white_player: 2,
-      black_player: 3,
-      timer: TIMER_VALUES[timeMode]
-    }
-  });
+export const initGame = (timeMode, user) => async (dispatch) => {
+  const {pk, fen} = await GameService.initGame(timeMode, user)
+  dispatch({type: INIT_GAME, payload: {gameId: pk, board: new Board(fen)}})
+}
+
+export const selectPiece = (index) => {
+  return {type: SELECT_PIECE, payload: {index}}
+}
+
+export const unselectPiece = () => {
+  return {type: UNSELECT_PIECE}
+}
+
+export const movePiece = (index) => async (dispatch, getState) => {
+  const {gameId, board} = cloneDeep(getState().gameReducer)
+  const rollbackBoard = cloneDeep(board)
+
+  const moveUci = board.selectedPiece.move(index)
+
+  if (!moveUci) {
+    const targetSquare = board.squares[index]
+    ;(!targetSquare.isEmpty() &&
+      !targetSquare.piece.selected &&
+      dispatch({type: SELECT_PIECE, payload: {index}})) ||
+      dispatch({type: UNSELECT_PIECE})
+    return
+  }
+
+  dispatch({type: SET_BOARD, payload: {board}})
+
+  try {
+    const responseData = await GameService.makeMove(gameId, moveUci)
+    if (responseData === "Illegal move") throw new Error()
+    dispatch({type: SET_BOARD, payload: {board: new Board(responseData.board_fen)}})
+  } catch {
+    dispatch({type: SET_BOARD, payload: {board: rollbackBoard}})
+  }
 }

@@ -10,10 +10,9 @@ export default function requestReducer(state = initialState, action) {
   const {errorMessage, isLoading} = action.payload || {}
   switch (action.type) {
     case SET_REQUEST_STATUS:
-      const newState = {...state}
-      if (isLoading) newState["isLoading"] = isLoading
-      if (errorMessage) newState["errorMessage"] = errorMessage
-      return newState
+      if (isLoading) state["isLoading"] = isLoading
+      if (errorMessage) state["errorMessage"] = errorMessage
+      return {...state}
     case CLEAR_REQUEST_ERROR:
       return {...state, errorMessage: null}
     default:

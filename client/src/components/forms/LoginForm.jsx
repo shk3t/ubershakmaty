@@ -1,16 +1,14 @@
-import React, {useState} from "react"
+import React from "react"
 import {login} from "../../reducers/authReducer"
 import authClasses from "../../styles/pages/AuthPage.module.css"
 import {useDispatch} from "react-redux"
 import {makeRequest} from "../../reducers/requestReducer"
 import AuthInput from "../inputs/AuthInput"
+import {LOGIN, useCredentials} from "../../hooks/useCredentials"
 
 export default function LoginForm({toggleAuth}) {
   const dispatch = useDispatch()
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  })
+  const [credentials, setCredentials] = useCredentials(LOGIN)
 
   function doLogin() {
     dispatch(makeRequest(() => login(credentials)))

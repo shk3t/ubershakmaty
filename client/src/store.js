@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage"
 
 import requestReducer from "./reducers/requestReducer"
 import authReducer from "./reducers/authReducer"
+import gameReducer from "./reducers/gameReducer"
 
 const middlewares = [thunk]
 
@@ -17,6 +18,7 @@ const authPersistConfig = {
 const rootReducer = combineReducers({
   requestReducer,
   authReducer: persistReducer(authPersistConfig, authReducer),
+  gameReducer,
 })
 
 export const store = createStore(

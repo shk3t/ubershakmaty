@@ -16,7 +16,7 @@ class ReadyToPlay(models.Model):
         to=Player, db_column="id", primary_key=True, on_delete=models.CASCADE, related_name='player'
     )
     chosen_time_mode = models.CharField(default='00:03:00|2', max_length=20)
-    wait_start = models.DateTimeField(default=timezone.now())
+    wait_start = models.DateTimeField(default=timezone.now)
 
 
 class ChessGame(models.Model):

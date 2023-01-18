@@ -1,7 +1,4 @@
-import {publicConfig} from "../http"
-import axios from "axios";
-
-const API_URL = 'http://localhost:8000';
+import {authConfig, publicConfig} from "../http"
 
 export default class GameService {
   static async getRating(credentials) {
@@ -9,18 +6,26 @@ export default class GameService {
     return response.data
   }
 
-  static async getGamesData(credentials) {
-    const response = await axios({
-      method: 'post',
-      url: `${API_URL}/game/get_last_games`,
-      headers: {
-        'content-type': 'application/json'
-      },
-      data: {
-        user: credentials['user']
-      }
-    });
+  static async getGamesData(user) {
+    const response = await publicConfig.post("/game/get_last_games", {user})
+    return response.data
+  }
+
+  static async initGame(timeMode, user) {
+    const response = await authConfig.post("/game/init_game", {
+      user,
+      // TODO добавить возможность выбора времени
+      timer: "00:01:00|1",
+    })
+    console.log(response)
+    return response.data
+  }
+
+  static async makeMove(gameId, moveUci) {
+    const response = await authConfig.post("/game/make_move", {
+      game_id: gameId,
+      move_uci: moveUci,
+    })
     return response.data
   }
 }
-

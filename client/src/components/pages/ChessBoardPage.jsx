@@ -1,26 +1,18 @@
-import '../../styles/pages/ChessBoardPageStyles.css'
-import Board from "../Board";
-import Clock from "../Clock";
-import {useState} from "react";
+import "../../styles/pages/ChessBoardPageStyles.css"
+import Board from "../Board"
+import Clock from "../Clock"
+import {useDispatch} from "react-redux"
+import {unselectPiece} from "../../reducers/gameReducer"
 
-function ChessBoardPage() {
-  const [whiteMove, setWhiteMove] = useState(true);
+export default function ChessBoardPage() {
+  const dispatch = useDispatch()
+
   return (
-    <>
-      <div id="app-wrapper">
-	<div id="game-area">
-          <div id="board-area">
-	    <Board whiteMove={whiteMove} setWhiteMove={setWhiteMove}/>
-          </div>
-          <div id="clock-area">
-            <div className="clock-wrapper">
-	      <Clock whiteMove={whiteMove}/>
-            </div>
-          </div>
-	</div>
+    <div id="app-wrapper">
+      <div id="game-area" onClick={() => dispatch(unselectPiece())}>
+        <Board />
+        <Clock />
       </div>
-    </>
-  );
+    </div>
+  )
 }
-
-export default ChessBoardPage;
