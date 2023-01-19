@@ -49,14 +49,15 @@ def update_clock(game):
         if move_n % 2:
             time_left = datetime.datetime.strptime(game.black_timer.strftime('%H:%M:%S'), '%H:%M:%S')
             time_left -= a - b
-            if time_left > 0:
-                time_left += game.increment
+            print(time_left, datetime.datetime.strptime('0:0:0', '%H:%M:%S'))
+            if time_left > datetime.datetime.strptime('0:0:0', '%H:%M:%S'):
+                time_left += datetime.timedelta(0, game.increment)
             game.black_timer = time_left.strftime('%H:%M:%S')
         else:
             time_left = datetime.datetime.strptime(game.white_timer.strftime('%H:%M:%S'), '%H:%M:%S')
             time_left -= a - b
-            if time_left > 0:
-                time_left += game.increment
+            if time_left > datetime.datetime.strptime('0:0:0', '%H:%M:%S'):
+                time_left += datetime.timedelta(0, game.increment)
             game.white_timer = time_left.strftime('%H:%M:%S')
         if time_left.day <= 1:
             game.last_move_time = datetime.datetime.now()
@@ -127,14 +128,15 @@ def get_rating(request):
 
 @api_view(['POST'])
 def get_last_games(request):
+    print('DATA', request.data)
     games = ChessGame.objects.select_related('white_player', 'black_player')\
-        .filter(Q(white_player=request.data['user']['id']) | Q(black_player=request.data['user']['id']))\
+        .filter(Q(white_player=request.data['user']['user']['id']) | Q(black_player=request.data['user']['user']['id']))\
         .exclude(result__isnull=True).all().order_by('-last_move_time')
     bullet_games = games.filter(time_control='bullet')
     blitz_games = games.filter(time_control='blitz')
     rapid_games = games.filter(time_control='rapid')
-    won_white = ChessGame.objects.filter(Q(white_player=request.data['user']['id']) & Q(result=1)).count()
-    won_black = ChessGame.objects.filter(Q(black_player=request.data['user']['id']) & Q(result=-1)).count()
+    won_white = ChessGame.objects.filter(Q(white_player=request.data['user']['user']['id']) & Q(result=1)).count()
+    won_black = ChessGame.objects.filter(Q(black_player=request.data['user']['user']['id']) & Q(result=-1)).count()
     won = won_white + won_black
     drawn = ChessGame.objects.filter(Q(result=0)).count()
     lost = games.count() - won - drawn
