@@ -1,14 +1,16 @@
-import React from "react"
+import React, {useState} from "react"
 import {login} from "../../reducers/authReducer"
 import authClasses from "../../styles/pages/AuthPage.module.css"
 import {useDispatch} from "react-redux"
 import {makeRequest} from "../../reducers/requestReducer"
-import AuthInput from "../inputs/AuthInput"
-import {LOGIN, useCredentials} from "../../hooks/useCredentials"
+import GenericInput from "../inputs/GenericInput"
 
 export default function LoginForm({toggleAuth}) {
   const dispatch = useDispatch()
-  const [credentials, setCredentials] = useCredentials(LOGIN)
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  })
 
   function doLogin() {
     dispatch(makeRequest(() => login(credentials)))
@@ -21,7 +23,9 @@ export default function LoginForm({toggleAuth}) {
         {[{field: "email"}, {field: "password", type: "password"}].map(
           ({field, type}) => (
             <div key={field} className={authClasses.formField}>
-              <AuthInput {...{field, type, credentials, setCredentials}} />
+              <GenericInput
+                {...{field, type, data: credentials, setData: setCredentials}}
+              />
             </div>
           )
         )}

@@ -7,7 +7,16 @@ from chess_game.models import Player
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "nickname", "email", "password", "account_provider", "account_subject"]
+        fields = [
+            "id",
+            "nickname",
+            "email",
+            "password",
+            "picture",
+            "age",
+            "account_provider",
+            "account_subject",
+        ]
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):

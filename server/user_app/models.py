@@ -1,11 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import validate_image_file_extension
+from django.utils.translation import gettext_lazy as _
+from user_app.exceptions import HttpException
 from user_app.validators import password_validator
 from user_app.managers import EmailUserManager
-from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
-class User(AbstractUser):
+class SafeModelMixin:
+    @classmethod
+    def get_by_pk(cls, pk):
+        try:
+            return cls.objects.get(pk=pk)
+        except cls.DoesNotExist as error:
+            raise HttpException(error, 404)
+
+    def validate(self):
+        try:
+            self.full_clean()
+        except ValidationError as error:
+            raise HttpException(dict(error), 400)
+
+
+class User(AbstractUser, SafeModelMixin):
     class AccountProvider(models.TextChoices):
         GOOGLE = "google"
 
@@ -14,6 +32,13 @@ class User(AbstractUser):
     password = models.CharField(
         _("password"), max_length=128, null=True, validators=[password_validator]
     )
+    picture = models.ImageField(
+        upload_to="users",
+        null=True,
+        blank=True,
+        validators=[validate_image_file_extension],
+    )
+    age = models.IntegerField(null=True, blank=True)
     account_provider = models.CharField(
         max_length=128, null=True, choices=AccountProvider.choices
     )
@@ -24,8 +49,6 @@ class User(AbstractUser):
     date_joined = None
     last_login = None
     is_active = None
-    groups = None
-    user_permissions = None
 
     objects = EmailUserManager()
 

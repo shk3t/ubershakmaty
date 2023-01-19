@@ -18,3 +18,9 @@ export function anToXY(an) {
   if (an === "-") return null
   return {x: an.charCodeAt(0) - 97, y: Number(8 - an[1])}
 }
+
+export function filterObject(object, keyValueCallback) {
+  return Object.fromEntries(
+    Object.entries(object).filter(keyValueCallback)
+  )
+}
