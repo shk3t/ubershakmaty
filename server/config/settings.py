@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
-    "app_auth.apps.AuthConfig",
+    "user_app.apps.AuthConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -82,7 +82,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
 
 # Custom user model
-AUTH_USER_MODEL = "app_auth.User"
+AUTH_USER_MODEL = "user_app.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

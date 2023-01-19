@@ -1,4 +1,4 @@
-from app_auth.models import User
+from user_app.models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import AccessToken
 from chess_game.models import Player

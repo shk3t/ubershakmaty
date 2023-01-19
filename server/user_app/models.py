@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from app_auth.validators import password_validator
-from app_auth.managers import EmailUserManager
+from user_app.validators import password_validator
+from user_app.managers import EmailUserManager
 from django.utils.translation import gettext_lazy as _
 
 

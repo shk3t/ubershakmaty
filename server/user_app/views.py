@@ -3,14 +3,14 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
-from app_auth.consts import (
+from user_app.consts import (
     SOCIAL_ACCOUNT_CLIENT_IDS,
     SOCIAL_ACCOUNT_PROVIDERS,
 )
-from app_auth.models import User
-from app_auth.exceptions import HttpException
-from app_auth.serializers import UserSerializer
-from app_auth.services import AuthService
+from user_app.models import User
+from user_app.exceptions import HttpException
+from user_app.serializers import UserSerializer
+from user_app.services import AuthService
 
 
 @api_view(["POST"])

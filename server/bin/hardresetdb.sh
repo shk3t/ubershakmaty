@@ -2,7 +2,7 @@
 
 BASE_DIR=$(dirname $(dirname "$(readlink -f "$0")"))
 DB_NAME="ubershakmaty"
-APPS="app_auth chess_game"
+APPS="user_app chess_game"
 
 function check_bin() {
     local bin=$1
