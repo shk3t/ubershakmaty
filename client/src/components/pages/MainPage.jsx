@@ -56,8 +56,19 @@ export default function MainPage() {
         <div className={classes.playFriend}>
           <div className={classes.imgWrap}>
             <img src={friends} alt="Friends" />
-          </div>     
-          <p>Можно было бы сыграть с другом, но у тебя нет друзей..</p>
+          </div>
+          <button
+            className={classes.playFriendButton}
+            onClick={() => {
+              Swal.fire({
+                icon: "info",
+                title: "Oops...",
+                text: "It seems like you have no friends..",
+              })
+            }}
+          >
+            <p>Играть с другом</p>
+          </button>
         </div>
         <div className={classes.rating}>
           <h2 className={classes.msg}>

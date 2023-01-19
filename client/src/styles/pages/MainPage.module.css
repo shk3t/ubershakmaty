@@ -112,13 +112,31 @@ button.play:hover {
   margin-top: 7%;
 }
 
-.playFriend p {
+.playFriendButton {
+  position: relative;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(248, 200, 91, 1);
+  width: 80%;
+  height: 22%;
+  left: 10%;
+  margin-top: 5%;
+  border-radius: 30px 30px 30px 30px;
+  text-align: center;
+  border: 0px;
+  cursor: pointer;
+}
+
+.playFriendButton p {
   color: white;
   font-family: Montserrat;
-  font-size: 1.8vw;
+  font-size: 2vw;
   font-weight: 500;
   margin: 0;
-  padding: 8%;
+}
+
+.playFriendButton:hover {
+  transform: scale(1.15);
+  transition: 0.4s;
 }
 
 .rating .msg {
@@ -147,7 +165,7 @@ button.play:hover {
   width: 80%;
   height: 22%;
   left: 10%;
-  margin-top: 30%;
+  margin-top: 28%;
   border-radius: 30px 30px 30px 30px;
   text-align: center;
   border: 0px;
@@ -177,7 +195,7 @@ button.play:hover {
   font-family: Montserrat;
   font-size: 1.8vw;
   font-weight: 500;
-  margin-left: 37.8%;
+  margin-left: 37.5%;
   margin-top: -1%;
 }
 
