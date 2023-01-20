@@ -10,15 +10,15 @@ import {useDispatch, useSelector} from "react-redux"
 import {initGame} from "../../reducers/gameReducer"
 
 export default function MainPage() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
   const gameId = useSelector((state) => state.gameReducer.gameId)
-  const navigate = useNavigate()
   const [timeMode, setTimeMode] = useState("3 | 2")
 
   useEffect(() => {
     if (gameId) navigate(CHESS_BOARD_PATH)
-  }, [gameId])
+  }, [gameId, navigate])
 
   return (
     <div className={classes.menu}>
