@@ -1,4 +1,5 @@
 import jwtDecode from "jwt-decode"
+import { BASE_URL } from "../consts/base"
 import AuthService from "../services/AuthService"
 import UserService from "../services/UserService"
 
@@ -12,6 +13,11 @@ const initialState = {authUser: null, accessToken: null}
 
 export default function authReducer(state = initialState, action) {
   const {user, token} = action.payload || {}
+
+  if (user && user.picture) {
+    user.picture = BASE_URL + user.picture
+  }
+
   switch (action.type) {
     case REGISTER:
     case LOGIN:

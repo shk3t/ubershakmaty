@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useRef, useState} from "react"
 import classes from "../../styles/pages/SettingsPage.module.css"
 import useErrorMessage from "../../hooks/useErrorMessage"
 import GenericInput from "../inputs/GenericInput"
@@ -10,9 +10,11 @@ import {filterObject} from "../../utils"
 
 export default function SettingsPage() {
   const dispatch = useDispatch()
+  const fileInputRef = useRef()
   const emptyUserData = {
     nickname: "",
     age: "",
+    picture: null,
     oldPassword: "",
     newPassword: "",
     newPasswordAgain: "",
@@ -36,6 +38,7 @@ export default function SettingsPage() {
       {
         nickname: userData.nickname,
         age: userData.age,
+        picture: userData.picture,
         password: userData.newPassword,
         old_password: userData.oldPassword,
       },
@@ -63,7 +66,24 @@ export default function SettingsPage() {
                   src={require("./../../assets/SettingsImg/personGirlSet.png")}
                   alt="girl"
                 ></img>
-                <button className={classes.redoingPhoto}> Обновить </button>
+                <button
+                  className={classes.redoingPhoto}
+                  onClick={() => fileInputRef.current.click()}
+                >
+                  Выбрать фото
+                </button>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(event) => {
+                    setUserData({
+                      ...userData,
+                      picture: event.target.files[0],
+                    })
+                  }}
+                  style={{display: "none"}}
+                  ref={fileInputRef}
+                />
               </div>
               <div className={classes.profileSet}>
                 {[

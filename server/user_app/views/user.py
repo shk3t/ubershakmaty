@@ -16,6 +16,7 @@ class AuthenticatedUserDetail(APIView):
     def put(self, request):
         updated_data = request.data
         user = request.user
+        print(updated_data)
         if (
             user.password
             and "password" in updated_data

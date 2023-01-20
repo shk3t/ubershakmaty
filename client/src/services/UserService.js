@@ -6,16 +6,18 @@ export default class UserService {
     return response.data
   }
   static async updateAuthUser(data) {
-    const response = await authConfig.put(`/user/current`, data)
+    const {picture, ...otherData} = data
+
+    if (picture) {
+      const formData = new FormData()
+      formData.append("picture", picture)
+      await authConfig.put(`/user/current/picture`, formData)
+    }
+
+    const response = await authConfig.put(`/user/current`, otherData)
     return response.data
   }
-  static async uploadProfilePicture(image) {
-    const formData = new FormData()
-    formData.append("picture", image)
-    const response = await authConfig.put(`/user/current/picture`, formData)
-    return response.data
-  }
-  static async deleteProfilePicture(productId) {
+  static async deleteProfilePicture() {
     await authConfig.delete(`/user/current/picture`)
   }
 }
