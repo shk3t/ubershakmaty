@@ -14,10 +14,8 @@ export default class GameService {
   static async initGame(timeMode, user) {
     const response = await authConfig.post("/game/init_game", {
       user,
-      // TODO добавить возможность выбора времени
-      timer: "00:01:00|1",
+      timer: timeMode.toString(),
     })
-    console.log(response)
     return response.data
   }
 

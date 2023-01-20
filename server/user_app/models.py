@@ -30,7 +30,11 @@ class User(AbstractUser, SafeModelMixin):
     nickname = models.CharField(_("nickname"), max_length=128)
     email = models.EmailField(_("email address"), unique=True)
     password = models.CharField(
-        _("password"), max_length=128, null=True, validators=[password_validator]
+        _("password"),
+        max_length=128,
+        null=True,
+        blank=True,
+        validators=[password_validator],
     )
     picture = models.ImageField(
         upload_to="users",

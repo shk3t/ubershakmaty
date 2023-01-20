@@ -16,7 +16,6 @@ import {logout} from "../reducers/authReducer"
 export default function Header() {
   const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
-  console.log(authUser)
 
   return (
     <div>
@@ -37,6 +36,7 @@ export default function Header() {
               <Link to={MAIN_PATH}>Главная</Link>
             </li>
             <li>
+              {/* TODO сделать эндпойнт для возвращения в игру */}
               <Link to={CHESS_BOARD_PATH}>Игра</Link>
             </li>
             <li>
