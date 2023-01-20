@@ -121,22 +121,25 @@ export default class Piece {
 export class Pawn extends Piece {
   MoveRules = {
     ...this.MoveRules,
+    isFirstTurn: () => {
+      const y = this.square.getXY().y
+      return (y === 6 && this.isWhite()) || (y === 1 && !this.isWhite())
+    },
     isEnPassant: (targetSquare) => targetSquare.isEnPassant(),
   }
 
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whitePawnImage : blackPawnImage
-    this.moved = false
 
     const dyForward = this.isWhite() ? -1 : 1
-    const {isEmpty, isEnemy, isEnPassant} = this.MoveRules
+    const {isEmpty, isEnemy, isFirstTurn, isEnPassant} = this.MoveRules
     this.moveSequences = [
       [
         {dy: dyForward, rule: isEmpty},
         {
           dy: 2 * dyForward,
-          rule: (square) => !this.moved && isEmpty(square),
+          rule: (square) => isFirstTurn() && isEmpty(square),
           label: "double",
         },
       ],
@@ -175,7 +178,6 @@ export class Pawn extends Piece {
         board.getSquare(x, prevY).removePiece()
       }
 
-      this.moved = true
       moveUci += this.tryUpgrade()
       board.halfmoveClock = 0
     }
@@ -341,7 +343,6 @@ export class King extends Piece {
   constructor(color) {
     super(color)
     this.image = color === Color.WHITE ? whiteKingImage : blackKingImage
-    this.check = false
 
     const {canLongCastle, canShortCastle} = this.MoveRules
     this.moveSequences = [
@@ -361,7 +362,6 @@ export class King extends Piece {
   move(index) {
     const prevIndex = this.square.index
 
-    // TODO сделать логику шаха и мата)))
     let moveUci = super.move(index)
     if (moveUci) {
       const board = this.square.board

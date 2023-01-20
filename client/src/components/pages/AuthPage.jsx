@@ -18,7 +18,6 @@ export default function AuthPage() {
     })
   }, [isLogin])
 
-  // TODO make special message window for this purpose
   useErrorMessage()
 
   function toggleAuth() {

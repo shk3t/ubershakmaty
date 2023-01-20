@@ -7,7 +7,7 @@ export default function useErrorMessage() {
   const errorMessage = useSelector((state) => state.requestReducer.errorMessage)
 
   useEffect(() => {
-    // TODO make special message window for this purpose
+    // TODO сделать отдельное окошко с уведомлением для ошибки
     if (errorMessage) {
       alert(errorMessage)
       dispatch(clearRequest())

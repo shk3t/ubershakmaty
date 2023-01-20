@@ -1,8 +1,9 @@
 import React from "react"
 import classes from "../styles/DropDownPanel.module.css"
 import ModeButton from "../components/buttons/GameModeButton"
+import TimeMode from "../models/TimeMode"
 
-export default function DropDownPanel({setTime}) {
+export default function DropDownPanel() {
   return (
     <div className={classes.dropdown_content} id="drop-cont">
       <div className={classes.panel}>
@@ -11,28 +12,34 @@ export default function DropDownPanel({setTime}) {
       <div className={classes.mode}>
         <h2>Пуля</h2>
         <div>
-          <ModeButton text="1 мин" setTime={setTime} />
-          <ModeButton text="1 | 1" setTime={setTime} />
-          <ModeButton text="2 | 1" setTime={setTime} />
+          {[new TimeMode(1), new TimeMode(1, 1), new TimeMode(2, 1)].map(
+            (timeMode, i) => (
+              <ModeButton key={i} timeMode={timeMode} />
+            )
+          )}
         </div>
       </div>
       <div className={classes.mode}>
         <h2>Блиц</h2>
         <div>
-          <ModeButton text="3 мин" setTime={setTime} />
-          <ModeButton text="3 | 2" setTime={setTime} />
-          <ModeButton text="5 мин" setTime={setTime} />
+          {[new TimeMode(3), new TimeMode(3, 2), new TimeMode(5)].map(
+            (timeMode, i) => (
+              <ModeButton key={i} timeMode={timeMode} />
+            )
+          )}
         </div>
         <div>
-          <ModeButton text="5 | 5" setTime={setTime} />
+          <ModeButton timeMode={new TimeMode(5, 5)} />
         </div>
       </div>
       <div className={classes.mode}>
         <h2>Рапид</h2>
         <div>
-          <ModeButton text="10 мин" setTime={setTime} />
-          <ModeButton text="15 | 10" setTime={setTime} />
-          <ModeButton text="30 мин" setTime={setTime} />
+          {[new TimeMode(10), new TimeMode(15, 10), new TimeMode(30)].map(
+            (timeMode, i) => (
+              <ModeButton key={i} timeMode={timeMode} />
+            )
+          )}
         </div>
       </div>
     </div>

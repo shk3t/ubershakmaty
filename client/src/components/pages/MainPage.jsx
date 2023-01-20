@@ -1,24 +1,23 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useLayoutEffect} from "react"
 import classes from "../../styles/pages/MainPage.module.css"
 import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
 import {TABLE_PATH, CHESS_BOARD_PATH} from "../../consts/routes"
-import {useState} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import Swal from "sweetalert2"
 import {useDispatch, useSelector} from "react-redux"
 import {initGame} from "../../reducers/gameReducer"
+import {makeRequest} from "../../reducers/requestReducer"
+import useCompletedRequest from "../../hooks/useCompletedRequest"
 
 export default function MainPage() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
   const gameId = useSelector((state) => state.gameReducer.gameId)
-  const [timeMode, setTimeMode] = useState("3 | 2")
+  const timeMode = useSelector((state) => state.gameReducer.timeMode)
 
-  useEffect(() => {
-    if (gameId) navigate(CHESS_BOARD_PATH)
-  }, [gameId, navigate])
+  useCompletedRequest("InitGame", () => navigate(CHESS_BOARD_PATH))
 
   return (
     <div className={classes.menu}>
@@ -34,13 +33,14 @@ export default function MainPage() {
           </ul>
         </nav>
         <div className={classes.dropdown}>
-          <DropDownButton setTime={setTimeMode} />
+          <DropDownButton />
         </div>
-        <div className={classes.choosen}>{timeMode}</div>
+        <div className={classes.choosen}>{timeMode.toPretty()}</div>
         <button
           className={classes.play}
           onClick={() => {
-            dispatch(initGame(timeMode, authUser))
+            dispatch(makeRequest(() => initGame(authUser), "InitGame"))
+            // TODO появляется только при успешном запуске ЛИБО изменить текст уведомления
             Swal.fire({
               icon: "success",
               title: "Success",

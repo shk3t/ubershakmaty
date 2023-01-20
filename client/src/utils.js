@@ -20,7 +20,10 @@ export function anToXY(an) {
 }
 
 export function filterObject(object, keyValueCallback) {
-  return Object.fromEntries(
-    Object.entries(object).filter(keyValueCallback)
-  )
+  return Object.fromEntries(Object.entries(object).filter(keyValueCallback))
+}
+
+export function hmsToSeconds(str) {
+  const hms = str.split(":")
+  return Number(hms[0]) * 60 * 60 + Number(hms[1]) * 60 + Number(hms[2])
 }
