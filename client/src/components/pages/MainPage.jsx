@@ -21,8 +21,8 @@ export default function MainPage() {
   }, [gameId])
 
   return (
-    <div className={classes.menu}>
-      <div className={classes.newGame}>
+    <div className={classes.menu} id="__cy_root" data-cy-root>
+      <div className={classes.newGame} id="newGame">
         <nav>
           <ul>
             <li>
@@ -37,18 +37,7 @@ export default function MainPage() {
           <DropDownButton setTime={setTimeMode} />
         </div>
         <div className={classes.choosen}>{timeMode}</div>
-        <button
-          className={classes.play}
-          onClick={() => {
-            dispatch(initGame(timeMode, authUser))
-            Swal.fire({
-              icon: "success",
-              title: "Success",
-              type: "success",
-              text: "Your work has been saved.",
-            })
-          }}
-        >
+        <button className={classes.play} id="playButton">
           Играть!
         </button>
       </div>
@@ -59,6 +48,7 @@ export default function MainPage() {
           </div>
           <button
             className={classes.playFriendButton}
+            id="friendsButton"
             onClick={() => {
               Swal.fire({
                 icon: "info",
@@ -76,7 +66,7 @@ export default function MainPage() {
             повышай свой рейтинг!
           </h2>
           <Link to={TABLE_PATH}>
-            <button className={classes.seeTable}>
+            <button className={classes.seeTable} id="rateButton">
               <p>Таблица лидеров</p>
             </button>
           </Link>
