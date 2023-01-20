@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Player, ChessGame, ReadyToPlay
-from app_auth.models import User
+from user_app.models import User
 import random
 
 

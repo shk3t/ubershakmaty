@@ -16,14 +16,20 @@ import {logout} from "../reducers/authReducer"
 export default function Header() {
   const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
+  console.log(authUser)
 
   return (
     <div>
       <div className={classes.panel}>
         <div className={classes.imgWrap}>
-          <img className={classes.avatar} src={mister} />
+          <img
+            className={classes.avatar}
+            src={(authUser && authUser.picture) || mister}
+          />
         </div>
-        <div className={classes.username}>{authUser ? authUser.nickname : "Guest"}</div>
+        <div className={classes.username}>
+          {authUser ? authUser.nickname : "Guest"}
+        </div>
         <div className={classes.status}>В сети</div>
         <nav>
           <ul>

@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from "react"
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 import {GOOGLE_ACCOUNT_CLIENT_ID} from "../../consts/auth"
+import useErrorMessage from "../../hooks/useErrorMessage"
 import {socialLogin} from "../../reducers/authReducer"
-import {clearError} from "../../reducers/requestReducer"
 import AuthService from "../../services/AuthService"
 import LoginForm from "../forms/LoginForm"
 import RegisterForm from "../forms/RegisterForm"
 
 export default function AuthPage() {
   const dispatch = useDispatch()
-  const {isLoading, errorMessage} = useSelector((state) => state.requestReducer)
   const [isLogin, setIsLogin] = useState(true)
 
   useEffect(() => {
@@ -19,13 +18,8 @@ export default function AuthPage() {
     })
   }, [isLogin])
 
-  useEffect(() => {
-    // TODO make special message window for this purpose
-    if (errorMessage) {
-      alert(errorMessage)
-      dispatch(clearError())
-    }
-  }, [errorMessage])
+  // TODO make special message window for this purpose
+  useErrorMessage()
 
   function toggleAuth() {
     setIsLogin(!isLogin)

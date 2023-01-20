@@ -3,14 +3,16 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
-from app_auth.consts import (
+from rest_framework.status import HTTP_201_CREATED
+
+from user_app.consts import (
     SOCIAL_ACCOUNT_CLIENT_IDS,
     SOCIAL_ACCOUNT_PROVIDERS,
 )
-from app_auth.models import User
-from app_auth.exceptions import HttpException
-from app_auth.serializers import UserSerializer
-from app_auth.services import AuthService
+from user_app.models import User
+from user_app.exceptions import HttpException
+from user_app.serializers import UserSerializer
+from user_app.services import AuthService
 
 
 @api_view(["POST"])
@@ -18,7 +20,7 @@ def register(request):
     serializer = UserSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     user = serializer.save()
-    return AuthService.tokenized_response(user)
+    return AuthService.tokenized_response(user, status=HTTP_201_CREATED)
 
 
 @api_view(["POST"])
@@ -50,10 +52,7 @@ def refresh_tokens(request):
     except TokenError as error:
         raise HttpException(error, 401)
 
-    try:
-        user = User.objects.get(pk=refresh_token["user_id"])
-    except User.DoesNotExist as error:
-        raise HttpException(error, 404)
+    user = User.get_by_pk(refresh_token["user_id"])
 
     return AuthService.tokenized_response(user)
 
@@ -76,7 +75,7 @@ def social_login(request):
         )
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        return AuthService.tokenized_response(user)
+        return AuthService.tokenized_response(user, status=HTTP_201_CREATED)
 
     if (
         SOCIAL_ACCOUNT_CLIENT_IDS[user.account_provider] == data["aud"]
