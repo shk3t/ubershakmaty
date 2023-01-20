@@ -95,7 +95,8 @@ input.prof {
   border: 2px solid #f8c85b;
 }
 
-.redoingPassword {
+.redoingPassword,
+.redoingPhoto {
   height: 27px;
   width: 150px;
   color: white;
@@ -107,7 +108,12 @@ input.prof {
   text-transform: uppercase;
 }
 
-.redoingPassword:hover {
+.redoingPhoto {
+  margin-left: 50px;
+}
+
+.redoingPassword:hover,
+.redoingPhoto:hover {
   background-color: rgb(235, 98, 235);
 }
 
@@ -152,6 +158,6 @@ h5.age {
 }
 
 .person {
-  width: 280px;
-  height: 280px;
+  width: 250px;
+  height: 250px;
 }

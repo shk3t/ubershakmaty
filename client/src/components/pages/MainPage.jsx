@@ -61,10 +61,9 @@ export default function MainPage() {
             className={classes.playFriendButton}
             onClick={() => {
               Swal.fire({
-                icon: "error",
+                icon: "info",
                 title: "Oops...",
-                text: "Something went wrong!",
-                footer: '<a href="#">Why do I have this issue?</a>',
+                text: "It seems like you have no friends..",
               })
             }}
           >
