@@ -16,6 +16,7 @@ export default function SettingsPage() {
                   src={require("./../../assets/SettingsImg/personGirlSet.png")}
                   alt="girl"
                 ></img>
+                <button className={classes.redoingPhoto}> Обновить </button>
               </div>
               <div className={classes.profileSet}>
                 <h5 className={classes.nick}>Ник</h5>{" "}
