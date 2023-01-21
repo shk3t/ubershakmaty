@@ -72,42 +72,6 @@ export default class Board {
     }
   }
 
-  removeHints() {
-    for (const square of this.squares) {
-      square.possibleMove = false
-    }
-  }
-
-  restartHalfmoveClock() {
-    this.halfmoveClock = -1
-  }
-
-  removeHints() {
-    for (const square of this.squares) {
-      square.possibleMove = false
-    }
-  }
-
-  restartHalfmoveClock() {
-    this.halfmoveClock = -1
-  }
-
-  removeHints() {
-    for (const square of this.squares) {
-      square.possibleMove = false
-    }
-  }
-
-  restartHalfmoveClock() {
-    this.halfmoveClock = -1
-  }
-
-  removeHints() {
-    for (const square of this.squares) {
-      square.possibleMove = false
-    }
-  }
-
   restartHalfmoveClock() {
     this.halfmoveClock = -1
   }

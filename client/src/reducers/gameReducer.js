@@ -16,20 +16,19 @@ const initialState = {
   board: new Board(),
   whiteTimer: null,
   blackTimer: null,
+  endMessage: null,
 }
 
 export default function gameReducer(state = initialState, action) {
-  const {gameId, board, timeMode, whiteTimer, blackTimer, index} =
+  const {gameId, board, timeMode, whiteTimer, blackTimer, endMessage, index} =
     action.payload || {}
   switch (action.type) {
     case INIT_GAME:
-      console.log(whiteTimer, blackTimer)
-      return {...state, gameId, board, whiteTimer, blackTimer}
+      return {...state, gameId, board, whiteTimer, blackTimer, endMessage: null}
     case SELECT_PIECE:
-      // const targetSquare = index != null && state.board.squares[index]
-      const targetSquare = state.board.squares[index]
-      if (targetSquare.select()) return {...state}
-      return state
+      if (state.endMessage) return state
+      state.board.squares[index].select()
+      return {...state}
     case UNSELECT_PIECE:
       state.board.unselectPiece()
       return {...state}
@@ -41,6 +40,7 @@ export default function gameReducer(state = initialState, action) {
       if (board) state["board"] = board
       if (whiteTimer) state["whiteTimer"] = whiteTimer
       if (blackTimer) state["blackTimer"] = blackTimer
+      if (endMessage) state["endMessage"] = endMessage
       return {...state}
     default:
       return state
@@ -53,7 +53,6 @@ export const setTimeMode = (timeMode) => {
 
 export const initGame = (user) => async (dispatch, getState) => {
   const timeMode = getState().gameReducer.timeMode
-  console.log(timeMode)
   const {pk, fen} = await GameService.initGame(timeMode, user)
   dispatch({
     type: INIT_GAME,
@@ -91,9 +90,24 @@ export const movePiece = (index) => async (dispatch, getState) => {
 
   dispatch({type: SET_GAME_DATA, payload: {board}})
 
-  try {
-    const responseData = await GameService.makeMove(gameId, moveUci)
-    if (responseData === "Illegal move") throw new Error()
+  const responseData = await GameService.makeMove(gameId, moveUci)
+
+  if (typeof responseData === "string") {
+    if (responseData === "Illegal move") {
+      dispatch({type: SET_GAME_DATA, payload: {board: rollbackBoard}})
+      return
+    }
+
+    dispatch({type: SET_GAME_DATA, payload: {endMessage: responseData}})
+
+    if (responseData.includes("time is up")) {
+      rollbackBoard.unselectPiece()
+      dispatch({type: SET_GAME_DATA, payload: {board: rollbackBoard}})
+      return
+    }
+  }
+
+  if (responseData.board_fen) {
     dispatch({
       type: SET_GAME_DATA,
       payload: {
@@ -102,7 +116,5 @@ export const movePiece = (index) => async (dispatch, getState) => {
         blackTimer: hmsToSeconds(responseData.black_timer),
       },
     })
-  } catch {
-    dispatch({type: SET_GAME_DATA, payload: {board: rollbackBoard}})
   }
 }

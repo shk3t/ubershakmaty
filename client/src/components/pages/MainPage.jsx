@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from "react"
+import React from "react"
 import classes from "../../styles/pages/MainPage.module.css"
 import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
@@ -17,11 +17,24 @@ export default function MainPage() {
   const gameId = useSelector((state) => state.gameReducer.gameId)
   const timeMode = useSelector((state) => state.gameReducer.timeMode)
 
-  useCompletedRequest("InitGame", () => navigate(CHESS_BOARD_PATH))
+  useCompletedRequest("InitGame", () => {
+    if (gameId) {
+      Swal.fire({
+        icon: "success",
+        title: "The game was found",
+      })
+      navigate(CHESS_BOARD_PATH)
+    } else {
+      Swal.fire({
+        icon: "info",
+        title: "Looking for another player...",
+      })
+    }
+  })
 
   return (
-    <div className={classes.menu}>
-      <div className={classes.newGame}>
+    <div className={classes.menu} id="__cy_root" data-cy-root>
+      <div className={classes.newGame} id="newGame">
         <nav>
           <ul>
             <li>
@@ -35,18 +48,11 @@ export default function MainPage() {
         <div className={classes.dropdown}>
           <DropDownButton />
         </div>
-        <div className={classes.choosen}>{timeMode.toPretty()}</div>
+        <div className={classes.choosen} id="playButton">{timeMode.toPretty()}</div>
         <button
           className={classes.play}
           onClick={() => {
             dispatch(makeRequest(() => initGame(authUser), "InitGame"))
-            // TODO появляется только при успешном запуске ЛИБО изменить текст уведомления
-            Swal.fire({
-              icon: "success",
-              title: "Success",
-              type: "success",
-              text: "Your work has been saved.",
-            })
           }}
         >
           Играть!
@@ -59,6 +65,7 @@ export default function MainPage() {
           </div>
           <button
             className={classes.playFriendButton}
+            id="friendsButton"
             onClick={() => {
               Swal.fire({
                 icon: "info",
@@ -76,7 +83,7 @@ export default function MainPage() {
             повышай свой рейтинг!
           </h2>
           <Link to={TABLE_PATH}>
-            <button className={classes.seeTable}>
+            <button className={classes.seeTable} id="rateButton">
               <p>Таблица лидеров</p>
             </button>
           </Link>

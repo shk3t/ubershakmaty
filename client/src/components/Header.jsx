@@ -16,6 +16,7 @@ import {logout} from "../reducers/authReducer"
 export default function Header() {
   const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
+  const gameId = useSelector((state) => state.gameReducer.gameId)
 
   return (
     <div>
@@ -24,6 +25,7 @@ export default function Header() {
           <img
             className={classes.avatar}
             src={(authUser && authUser.picture) || mister}
+            alt="avatar"
           />
         </div>
         <div className={classes.username}>

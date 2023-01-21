@@ -1,10 +1,7 @@
 import classes from "../styles/Table.module.css"
 import React from "react"
-import axios from "axios"
 import {useEffect, useState} from "react"
 import GameService from "../services/GameService"
-
-const API_URL = "http://localhost:8000"
 
 function Table() {
   const [ratingData, setRatingData] = useState([])
