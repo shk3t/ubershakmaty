@@ -16,12 +16,6 @@ class SafeModelMixin:
         except cls.DoesNotExist as error:
             raise HttpException(error, 404)
 
-    def validate(self):
-        try:
-            self.full_clean()
-        except ValidationError as error:
-            raise HttpException(dict(error), 400)
-
 
 class User(AbstractUser, SafeModelMixin):
     class AccountProvider(models.TextChoices):
@@ -30,11 +24,7 @@ class User(AbstractUser, SafeModelMixin):
     nickname = models.CharField(_("nickname"), max_length=128)
     email = models.EmailField(_("email address"), unique=True)
     password = models.CharField(
-        _("password"),
-        max_length=128,
-        null=True,
-        blank=True,
-        validators=[password_validator],
+        _("password"), max_length=128, null=True, validators=[password_validator]
     )
     picture = models.ImageField(
         upload_to="users",

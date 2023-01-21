@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux"
 import {makeRequest, setError} from "../../reducers/requestReducer"
 import {logout, updateAuthUser} from "../../reducers/authReducer"
 import {filterObject} from "../../utils"
+import Swal from "sweetalert2"
 
 export default function SettingsPage() {
   const dispatch = useDispatch()
@@ -22,11 +23,13 @@ export default function SettingsPage() {
   const [userData, setUserData] = useState(emptyUserData)
 
   useErrorMessage()
-  useCompletedRequest(
-    "UpdateUserData",
-    () => setUserData(emptyUserData),
-    "User data updated successfully"
-  )
+  useCompletedRequest("UpdateUserData", () => {
+    setUserData(emptyUserData)
+    Swal.fire({
+      icon: "success",
+      title: "User data updated successfully",
+    })
+  })
 
   function updateUserData() {
     if (userData.newPassword !== userData.newPasswordAgain) {
