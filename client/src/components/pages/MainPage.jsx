@@ -14,15 +14,22 @@ export default function MainPage() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
+  const gameId = useSelector((state) => state.gameReducer.gameId)
   const timeMode = useSelector((state) => state.gameReducer.timeMode)
 
   useCompletedRequest("InitGame", () => {
-    // TODO появляется только при нахождении игры, а не начале поиска ИЛИ сделать 2 уведомлялки
-    Swal.fire({
-      icon: "success",
-      title: "The game was found",
-    })
-    navigate(CHESS_BOARD_PATH)
+    if (gameId) {
+      Swal.fire({
+        icon: "success",
+        title: "The game was found",
+      })
+      navigate(CHESS_BOARD_PATH)
+    } else {
+      Swal.fire({
+        icon: "info",
+        title: "Looking for another player...",
+      })
+    }
   })
 
   return (
