@@ -35,10 +35,12 @@ export default function Header() {
             <li>
               <Link to={MAIN_PATH}>Главная</Link>
             </li>
-            <li>
-              {/* TODO сделать эндпойнт для возвращения в игру */}
-              <Link to={CHESS_BOARD_PATH}>Игра</Link>
-            </li>
+            {/* TODO сделать эндпойнт для возвращения в игру */}
+            {gameId && (
+              <li>
+                <Link to={CHESS_BOARD_PATH}>Игра</Link>
+              </li>
+            )}
             <li>
               <Link to={TABLE_PATH}>Рейтинг</Link>
             </li>
