@@ -1,3 +1,5 @@
+import {parseError} from "../utils"
+
 const SET_REQUEST_STATUS = "SET_REQUEST_STATUS"
 const CLEAR_REQUEST = "CLEAR_REQUEST"
 
@@ -35,10 +37,10 @@ export const makeRequest =
         payload: {isLoading: false, completedLabel},
       })
     } catch (error) {
-      const errorData = JSON.stringify(error.response.data)
+      const errorMessage = parseError(error.response.data)
       dispatch({
         type: SET_REQUEST_STATUS,
-        payload: {errorMessage: errorData, isLoading: false},
+        payload: {errorMessage, isLoading: false},
       })
     }
   }
