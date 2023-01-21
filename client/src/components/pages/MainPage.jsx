@@ -20,8 +20,8 @@ export default function MainPage() {
   useCompletedRequest("InitGame", () => navigate(CHESS_BOARD_PATH))
 
   return (
-    <div className={classes.menu}>
-      <div className={classes.newGame}>
+    <div className={classes.menu} id="__cy_root" data-cy-root>
+      <div className={classes.newGame} id="newGame">
         <nav>
           <ul>
             <li>
@@ -35,7 +35,7 @@ export default function MainPage() {
         <div className={classes.dropdown}>
           <DropDownButton />
         </div>
-        <div className={classes.choosen}>{timeMode.toPretty()}</div>
+        <div className={classes.choosen} id="playButton">{timeMode.toPretty()}</div>
         <button
           className={classes.play}
           onClick={() => {
@@ -59,6 +59,7 @@ export default function MainPage() {
           </div>
           <button
             className={classes.playFriendButton}
+            id="friendsButton"
             onClick={() => {
               Swal.fire({
                 icon: "info",
@@ -76,7 +77,7 @@ export default function MainPage() {
             повышай свой рейтинг!
           </h2>
           <Link to={TABLE_PATH}>
-            <button className={classes.seeTable}>
+            <button className={classes.seeTable} id="rateButton">
               <p>Таблица лидеров</p>
             </button>
           </Link>
