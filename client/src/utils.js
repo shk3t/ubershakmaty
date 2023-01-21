@@ -1,3 +1,5 @@
+import {capitalize} from "lodash"
+
 // Utils
 export function loadScript(src) {
   return new Promise((resolve, reject) => {
@@ -26,4 +28,14 @@ export function filterObject(object, keyValueCallback) {
 export function hmsToSeconds(str) {
   const hms = str.split(":")
   return Number(hms[0]) * 60 * 60 + Number(hms[1]) * 60 + Number(hms[2])
+}
+
+export function parseError(error) {
+  if (error.detail) return error.detail
+
+  const lines = []
+  for (const [key, value] of Object.entries(error)) {
+    lines.push(capitalize(key) + ": " + value[0]);
+  }
+  return lines.join("\n")
 }
