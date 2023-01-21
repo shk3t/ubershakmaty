@@ -4,7 +4,6 @@ import {movePiece, selectPiece} from "../reducers/gameReducer"
 
 export default function BoardComponent() {
   const dispatch = useDispatch()
-  // const board = useSelector((state) => state.gameReducer.board) Видимо такая хероборина не чекает в глубину :/
   const {board} = useSelector((state) => state.gameReducer)
 
   function handleMove(event) {

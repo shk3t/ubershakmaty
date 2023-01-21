@@ -52,8 +52,6 @@ export default function SettingsPage() {
       return
     }
 
-    console.log(requestData)
-
     dispatch(makeRequest(() => updateAuthUser(requestData), "UpdateUserData"))
   }
 

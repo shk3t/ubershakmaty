@@ -12,7 +12,6 @@ export default function useErrorMessage() {
       Swal.fire({
         icon: "error",
         title: "Error",
-        type: "success",
         text: errorMessage,
       })
       dispatch(clearRequest())

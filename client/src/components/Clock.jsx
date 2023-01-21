@@ -8,6 +8,7 @@ export default function Clock() {
   const turn = useSelector((state) => state.gameReducer.board.turn)
   const whiteTimer = useSelector((state) => state.gameReducer.whiteTimer)
   const blackTimer = useSelector((state) => state.gameReducer.blackTimer)
+  const endMessage = useSelector((state) => state.gameReducer.endMessage)
   // const timeMode = useSelector((state) => state.gameReducer.timeMode)
 
   const [whiteTime, setWhiteTime] = useState(0)
@@ -18,7 +19,6 @@ export default function Clock() {
     setBlackTime(blackTimer)
   }, [whiteTimer, blackTimer])
 
-  // TODO адекватный формат времени
   useEffect(() => {
     const pTime = setInterval(() => {
       if (turn === Color.WHITE) {
@@ -38,9 +38,13 @@ export default function Clock() {
     <div id="clock-area">
       <div className="clock-wrapper">
         <div className="clock-face">
-          <div className="time">{turn} turn</div>
-          <div className="time">{timeFromSeconds(blackTime)}</div>
-          <div className="time">{timeFromSeconds(whiteTime)}</div>
+          <div className="time">{endMessage || `${turn} turn`}</div>
+          {!endMessage && (
+            <>
+              <div className="time">{timeFromSeconds(blackTime)}</div>
+              <div className="time">{timeFromSeconds(whiteTime)}</div>
+            </>
+          )}
         </div>
       </div>
     </div>
