@@ -2,6 +2,7 @@ import "../index.css"
 import {useEffect, useState} from "react"
 import {useSelector} from "react-redux"
 import Color from "../models/Color"
+import {zeroPad} from "../utils"
 
 export default function Clock() {
   const turn = useSelector((state) => state.gameReducer.board.turn)
@@ -21,22 +22,25 @@ export default function Clock() {
   useEffect(() => {
     const pTime = setInterval(() => {
       if (turn === Color.WHITE) {
-        console.log("white turn")
-        setWhiteTime((prev) => prev - 1)
+        setWhiteTime((prev) => (prev <= 0 ? 0 : prev - 1))
       } else {
-        console.log("black turn")
-        setBlackTime((prev) => prev - 1)
+        setBlackTime((prev) => (prev <= 0 ? 0 : prev - 1))
       }
     }, 1000)
     return () => clearInterval(pTime)
   }, [turn])
 
+  function timeFromSeconds(seconds) {
+    return `${zeroPad(Math.floor(seconds / 60), 2)}:${zeroPad(seconds % 60, 2)}`
+  }
+
   return (
     <div id="clock-area">
       <div className="clock-wrapper">
         <div className="clock-face">
-          <div className="time">{blackTime}</div>
-          <div className="time">{whiteTime}</div>
+          <div className="time">{turn} turn</div>
+          <div className="time">{timeFromSeconds(blackTime)}</div>
+          <div className="time">{timeFromSeconds(whiteTime)}</div>
         </div>
       </div>
     </div>

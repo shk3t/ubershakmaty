@@ -25,6 +25,12 @@ export function filterObject(object, keyValueCallback) {
   return Object.fromEntries(Object.entries(object).filter(keyValueCallback))
 }
 
+export function zeroPad(num, size) {
+  num = num.toString()
+  while (num.length < size) num = "0" + num
+  return num
+}
+
 export function hmsToSeconds(str) {
   const hms = str.split(":")
   return Number(hms[0]) * 60 * 60 + Number(hms[1]) * 60 + Number(hms[2])
