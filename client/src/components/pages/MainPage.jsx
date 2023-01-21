@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from "react"
+import React from "react"
 import classes from "../../styles/pages/MainPage.module.css"
 import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
@@ -14,7 +14,6 @@ export default function MainPage() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
-  const gameId = useSelector((state) => state.gameReducer.gameId)
   const timeMode = useSelector((state) => state.gameReducer.timeMode)
 
   useCompletedRequest("InitGame", () => navigate(CHESS_BOARD_PATH))

@@ -1,4 +1,3 @@
-import {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import Color from "../models/Color"
 import {movePiece, selectPiece} from "../reducers/gameReducer"
