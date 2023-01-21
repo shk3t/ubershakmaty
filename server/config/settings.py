@@ -73,13 +73,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-# DATABASES = {  # Sqlite3
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+# DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
 
 # Custom user model
 AUTH_USER_MODEL = "user_app.User"
