@@ -11,7 +11,7 @@ venv/
 
 # Django
 migrations/
-#media/
+media/
 metadata.json
 
 # Database

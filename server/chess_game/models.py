@@ -1,5 +1,5 @@
 from django.db import models
-from app_auth.models import User
+from user_app.models import User
 from django.utils import timezone
 
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import authClasses from "../../styles/pages/AuthPage.module.css"
 import registerClasses from "../../styles/forms/RegisterForm.module.css"
 import pawnImage from "../../assets/chessFigures/pawn_black.png"
@@ -8,12 +8,16 @@ import kingImage from "../../assets/chessFigures/king_black.png"
 import {register} from "../../reducers/authReducer"
 import {useDispatch} from "react-redux"
 import {makeRequest, setError} from "../../reducers/requestReducer"
-import AuthInput from "../inputs/AuthInput"
-import {REGISTER, useCredentials} from "../../hooks/useCredentials"
+import GenericInput from "../inputs/GenericInput"
 
 export default function RegisterForm({toggleAuth}) {
   const dispatch = useDispatch()
-  const [credentials, setCredentials] = useCredentials(REGISTER)
+  const [credentials, setCredentials] = useState({
+    nickname: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+  })
 
   function doRegister() {
     if (credentials.password === credentials.passwordConfirmation) {
@@ -35,7 +39,9 @@ export default function RegisterForm({toggleAuth}) {
           {field: "passwordConfirmation", type: "password"},
         ].map(({field, type}) => (
           <div key={field} className={authClasses.formField}>
-            <AuthInput {...{field, type, credentials, setCredentials}} />
+            <GenericInput
+              {...{field, type, data: credentials, setData: setCredentials}}
+            />
           </div>
         ))}
       </div>

@@ -21,9 +21,14 @@ export default function Header() {
     <div>
       <div className={classes.panel}>
         <div className={classes.imgWrap}>
-          <img className={classes.avatar} src={mister} />
+          <img
+            className={classes.avatar}
+            src={(authUser && authUser.picture) || mister}
+          />
         </div>
-        <div className={classes.username}>{authUser ? authUser.nickname : "Guest"}</div>
+        <div className={classes.username}>
+          {authUser ? authUser.nickname : "Guest"}
+        </div>
         <div className={classes.status}>В сети</div>
         <nav>
           <ul>
@@ -31,6 +36,7 @@ export default function Header() {
               <Link to={MAIN_PATH}>Главная</Link>
             </li>
             <li>
+              {/* TODO сделать эндпойнт для возвращения в игру */}
               <Link to={CHESS_BOARD_PATH}>Игра</Link>
             </li>
             <li>

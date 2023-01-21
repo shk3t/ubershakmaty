@@ -3,22 +3,22 @@ import {loadScript} from "../utils"
 
 export default class AuthService {
   static async register(credentials) {
-    const response = await publicConfig.post("/auth/register", credentials)
+    const response = await publicConfig.post("/user/register", credentials)
     return response.data
   }
   static async login(credentials) {
-    const response = await publicConfig.post("/auth/login", credentials)
+    const response = await publicConfig.post("/user/login", credentials)
     return response.data
   }
   static async socialLogin(credentials) {
-    const response = await publicConfig.post("/auth/login/social", credentials)
+    const response = await publicConfig.post("/user/login/social", credentials)
     return response.data
   }
   static async logout() {
-    await publicConfig.post("/auth/logout")
+    await publicConfig.post("/user/logout")
   }
   static async refreshTokens() {
-    const response = await authNoRefreshConfig.post("/auth/tokens/refresh")
+    const response = await authNoRefreshConfig.post("/user/tokens/refresh")
     return response.data
   }
 }

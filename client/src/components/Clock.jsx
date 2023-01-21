@@ -5,8 +5,17 @@ import Color from "../models/Color"
 
 export default function Clock() {
   const turn = useSelector((state) => state.gameReducer.board.turn)
-  const [whiteTime, setWhiteTime] = useState(500)
-  const [blackTime, setBlackTime] = useState(500)
+  const whiteTimer = useSelector((state) => state.gameReducer.whiteTimer)
+  const blackTimer = useSelector((state) => state.gameReducer.blackTimer)
+  // const timeMode = useSelector((state) => state.gameReducer.timeMode)
+
+  const [whiteTime, setWhiteTime] = useState(0)
+  const [blackTime, setBlackTime] = useState(0)
+
+  useEffect(() => {
+    setWhiteTime(whiteTimer)
+    setBlackTime(blackTimer)
+  }, [whiteTimer, blackTimer])
 
   useEffect(() => {
     const pTime = setInterval(() => {
