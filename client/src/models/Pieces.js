@@ -189,7 +189,7 @@ export class Pawn extends Piece {
     const upgradeY = this.isWhite() ? 0 : 7
     if (this.square.getXY().y === upgradeY) {
       this.square.putPiece(new Queen(this.color))
-      return this.isWhite() ? "Q" : "q"
+      return "q"
     }
     return ""
   }
