@@ -56,6 +56,7 @@ export default function RegisterForm({toggleAuth}) {
       </div>
       <button
         className={authClasses.button}
+        id="register"
         style={{width: "202px"}}
         onClick={doRegister}
       >

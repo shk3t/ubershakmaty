@@ -9,10 +9,6 @@ describe("Main Page test", () => {
     cy.url().should("include", "/main")
     cy.get("#newGame ul li").first().should("have.text", "Новая игра")
     cy.get("#newGame ul li").last().should("have.text", "Время")
-    cy.waitForReact(1000, "#__cy_root")
-    cy.getReact("DropDownButton")
-
-    //cy.should('include', '/chess-board');
   })
 
   it("friends", () => {

@@ -43,6 +43,7 @@ export default function LoginForm({toggleAuth}) {
       </h2>
       <button
         className={authClasses.enterButton}
+        id="registerButton"
         style={{width: "150px"}}
         onClick={toggleAuth}
       >
