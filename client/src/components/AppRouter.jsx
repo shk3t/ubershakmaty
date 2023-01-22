@@ -1,15 +1,18 @@
 import React, {useMemo, useState} from "react"
 import {useSelector} from "react-redux"
 import {Routes, Route, Navigate} from "react-router-dom"
-import {authRoutes, MAIN_PATH, publicRoutes} from "../consts/routes"
+import {authRoutes, gameRoute, MAIN_PATH, publicRoutes} from "../consts/routes"
 
 export default function AppRouter() {
   const authUser = useSelector((state) => state.authReducer.authUser)
+  const gameId = useSelector((state) => state.gameReducer.gameId)
   const [routes, setRoutes] = useState([])
 
   useMemo(() => {
-    setRoutes(authUser ? authRoutes : publicRoutes)
-  }, [authUser])
+    const routes = authUser ? authRoutes : publicRoutes
+    if (gameId) routes.push(gameRoute)
+    setRoutes(routes)
+  }, [authUser, gameId])
 
   return (
     <Routes>

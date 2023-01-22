@@ -90,31 +90,31 @@ export const movePiece = (index) => async (dispatch, getState) => {
 
   dispatch({type: SET_GAME_DATA, payload: {board}})
 
-  const responseData = await GameService.makeMove(gameId, moveUci)
+  try {
+    const responseData = await GameService.makeMove(gameId, moveUci)
 
-  if (typeof responseData === "string") {
-    if (responseData === "Illegal move") {
-      dispatch({type: SET_GAME_DATA, payload: {board: rollbackBoard}})
-      return
+    if (typeof responseData === "string") {
+      if (responseData === "Illegal move") throw new Error()
+
+      dispatch({type: SET_GAME_DATA, payload: {endMessage: responseData}})
+
+      if (responseData.includes("time is up")) {
+        rollbackBoard.unselectPiece()
+        throw new Error()
+      }
     }
 
-    dispatch({type: SET_GAME_DATA, payload: {endMessage: responseData}})
-
-    if (responseData.includes("time is up")) {
-      rollbackBoard.unselectPiece()
-      dispatch({type: SET_GAME_DATA, payload: {board: rollbackBoard}})
-      return
+    if (responseData.board_fen) {
+      dispatch({
+        type: SET_GAME_DATA,
+        payload: {
+          board: new Board(responseData.board_fen),
+          whiteTimer: hmsToSeconds(responseData.white_timer),
+          blackTimer: hmsToSeconds(responseData.black_timer),
+        },
+      })
     }
-  }
-
-  if (responseData.board_fen) {
-    dispatch({
-      type: SET_GAME_DATA,
-      payload: {
-        board: new Board(responseData.board_fen),
-        whiteTimer: hmsToSeconds(responseData.white_timer),
-        blackTimer: hmsToSeconds(responseData.black_timer),
-      },
-    })
+  } catch {
+    dispatch({type: SET_GAME_DATA, payload: {board: rollbackBoard}})
   }
 }
