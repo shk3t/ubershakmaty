@@ -1,6 +1,6 @@
 import React from "react"
 import {useDispatch} from "react-redux"
-import { setTimeMode } from "../../reducers/gameReducer"
+import {setTimeMode} from "../../reducers/gameReducer"
 import classes from "../../styles/DropDownPanel.module.css"
 
 export default function GameModeButton({timeMode}) {

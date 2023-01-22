@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from "react"
+import React from "react"
 import classes from "../../styles/pages/MainPage.module.css"
 import friends from "../../assets/mainPageImgs/friends.png"
 import DropDownButton from "../../components/buttons/DropDownButton"
@@ -17,7 +17,20 @@ export default function MainPage() {
   const gameId = useSelector((state) => state.gameReducer.gameId)
   const timeMode = useSelector((state) => state.gameReducer.timeMode)
 
-  useCompletedRequest("InitGame", () => navigate(CHESS_BOARD_PATH))
+  useCompletedRequest("InitGame", () => {
+    if (gameId) {
+      Swal.fire({
+        icon: "success",
+        title: "The game was found",
+      })
+      navigate(CHESS_BOARD_PATH)
+    } else {
+      Swal.fire({
+        icon: "info",
+        title: "Looking for another player...",
+      })
+    }
+  })
 
   return (
     <div className={classes.menu} id="__cy_root" data-cy-root>
@@ -40,13 +53,6 @@ export default function MainPage() {
           className={classes.play}
           onClick={() => {
             dispatch(makeRequest(() => initGame(authUser), "InitGame"))
-            // TODO появляется только при успешном запуске ЛИБО изменить текст уведомления
-            Swal.fire({
-              icon: "success",
-              title: "Success",
-              type: "success",
-              text: "Your work has been saved.",
-            })
           }}
         >
           Играть!

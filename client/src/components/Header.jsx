@@ -16,6 +16,7 @@ import {logout} from "../reducers/authReducer"
 export default function Header() {
   const dispatch = useDispatch()
   const authUser = useSelector((state) => state.authReducer.authUser)
+  const gameId = useSelector((state) => state.gameReducer.gameId)
 
   return (
     <div>
@@ -24,6 +25,7 @@ export default function Header() {
           <img
             className={classes.avatar}
             src={(authUser && authUser.picture) || mister}
+            alt="avatar"
           />
         </div>
         <div className={classes.username}>
@@ -35,10 +37,12 @@ export default function Header() {
             <li>
               <Link to={MAIN_PATH}>Главная</Link>
             </li>
-            <li>
-              {/* TODO сделать эндпойнт для возвращения в игру */}
-              <Link to={CHESS_BOARD_PATH}>Игра</Link>
-            </li>
+            {/* TODO сделать эндпойнт для возвращения в игру */}
+            {gameId && (
+              <li>
+                <Link to={CHESS_BOARD_PATH}>Игра</Link>
+              </li>
+            )}
             <li>
               <Link to={TABLE_PATH}>Рейтинг</Link>
             </li>

@@ -17,7 +17,6 @@ export const SETTINGS_PATH = "/settings"
 // Routes
 const baseRoutes = [
   {path: MAIN_PATH, Component: MainPage},
-  {path: CHESS_BOARD_PATH, Component: ChessBoardPage},
   {path: TABLE_PATH, Component: TablePage},
 ]
 export const publicRoutes = [
@@ -26,6 +25,7 @@ export const publicRoutes = [
 ]
 export const authRoutes = [
   ...baseRoutes,
+  {path: CHESS_BOARD_PATH, Component: ChessBoardPage},
   {path: STATISTIC_PATH, Component: StatisticsPage},
   {path: SETTINGS_PATH, Component: SettingsPage},
 ]

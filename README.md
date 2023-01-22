@@ -41,11 +41,14 @@
 4. Установить необходимые пакеты `pip install -r requirements.txt`
 5. Инициализировать базу данных `python manage.py migrate`
 6. Вставить в `server/` `metadata.json` из телеги
+7. На где-то 74 строчке `server/config/settings.py`
+   раскоментировать ту константу `DATABASE = ...`, что относится к Sqlite3,
+   и закоментировать `DATABASE = ...` для PostgreSQL
 <!---->
 После этого будет возможен запуск сервера: `python manage.py runserver`
 
 ### Если вдруг сломалась бдшка
-Снова все запускаем из `server/`
+Проделываем все из `server/`
 1. удалить `db.sqlite3`
 2. удалить `chess_game/migrations/` и `app_auth/migrations/`
 3. `python manage.py makemigrations app_auth chess_game`

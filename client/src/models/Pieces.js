@@ -112,7 +112,7 @@ export default class Piece {
     const {x, y} = this.square.getXY()
     const {dx, dy} = {dx: x - fromX || null, dy: y - fromY || null}
     const move = this.moveSequences.flat().find((move) => {
-      return move.dx == dx && move.dy == dy
+      return move.dx == dx && move.dy == dy // eslint-disable-line eqeqeq
     })
     return move && move.label
   }
@@ -189,7 +189,7 @@ export class Pawn extends Piece {
     const upgradeY = this.isWhite() ? 0 : 7
     if (this.square.getXY().y === upgradeY) {
       this.square.putPiece(new Queen(this.color))
-      return this.isWhite() ? "Q" : "q"
+      return "q"
     }
     return ""
   }
@@ -383,13 +383,14 @@ export class King extends Piece {
   tryCastle(moveLabel) {
     const board = this.square.board
     const {x, y} = this.square.getXY()
+    let rook, rookTargetSquare
 
     if (moveLabel === "longCastle") {
-      var rook = board.getSquare(x - 2, y).piece
-      var rookTargetSquare = board.getSquare(x + 1, y)
+      rook = board.getSquare(x - 2, y).piece
+      rookTargetSquare = board.getSquare(x + 1, y)
     } else if (moveLabel === "shortCastle") {
-      var rook = board.getSquare(x + 1, y).piece
-      var rookTargetSquare = board.getSquare(x - 1, y)
+      rook = board.getSquare(x + 1, y).piece
+      rookTargetSquare = board.getSquare(x - 1, y)
     } else return
 
     rook.square.removePiece()
