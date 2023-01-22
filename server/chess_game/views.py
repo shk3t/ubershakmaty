@@ -20,7 +20,6 @@ from django.db.models import Q
 def init_game(request):
     ready_player = ReadyToPlay.objects.filter(~Q(player=request.data['user']['id']),
                                               chosen_time_mode=request.data['timer']).order_by('wait_start')[:1]
-    print(request.data)
     serializer = ChessGameSerializer(data=request.data)
     if ready_player.count():
         serializer.initial_data['player_2'] = ready_player[0].pk
@@ -35,8 +34,30 @@ def init_game(request):
         ready_player_serializer.prepare()
         if ready_player_serializer.is_valid():
             ready_player_serializer.save()
-            return Response('Looking for another player', status=status.HTTP_201_CREATED)
+            game_is_active = False
+            print('START TO SEARCH')
+            while not game_is_active:
+                found_game = ChessGame.objects.filter((Q(white_player=request.data['user']['id']) |
+                                                       Q(black_player=request.data['user']['id'])) &
+                                                      Q(result__isnull=True))
+                game_is_active = found_game.count()
+            print('GAME IS FOUND')
+            game_data = found_game.values()[0]
+            print('GAME DATA', game_data)
+            game_data['white_player'] = game_data['white_player_id']
+            game_data['black_player'] = game_data['black_player_id']
+            print('GAME_DATA_PREPARED', game_data)
+            serializer = ChessGameSerializer(data=game_data)
+            if serializer.is_valid():
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            print(serializer.errors)
         return Response(ready_player_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view()
+def get_game(request, ready_player_id):
+    print(ready_player_id)
+    return Response(ready_player_id)
 
 
 def update_clock(game):
