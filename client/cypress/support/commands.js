@@ -19,3 +19,21 @@ Cypress.Commands.add("waitForGoogleApi", () => {
     })
   }
 })
+
+Cypress.Commands.add('loginFromDb', (user) => {
+  cy.session(
+    user,
+    () => {
+      cy.visit('/auth')
+      cy.get('input[placeholder="Email"]').type(user.email)
+      cy.get('input[placeholder="Password"]').type(user.password)
+      cy.get("#loginButton").click()
+  
+    },
+    {
+      validate: () => {
+        cy.getCookie('auth_key').should('exist')
+      },
+    }
+  )
+})
