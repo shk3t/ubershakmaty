@@ -33,7 +33,7 @@ export default function MainPage() {
   })
 
   return (
-    <div className={classes.menu} id="__cy_root" data-cy-root>
+    <div className={classes.menu}>
       <div className={classes.newGame} id="newGame">
         <nav>
           <ul>
