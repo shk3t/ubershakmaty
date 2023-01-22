@@ -25,7 +25,7 @@ export const publicRoutes = [
 ]
 export const authRoutes = [
   ...baseRoutes,
-  {path: CHESS_BOARD_PATH, Component: ChessBoardPage},
   {path: STATISTIC_PATH, Component: StatisticsPage},
   {path: SETTINGS_PATH, Component: SettingsPage},
 ]
+export const gameRoute = {path: CHESS_BOARD_PATH, Component: ChessBoardPage}
