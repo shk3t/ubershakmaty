@@ -9,25 +9,12 @@ import json
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 metadata = json.load(open(BASE_DIR / "metadata.json"))
-# add next config to server/metadata.json and uncomment lines in DATABASE and SECRET_KEY sections:
-# {
-#   "secret-key": "[randomly generated secret key]",
-#   "database-default": {
-#     "ENGINE": "django.db.backends.postgresql",
-#     "NAME": "[your db name]",
-#     "USER": "[your db user]",
-#     "PASSWORD": "[your db password]",
-#     "HOST": "127.0.0.1",
-#     "PORT": "5432"
-#   },
-#   "google-account-client-id": "[any id (social auth won't work anyway :P)]"
-# }
 
 # Security
-SECRET_KEY = "django-insecure-5lypwsdw21!)fr4mc-dt8^be#*3^d7sj71_w4&80q9$jebej&a"  # WARNING: keep the secret key used in production secret!
-# SECRET_KEY = metadata["secret-key"]
 DEBUG = True  # WARNING: don't run with debug turned on in production!
-ALLOWED_HOSTS = []
+SECRET_KEY = metadata["secret-key"]
+ALLOWED_HOSTS = ["91.203.192.60", "127.0.0.1"]
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 INSTALLED_APPS = [
@@ -74,13 +61,13 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-# DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+DATABASES = {"default": metadata["database-default"]}  # PostgreSQL
 
 # Custom user model
 AUTH_USER_MODEL = "user_app.User"

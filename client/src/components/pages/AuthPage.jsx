@@ -11,12 +11,12 @@ export default function AuthPage() {
   const dispatch = useDispatch()
   const [isLogin, setIsLogin] = useState(true)
 
-  useEffect(() => {
-    AuthService.SocialAccounts.initGoogle({
-      client_id: GOOGLE_ACCOUNT_CLIENT_ID,
-      callback: (response) => dispatch(socialLogin(response)),
-    })
-  }, [isLogin])
+  // useEffect(() => {
+  //   AuthService.SocialAccounts.initGoogle({
+  //     client_id: GOOGLE_ACCOUNT_CLIENT_ID,
+  //     callback: (response) => dispatch(socialLogin(response)),
+  //   })
+  // }, [isLogin])
 
   useErrorMessage()
 
