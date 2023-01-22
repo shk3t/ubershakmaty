@@ -48,7 +48,7 @@ export default function SettingsPage() {
       ([key, value]) => value
     )
     if (Object.keys(requestData).length === 0) {
-      alert("All fields are empty!")
+      dispatch(setError("All fields are empty!"))
       return
     }
 
