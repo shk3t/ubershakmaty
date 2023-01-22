@@ -33,7 +33,7 @@ export default function Header() {
         </div>
         <div className={classes.status}>В сети</div>
         <nav>
-          <ul>
+          <ul id="header">
             <li>
               <Link to={MAIN_PATH}>Главная</Link>
             </li>
