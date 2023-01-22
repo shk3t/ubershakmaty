@@ -10,10 +10,8 @@ describe("Auth", () => {
     cy.get("button.AuthPage_button__RFObg").click()
 
     cy.on("window:alert", (str) => {
-        expect(str).contain(
-          `Incorrect authentication credentials.`
-        )
-      })
+      expect(str).contain(`Incorrect authentication credentials.`)
+    })
   })
 
   it("registration", () => {
@@ -74,5 +72,12 @@ describe("Auth", () => {
     cy.get("#loginButton").click()
 
     cy.url().should("include", "/main")
+  })
+
+  it("login user from database", () => {
+    cy.loginFromDb({
+      email: "em@gmail.com",
+      password: "someStuff",
+    })
   })
 })

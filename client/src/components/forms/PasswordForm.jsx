@@ -12,18 +12,16 @@ export default function PasswordForm() {
   const [passwords, setPasswords] = useState(emptyPasswords)
 
   function updatePassword() {
-      dispatch(
-        makeRequest(
-          () =>
-            updateAuthUser({
-              password: passwords.new,
-              old_password: passwords.old,
-            }),
-          "UpdatePassword"
-        )
+    dispatch(
+      makeRequest(
+        () =>
+          updateAuthUser({
+            password: passwords.new,
+            old_password: passwords.old,
+          }),
+        "UpdatePassword"
       )
-    }
+    )
   }
-
   return
 }
