@@ -76,7 +76,7 @@ export default function StatisticsPage() {
       </div>
       <div className={classes.statisticPanel}>
         <h2 className={classes.statisticMsg}>Статистика</h2>
-        <table className={classes.gamesStatistic}>
+        <table className={classes.gamesStatistic} id="statisticTable">
           <tr>
             <th>Тип игры</th>
             <th>Количество</th>

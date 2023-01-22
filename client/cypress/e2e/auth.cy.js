@@ -2,7 +2,20 @@ describe("Auth", () => {
   const user = (Math.random() + 1).toString(36).substring(8)
   const password = (Math.random() + 1).toString(36).substring(2)
   const passwordShort = (Math.random() + 1).toString(36).substring(6)
-  
+
+  it("login before registration", () => {
+    cy.visit("http://localhost:3000/auth")
+    cy.get('input[placeholder="Email"]').type("test" + user + "@gmail.com")
+    cy.get('input[placeholder="Password"]').type(password)
+    cy.get("button.AuthPage_button__RFObg").click()
+
+    cy.on("window:alert", (str) => {
+        expect(str).contain(
+          `Incorrect authentication credentials.`
+        )
+      })
+  })
+
   it("registration", () => {
     cy.visit("http://localhost:3000/auth")
     cy.waitForGoogleApi().then(() => {
@@ -58,7 +71,7 @@ describe("Auth", () => {
     cy.visit("http://localhost:3000/auth")
     cy.get('input[placeholder="Email"]').type("test" + user + "@gmail.com")
     cy.get('input[placeholder="Password"]').type(password)
-    cy.get("button.AuthPage_button__RFObg").click()
+    cy.get("#loginButton").click()
 
     cy.url().should("include", "/main")
   })

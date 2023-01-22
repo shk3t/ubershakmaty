@@ -1,6 +1,3 @@
-import "cypress-react-selector"
-
-
 describe("Main Page test", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/main")
@@ -20,6 +17,6 @@ describe("Main Page test", () => {
 
   it("rating", () => {
     cy.get("#rateButton").click()
-    cy.url().should("include", "/table")
+    cy.url().should("include", "/table")    
   })
 })
