@@ -55,7 +55,7 @@ export const initGame = (user) => async (dispatch, getState) => {
   const gameSocket = new WebSocket("ws://localhost:8000/ws/update_board/");
 
   //gameSocket.onopen = () => gameSocket.send(JSON.stringify({
-  //  'fen': "suck my dick",
+  //  'fen': "",
   //}));
 
   gameSocket.onmessage = function (e) {

@@ -1,21 +1,26 @@
-const express = require('express');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+var http = require('http');
 
-const app = express();
+http.createServer(onRequest).listen(8000);
 
-// Configuration
-const PORT = 3000;
-const HOST = "localhost";
-const API_SERVICE_URL = "https://jsonplaceholder.typicode.com";
+function onRequest(client_req, client_res) {
+  console.log('serve: ' + client_req.url);
 
-app.use('/json_placeholder', createProxyMiddleware({
-   target: API_SERVICE_URL,
-   changeOrigin: true,
-   pathRewrite: {
-       [`^/json_placeholder`]: '',
-   },
-}));
+  var options = {
+    hostname: 'localhost',
+    port: 8001,
+    path: client_req.url,
+    method: client_req.method,
+    headers: client_req.headers
+  };
 
-app.listen(PORT, HOST, () => {
-   console.log(`Starting Proxy at ${HOST}:${PORT}`);
-});
+  var proxy = http.request(options, function (res) {
+    client_res.writeHead(res.statusCode, res.headers)
+    res.pipe(client_res, {
+      end: true
+    });
+  });
+
+  client_req.pipe(proxy, {
+    end: true
+  });
+}

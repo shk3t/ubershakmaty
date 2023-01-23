@@ -16,9 +16,9 @@ def get_ready_players(scope):
 
 
 class WSConsumer(AsyncWebsocketConsumer):
-    async def connect(self, second_player):
+    async def connect(self):
         print('CONNECT', self.scope['user'].pk)
-        self.group_name = "game_%s_%s" % (self.scope['user'], second_player)
+        self.group_name = "game_%s_%s" % (self.scope['user'], "2")
         print(self.group_name)
         await self.channel_layer.group_add(self.group_name, self.channel_name)
 
