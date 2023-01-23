@@ -52,7 +52,17 @@ export const setTimeMode = (timeMode) => {
 }
 
 export const initGame = (user) => async (dispatch, getState) => {
-  const timeMode = getState().gameReducer.timeMode
+  const gameSocket = new WebSocket("ws://localhost:8000/ws/update_board/");
+
+  //gameSocket.onopen = () => gameSocket.send(JSON.stringify({
+  //  'fen': "suck my dick",
+  //}));
+
+  gameSocket.onmessage = function (e) {
+  const data = JSON.parse(e.data);
+  console.log(data);
+  }
+  const timeMode = getState().gameReducer.timeMode;
   const {pk, fen} = await GameService.initGame(timeMode, user)
   dispatch({
     type: INIT_GAME,

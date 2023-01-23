@@ -20,6 +20,7 @@ from django.db.models import Q
 def init_game(request):
     ready_player = ReadyToPlay.objects.filter(~Q(player=request.data['user']['id']),
                                               chosen_time_mode=request.data['timer']).order_by('wait_start')[:1]
+
     serializer = ChessGameSerializer(data=request.data)
     if ready_player.count():
         serializer.initial_data['player_2'] = ready_player[0].pk
